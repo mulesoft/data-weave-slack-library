@@ -1,0 +1,8 @@
+{
+  "text": {
+    "type": "plain_text",
+    "text": "Hello",
+    "emoji": true
+  },
+  "value": "hello_opt"
+}

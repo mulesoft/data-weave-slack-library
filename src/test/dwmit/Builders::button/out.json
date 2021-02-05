@@ -1,0 +1,9 @@
+{
+  "type": "button",
+  "text": {
+    "type": "plain_text",
+    "text": "Click me",
+    "emoji": true
+  },
+  "action_id": "bait"
+}

@@ -1,0 +1,14 @@
+{
+  "type": "section",
+  "fields": [
+    {
+      "type": "mrkdwn",
+      "text": "*Hello*"
+    },
+    {
+      "type": "plain_text",
+      "text": "Hello",
+      "emoji": true
+    }
+  ]
+}

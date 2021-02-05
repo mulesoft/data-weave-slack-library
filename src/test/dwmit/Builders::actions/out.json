@@ -1,0 +1,23 @@
+{
+  "type": "actions",
+  "elements": [
+    {
+      "type": "button",
+      "text": {
+        "type": "plain_text",
+        "text": "Click me",
+        "emoji": true
+      },
+      "action_id": "bait"
+    },
+    {
+      "type": "button",
+      "text": {
+        "type": "plain_text",
+        "text": "Download",
+        "emoji": true
+      },
+      "action_id": "download"
+    }
+  ]
+}

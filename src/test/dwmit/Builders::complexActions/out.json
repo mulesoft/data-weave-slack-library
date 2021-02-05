@@ -1,0 +1,49 @@
+{
+  "blocks": [
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "The latest update for 4.3.0 is *2.3.0-20210119*"
+      },
+      "accessory": {
+        "type": "button",
+        "text": {
+          "type": "plain_text",
+          "text": ":arrow_down: Download",
+          "emoji": true
+        },
+        "action_id": "download",
+        "url": "http://httpbin.org"
+      }
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "To install, check instructions"
+      }
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "actions",
+      "elements": [
+        {
+          "type": "button",
+          "text": {
+            "type": "plain_text",
+            "text": ":leftwards_arrow_with_hook: Back",
+            "emoji": true
+          },
+          "action_id": "back",
+          "value": "4.3.0"
+        }
+      ]
+    }
+  ]
+}

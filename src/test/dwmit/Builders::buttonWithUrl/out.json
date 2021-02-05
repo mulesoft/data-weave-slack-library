@@ -1,0 +1,10 @@
+{
+  "type": "button",
+  "text": {
+    "type": "plain_text",
+    "text": "Download now",
+    "emoji": true
+  },
+  "action_id": "download",
+  "url": "http://httpbin.org"
+}
