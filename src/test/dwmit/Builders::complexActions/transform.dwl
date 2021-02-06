@@ -6,9 +6,9 @@ var latestVersion = "2.3.0-20210119"
 var downloadButton = buttonWithUrl(":arrow_down: Download", "download", "http://httpbin.org")
 ---
 blocks([
-    section(markdown("The latest update for $(selectedVersion) is *$(latestVersion)*"), downloadButton),
+    section(mrkdwn("The latest update for $(selectedVersion) is *$(latestVersion)*"), downloadButton),
     divider(),
-    section(markdown("To install, check instructions")),
+    section(mrkdwn("To install, check instructions")),
     divider(),
     actions([buttonWithValue(":leftwards_arrow_with_hook: Back", "back", selectedVersion)])
 ])

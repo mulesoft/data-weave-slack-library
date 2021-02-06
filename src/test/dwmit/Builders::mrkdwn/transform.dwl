@@ -2,4 +2,4 @@
 import * from org::mule::weave::slack::modules::Builders
 output application/json
 ---
-markdown("*Hello*")
+mrkdwn("*Hello*")

@@ -1,0 +1,25 @@
+{
+  "label": {
+    "type": "plain_text",
+    "text": "Recommended",
+    "emoji": true
+  },
+  "options": [
+    {
+      "text": {
+        "type": "plain_text",
+        "text": "4.2.2",
+        "emoji": true
+      },
+      "value": "4.2.2"
+    },
+    {
+      "text": {
+        "type": "plain_text",
+        "text": "4.3.0",
+        "emoji": true
+      },
+      "value": "4.3.0"
+    }
+  ]
+}

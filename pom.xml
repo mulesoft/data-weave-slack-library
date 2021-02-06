@@ -2,22 +2,17 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
 		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-
 	<modelVersion>4.0.0</modelVersion>
-
-	<groupId>c9536d87-a92c-4792-8889-97e079c57173</groupId>
+	<groupId>1e0dbdda-5cda-4968-a636-0980a2c42cb1</groupId>
 	<artifactId>data-weave-slack-module</artifactId>
-	<version>1.0.0-SNAPSHOT</version>
+	<version>0.2.1</version>
 	<packaging>dw-library</packaging>
-
-	<name>data-weave-slack-module</name>
-
+	<name>DataWeave Slack Module</name>
 	<properties>
-		<weave.version>2.4.0-SNAPSHOT</weave.version>
+		<weave.version>2.4.0-20210126</weave.version>
 		<wtf.version>1.0.3-SNAPSHOT</wtf.version>
-		<exchange.orgId>c9536d87-a92c-4792-8889-97e079c57173</exchange.orgId>
+		<exchange.orgId>1e0dbdda-5cda-4968-a636-0980a2c42cb1</exchange.orgId>
 	</properties>
-
 	<dependencies>
 		<dependency>
 			<groupId>org.mule.weave</groupId>
@@ -44,7 +39,6 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
-
 	<build>
 		<resources>
 			<resource>
@@ -71,7 +65,13 @@
 			</plugin>
 		</plugins>
 	</build>
-
+	<distributionManagement>
+		<repository>
+			<id>exchange</id>
+			<name>Exchange</name>
+			<url>https://maven.devx.anypoint.mulesoft.com/api/v3/organizations/1e0dbdda-5cda-4968-a636-0980a2c42cb1/maven</url>
+		</repository>
+	</distributionManagement>
 	<repositories>
 		<repository>
 			<id>mule-releases</id>
@@ -82,19 +82,12 @@
 			<url>https://repository-master.mulesoft.org/nexus/content/repositories/snapshots</url>
 		</repository>
 		<repository>
-			<id>Exchange</id>
+			<id>exchange</id>
 			<name>Corporate Repository</name>
 			<url>https://maven.devx.anypoint.mulesoft.com/api/v3/maven</url>
 			<layout>default</layout>
 		</repository>
 	</repositories>
-	<distributionManagement>
-		<repository>
-			<id>exchange</id>
-			<name>Exchange</name>
-			<url>https://maven.devx.anypoint.mulesoft.com/api/v3/organizations/${exchange.orgId}/maven</url>
-		</repository>
-	</distributionManagement>
 	<pluginRepositories>
 		<pluginRepository>
 			<id>mule-releases</id>

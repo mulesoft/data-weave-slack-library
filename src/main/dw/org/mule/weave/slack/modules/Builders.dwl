@@ -1,6 +1,16 @@
 /**
 *
-* Provides functions to simplify the creation and composition of blocks.
+* Provides functions to simplify the creation and composition of https://api.slack.com/block-kit[blocks], https://api.slack.com/reference/block-kit/block-elements[elements] and https://api.slack.com/reference/block-kit/composition-objects[objects]:
+*
+* - https://api.slack.com/reference/block-kit/blocks#actions[actions]
+* - https://api.slack.com/reference/block-kit/blocks#divider[divider]
+* - https://api.slack.com/reference/block-kit/blocks#header[header]
+* - https://api.slack.com/reference/block-kit/blocks#section[section]
+* - https://api.slack.com/reference/block-kit/composition-objects#text[text]
+* - https://api.slack.com/reference/block-kit/block-elements#button[button]
+* - https://api.slack.com/reference/block-kit/composition-objects#option[option]
+* - https://api.slack.com/reference/block-kit/composition-objects#option_group[option group]
+* - https://api.slack.com/reference/block-kit/block-elements#static_select[static select]
 *
 */
 
@@ -9,22 +19,19 @@ import * from org::mule::weave::slack::modules::Blocks
 import * from org::mule::weave::slack::modules::Elements
 import * from org::mule::weave::slack::modules::Objects
 /**
-*  Description for the function goes here
-*
-*  Make sure to include your input and output parameters table, like so:
+*  Generates the standard block kit syntax to define a group of blocks.
 *
 *  === Parameters
 *
 * [%header, cols="1,3"]
 * |===
 * | Name   | Description | Type
-* | in | My input paramenter | String
+* | blocks | The array of blocks to render | Array<Block>
 * |===
 *
-*  It is also a good idea to showcase the usage of your function with an example.
-*
-*
 * === Example
+*
+* In this example, a simple section is generated and used as a block.
 *
 * === Source
 *
@@ -32,86 +39,725 @@ import * from org::mule::weave::slack::modules::Objects
 * ----
 * %dw 2.0
 * output application/json
-* import * from path::to::my::modules::__artifactId__Module
+* import * from org::mule::weave::slack::Builders
 * ---
-*  {
-*       DataWeave: "A $(Fun('Language'))"
-*  }
+*  blocks([section("Hello there!")])
 * ----
-*
 *
 * ==== Output
 *
 * [source,Json,linenums]
 * ----
-* "A Transformation Language"
+* {
+*    "blocks": [
+*     {
+*        "type": "section",
+*        "text": {
+*          "type": "plain_text",
+*          "text": "Hello there!",
+*         "emoji": true
+*        }
+*      }
+*    ]
+* }
+* ----
+*/
+fun blocks(blocks: Array<Block>) = {
+    blocks: blocks
+}
+
+/**
+*  Generates an actions block.
+*
+*  === Parameters
+*
+* [%header, cols="1,3"]
+* |===
+* | Name   | Description | Type
+* | actions | The array of interactive elements to render | Array<Element>
+* |===
+*
+* === Example
+*
+* In this example, an actions block featuring a simple button is generated.
+*
+* === Source
+*
+* [source,DataWeave,linenums]
+* ----
+* %dw 2.0
+* output application/json
+* import * from org::mule::weave::slack::Builders
+* ---
+*  actions([button("Click me!", "bait")])
 * ----
 *
+* ==== Output
+*
+* [source,Json,linenums]
+* ----
+* {
+*   "type": "actions",
+*   "elements": [
+*     {
+*       "type": "button",
+*       "text": {
+*         "type": "plain_text",
+*         "text": "Click me!",
+*         "emoji": true
+*       },
+*       "action_id": "bait"
+*     }
+*   ]
+* }
+* ----
 */
-
-fun blocks(bs: Array<Block>) = {
-    blocks: bs
-}
-
-fun actions(acts: Array<Element>) : Actions = {
+fun actions(actions: Array<Element>) : Actions = {
     'type': "actions",
-    elements: acts
+    elements: actions
 }
 
+/**
+*  Generates a divider block.
+*
+* === Example
+*
+* In this example, a divider block is generated.
+*
+* === Source
+*
+* [source,DataWeave,linenums]
+* ----
+* %dw 2.0
+* output application/json
+* import * from org::mule::weave::slack::Builders
+* ---
+*  divider()
+* ----
+*
+* ==== Output
+*
+* [source,Json,linenums]
+* ----
+* {
+*   "type": "divider"
+* }
+* ----
+*/
 fun divider() : Divider = {
     'type': "divider"
 }
 
+/**
+*  Generates a plain text object, with emojis enabled.
+*
+*  === Parameters
+*
+* [%header, cols="1,3"]
+* |===
+* | Name   | Description | Type
+* | message | The text to use | String
+* |===
+*
+* === Example
+*
+* In this example, a text object featuring a wave emoji is generated.
+*
+* === Source
+*
+* [source,DataWeave,linenums]
+* ----
+* %dw 2.0
+* output application/json
+* import * from org::mule::weave::slack::Builders
+* ---
+*  text("Hello! :wave:")
+* ----
+*
+* ==== Output
+*
+* [source,Json,linenums]
+* ----
+* {
+*   "type": "plain_text",
+*   "text": "Hello! :wave:",
+*   "emoji": true
+* }
+* ----
+*/
 fun text(t : String) : PlainText = {
     'type': "plain_text",
     text: t,
     emoji: true
 }
 
-fun markdown(t: String) : MarkDown = {
+/**
+*  Generates a mrkdwn text object.
+*
+*  === Parameters
+*
+* [%header, cols="1,3"]
+* |===
+* | Name   | Description | Type
+* | message | The mrkdwn to use | String
+* |===
+*
+* === Example
+*
+* In this example, a mrkdwn text object featuring bold text is generated.
+*
+* === Source
+*
+* [source,DataWeave,linenums]
+* ----
+* %dw 2.0
+* output application/json
+* import * from org::mule::weave::slack::Builders
+* ---
+*  mrkdwn("*Hello*")
+* ----
+*
+* ==== Output
+*
+* [source,Json,linenums]
+* ----
+* {
+*   "type": "mrkdwn",
+*   "text": "*Hello*"
+* }
+* ----
+*/
+fun mrkdwn(message: String) : Mrkdwn = {
     'type': "mrkdwn",
-    text: t
+    text: message
 }
 
+/**
+*  Generates a simple section block, with a plain text object.
+*
+*  === Parameters
+*
+* [%header, cols="1,3"]
+* |===
+* | Name   | Description | Type
+* | message | The value to use in the desired text | String
+* |===
+*
+* === Example
+*
+* In this example, a section with a simple text is generated.
+*
+* === Source
+*
+* [source,DataWeave,linenums]
+* ----
+* %dw 2.0
+* output application/json
+* import * from org::mule::weave::slack::Builders
+* ---
+*  section("Hello!")
+* ----
+*
+* ==== Output
+*
+* [source,Json,linenums]
+* ----
+* {
+*   "type": "section",
+*   "text": {
+*     "type": "plain_text",
+*     "text": "Hello",
+*     "emoji": true
+*   }
+* }
+* ----
+*/
+fun section(message: String) : Section = section(text(message))
+
+/**
+*  Generates a section block, with a text object.
+*
+*  === Parameters
+*
+* [%header, cols="1,3"]
+* |===
+* | Name   | Description | Type
+* | text | The text object to use | Text
+* |===
+*
+* === Example
+*
+* In this example, a section with mrkdwn text is generated.
+*
+* === Source
+*
+* [source,DataWeave,linenums]
+* ----
+* %dw 2.0
+* output application/json
+* import * from org::mule::weave::slack::Builders
+* ---
+*  section(mrkdwn("*Hello*"))
+* ----
+*
+* ==== Output
+*
+* [source,Json,linenums]
+* ----
+* {
+*   "type": "section",
+*   "text": {
+*     "type": "mrkdwn",
+*     "text": "*Hello*"
+*   }
+* }
+* ----
+*/
 fun section(text : Text) : Section = {
     'type': "section",
     text: text
 }
 
-fun section(text: Text, ac : Element) : Section = {
+/**
+*  Generates a section block, with a text object and an accessory element.
+*
+*  === Parameters
+*
+* [%header, cols="1,3"]
+* |===
+* | Name   | Description | Type
+* | text | The text object to use | Text
+* | accessory | The element to use | Element
+* |===
+*
+* === Example
+*
+* In this example, a section with mrkdwn text and a simple button is generated.
+*
+* === Source
+*
+* [source,DataWeave,linenums]
+* ----
+* %dw 2.0
+* output application/json
+* import * from org::mule::weave::slack::Builders
+* ---
+*  section(mrkdwn("*Hello*"), button("Click me!", "bait"))
+* ----
+*
+* ==== Output
+*
+* [source,Json,linenums]
+* ----
+* {
+*   "type": "section",
+*   "text": {
+*     "type": "mrkdwn",
+*     "text": "*Hello*"
+*   },
+*   "accessory": {
+*     "type": "button",
+*     "text": {
+*       "type": "plain_text",
+*       "text": "Click me!",
+*       "emoji": true
+*     },
+*     "action_id": "bait"
+*   }
+* }
+* ----
+*/
+fun section(text: Text, accessory : Element) : Section = {
     'type': "section",
     text: text,
-    accessory: ac
+    accessory: accessory
 }
 
+/**
+*  Generates a section block, with an array of text objects or fields.
+*
+*  === Parameters
+*
+* [%header, cols="1,3"]
+* |===
+* | Name   | Description | Type
+* | fields | An array of text objects to use | Array<Text>
+* |===
+*
+* === Example
+*
+* In this example, a section with a mrkdwn text and a plain text is generated.
+*
+* === Source
+*
+* [source,DataWeave,linenums]
+* ----
+* %dw 2.0
+* output application/json
+* import * from org::mule::weave::slack::Builders
+* ---
+*  section([mrkdwn("*Hello*"), text("Bye!")])
+* ----
+*
+* ==== Output
+*
+* [source,Json,linenums]
+* ----
+* {
+*    "type": "section",
+*    "fields": [
+*      {
+*        "type": "mrkdwn",
+*        "text": "*Hello*"
+*      },
+*      {
+*        "type": "plain_text",
+*        "text": "Bye!",
+*        "emoji": true
+*      }
+*    ]
+*  }
+* ----
+*/
 fun section(fields: Array<Text>) : Section = {
     'type': "section",
     fields: fields
 }
 
-fun section(fields: Array<Text>, ac : Element) : Section = {
+/**
+*  Generates a section block, with an array of text objects,or fields, and an accessory element.
+*
+*  === Parameters
+*
+* [%header, cols="1,3"]
+* |===
+* | Name   | Description | Type
+* | fields | An array of text objects to use | Array<Text>
+* | accessory | The element to use | Element
+* |===
+*
+* === Example
+*
+* In this example, a section with mrkdwn text, plain text and a simple button is generated.
+*
+* === Source
+*
+* [source,DataWeave,linenums]
+* ----
+* %dw 2.0
+* output application/json
+* import * from org::mule::weave::slack::Builders
+* ---
+*  section([mrkdwn("*Hello*"), text("Bye!")], button("Click me!", "bait"))
+* ----
+*
+* ==== Output
+*
+* [source,Json,linenums]
+* ----
+* {
+*   "type": "section",
+*   "fields": [
+*     {
+*       "type": "mrkdwn",
+*       "text": "*Hello*"
+*     },
+*     {
+*       "type": "plain_text",
+*       "text": "Bye!",
+*       "emoji": true
+*     }
+*   ],
+*   "accessory": {
+*     "type": "button",
+*     "text": {
+*       "type": "plain_text",
+*       "text": "Click me!",
+*       "emoji": true
+*     },
+*     "action_id": "bait"
+*   }
+* }
+* ----
+*/
+fun section(fields: Array<Text>, accessory : Element) : Section = {
     'type': "section",
     fields: fields,
-    accessory: ac
+    accessory: accessory
 }
 
+/**
+*  Generates a header block, with a simple plain text object.
+*
+*  === Parameters
+*
+* [%header, cols="1,3"]
+* |===
+* | Name   | Description | Type
+* | message | The value to use in the desired text | String
+* |===
+*
+* === Example
+*
+* In this example, a header with a simple text is generated.
+*
+* === Source
+*
+* [source,DataWeave,linenums]
+* ----
+* %dw 2.0
+* output application/json
+* import * from org::mule::weave::slack::Builders
+* ---
+*  header("Hello!")
+* ----
+*
+* ==== Output
+*
+* [source,Json,linenums]
+* ----
+* {
+*   "type": "header",
+*   "text": {
+*     "type": "plain_text",
+*     "text": "Hello!",
+*     "emoji": true
+*   }
+* }
+* ----
+*/
 fun header(message: String) : Header = header(text(message))
 
+/**
+*  Generates a header block, with a plain text object.
+*
+*  === Parameters
+*
+* [%header, cols="1,3"]
+* |===
+* | Name   | Description | Type
+* | text | The plain text object to use | PlainText
+* |===
+*
+* === Example
+*
+* In this example, a header with a plain text object with no support for emojis is generated.
+*
+* === Source
+*
+* [source,DataWeave,linenums]
+* ----
+* %dw 2.0
+* output application/json
+* import * from org::mule::weave::slack::Builders
+* ---
+* header({
+*     'type': "plain_text",
+*     text: "Hello!",
+*     emojis: false
+* })
+* ----
+*
+* ==== Output
+*
+* [source,Json,linenums]
+* ----
+* {
+*   "type": "header",
+*   "text": {
+*     "type": "plain_text",
+*     "text": "Hello!",
+*     "emoji": false
+*   }
+* }
+* ----
+*/
 fun header(text: PlainText) : Header = {
     'type': "header",
     text: text
 }
 
+/**
+*  Generates a button element, with a simple plain text
+*  object and ID.
+*
+*  === Parameters
+*
+* [%header, cols="1,3"]
+* |===
+* | Name   | Description | Type
+* | message | The value to use in the desired text | String
+* | id | The value to use in `action_id` field | String
+* |===
+*
+* === Example
+*
+* In this example, a button with a simple text is generated, using an ID called "bait".
+*
+* === Source
+*
+* [source,DataWeave,linenums]
+* ----
+* %dw 2.0
+* output application/json
+* import * from org::mule::weave::slack::Builders
+* ---
+*  button("Click me!", "bait")
+* ----
+*
+* ==== Output
+*
+* [source,Json,linenums]
+* ----
+* {
+*   "type": "button",
+*   "text": {
+*     "type": "plain_text",
+*     "text": "Click me!",
+*     "emoji": true
+*   },
+*   "action_id": "bait"
+* }
+* ----
+*/
 fun button(message: String, id: String) : Button = button(text(message), id)
 
+/**
+*  Generates a button element, with a plain text object and ID.
+*
+*  === Parameters
+*
+* [%header, cols="1,3"]
+* |===
+* | Name   | Description | Type
+* | text | The plain text object to use | PlainText
+* | id | The value to use in `action_id` field | String
+* |===
+*
+* === Example
+*
+* In this example, a button with a text with no emoji support is generated, using an ID called "bait".
+*
+* === Source
+*
+* [source,DataWeave,linenums]
+* ----
+* %dw 2.0
+* output application/json
+* import * from org::mule::weave::slack::Builders
+* ---
+*  button({'type': "plain_text", text: "Create your own :emoji:"}, "emoji")
+* ----
+*
+* ==== Output
+*
+* [source,Json,linenums]
+* ----
+* {
+*   "type": "button",
+*   "text": {
+*     "type": "plain_text",
+*     "text": "Create your own :emoji:"
+*   },
+*   "action_id": "emoji"
+* }
+* ----
+*/
 fun button(text: PlainText, id: String) : Button = {
     'type': "button",
     text: text,
     'action_id': id
 }
 
-fun buttonWithValue(message: String, id: String, val: String) : Button = buttonWithValue(text(message), id, val)
+/**
+*  Generates a button element, with a simple plain text object, an ID and a value.
+*
+*  === Parameters
+*
+* [%header, cols="1,3"]
+* |===
+* | Name   | Description | Type
+* | message | The value to use in the desired text | String
+* | id | The value to use in `action_id` field | String
+* | value | The value to use | String
+* |===
+*
+* === Example
+*
+* In this example, a button with a simple text is generated, using an ID called "bait" and a value.
+*
+* === Source
+*
+* [source,DataWeave,linenums]
+* ----
+* %dw 2.0
+* output application/json
+* import * from org::mule::weave::slack::Builders
+* ---
+*  buttonWithValue("Click me!", "bait", "something to share")
+* ----
+*
+* ==== Output
+*
+* [source,Json,linenums]
+* ----
+* {
+*   "type": "button",
+*   "text": {
+*     "type": "plain_text",
+*     "text": "Click me!",
+*     "emoji": true
+*   },
+*   "action_id": "bait",
+*   "value": "something to share"
+* }
+* ----
+*/
+fun buttonWithValue(message: String, id: String, value: String) : Button = buttonWithValue(text(message), id, value)
 
+/**
+*  Generates a button element, with a plain text object, an ID and a value.
+*
+*  === Parameters
+*
+* [%header, cols="1,3"]
+* |===
+* | Name   | Description | Type
+* | message | The value to use in the desired text | String
+* | id | The value to use in `action_id` field | String
+* | value | The value to use | String
+* |===
+*
+* === Example
+*
+* In this example, a button with a text not supporting emojis is generated, using an ID called "bait" and a value.
+*
+* === Source
+*
+* [source,DataWeave,linenums]
+* ----
+* %dw 2.0
+* output application/json
+* import * from org::mule::weave::slack::Builders
+* ---
+*  buttonWithValue({'type': "plain_text", text: "Create your own :emoji:"}, "emoji", "origin")
+* ----
+*
+* ==== Output
+*
+* [source,Json,linenums]
+* ----
+* {
+*   "type": "button",
+*   "text": {
+*     "type": "plain_text",
+*     "text": "Create your own :emoji:"
+*   },
+*   "action_id": "emoji",
+*   "value": "origin"
+* }
+* ----
+*/
 fun buttonWithValue(text: PlainText, id: String, val: String) : Button = {
     'type': "button",
     text: text,
@@ -119,8 +765,95 @@ fun buttonWithValue(text: PlainText, id: String, val: String) : Button = {
     value: val
 }
 
+/**
+*  Generates a button element, with a simple plain text object, an ID and an URL.
+*
+*  === Parameters
+*
+* [%header, cols="1,3"]
+* |===
+* | Name   | Description | Type
+* | message | The value to use in the desired text | String
+* | id | The value to use in `action_id` field | String
+* | url | The URL to use | String
+* |===
+*
+* === Example
+*
+* In this example, a button with a simple text is generated, using an ID called "bait" and a URL leading to the Slack site.
+*
+* === Source
+*
+* [source,DataWeave,linenums]
+* ----
+* %dw 2.0
+* output application/json
+* import * from org::mule::weave::slack::Builders
+* ---
+*  buttonWithUrl("Click me!", "bait", "https://slack.com")
+* ----
+*
+* ==== Output
+*
+* [source,Json,linenums]
+* ----
+* {
+*   "type": "button",
+*   "text": {
+*     "type": "plain_text",
+*     "text": "Click me!",
+*     "emoji": true
+*   },
+*   "action_id": "bait",
+*   "url": "https://slack.com"
+* }
+* ----
+*/
 fun buttonWithUrl(message: String, id: String, url: String) : Button = buttonWithUrl(text(message), id, url)
 
+/**
+*  Generates a button element, with a plain text object, an ID and an URL.
+*
+*  === Parameters
+*
+* [%header, cols="1,3"]
+* |===
+* | Name   | Description | Type
+* | text | The plain text object to use | PlainText
+* | id | The value to use in `action_id` field | String
+* | url | The URL to use | String
+* |===
+*
+* === Example
+*
+* In this example, a button with a no emoji supporting text is generated, using an ID called "bait" and a URL leading to the Slack site.
+*
+* === Source
+*
+* [source,DataWeave,linenums]
+* ----
+* %dw 2.0
+* output application/json
+* import * from org::mule::weave::slack::Builders
+* ---
+*  buttonWithUrl({'type': "plain_text", text: "Create your own :emoji:"}, "emoji", "https://slack.com")
+* ----
+*
+* ==== Output
+*
+* [source,Json,linenums]
+* ----
+* {
+*   "type": "button",
+*   "text": {
+*     "type": "plain_text",
+*     "text": "Create your own :emoji:"
+*   },
+*   "action_id": "emoji",
+*   "url": "https://slack.com"
+* }
+* ----
+*/
 fun buttonWithUrl(text: PlainText, id : String, url: String) : Button = {
     'type': "button",
     text: text,
@@ -128,17 +861,464 @@ fun buttonWithUrl(text: PlainText, id : String, url: String) : Button = {
     url: url
 }
 
-fun option(message: String, val: String) = option(text(message), val)
+/**
+*  Generates an option object, with a simple plain text
+*  object and its value.
+*
+*  === Parameters
+*
+* [%header, cols="1,3"]
+* |===
+* | Name   | Description | Type
+* | message | The value to use in the desired text | String
+* | value | The value to use in the option | String
+* |===
+*
+* === Example
+*
+* In this example, multiple options are generated from a list of Strings, using the same text and value.
+*
+* === Source
+*
+* [source,DataWeave,linenums]
+* ----
+* %dw 2.0
+* output application/json
+* import * from org::mule::weave::slack::Builders
+* var versions = ["4.3.0", "4.2.2", "4.1.6"]
+* ---
+*  versions map ((item) -> option(item, item))
+* ----
+*
+* ==== Output
+*
+* [source,Json,linenums]
+* ----
+* [
+*   {
+*     "text": {
+*       "type": "plain_text",
+*       "text": "4.3.0",
+*       "emoji": true
+*     },
+*     "value": "4.3.0"
+*   },
+*   {
+*     "text": {
+*       "type": "plain_text",
+*       "text": "4.2.2",
+*       "emoji": true
+*     },
+*     "value": "4.2.2"
+*   },
+*   {
+*     "text": {
+*       "type": "plain_text",
+*       "text": "4.1.6",
+*       "emoji": true
+*     },
+*     "value": "4.1.6"
+*   }
+* ]
+* ----
+*/
+fun option(message: String, value: String) = option(text(message), value)
 
+/**
+*  Generates an option object, with a text object and its value.
+*
+*  === Parameters
+*
+* [%header, cols="1,3"]
+* |===
+* | Name   | Description | Type
+* | text | The text to use | Text
+* | value | The value to use in the option | String
+* |===
+*
+* === Example
+*
+* In this example, an option is generated with mrkdwn text to select the color red while its value references the hex
+* color representation for red.
+*
+* === Source
+*
+* [source,DataWeave,linenums]
+* ----
+* %dw 2.0
+* output application/json
+* import * from org::mule::weave::slack::Builders
+* ---
+*  option(mrkdwn("*Red*"), "FF0000")
+* ----
+*
+* ==== Output
+*
+* [source,Json,linenums]
+* ----
+* {
+*   "text": {
+*     "type": "mrkdwn",
+*     "text": "*Red*"
+*   },
+*   "value": "FF0000"
+* }
+* ----
+*/
 fun option(text: Text, val: String) : Option = {
     text: text,
     value: val
 }
 
+/**
+*  Generates an option group object, with a simple plain text object and its options.
+*
+*  === Parameters
+*
+* [%header, cols="1,3"]
+* |===
+* | Name   | Description | Type
+* | message | The value to use in the desired text | String
+* | options | The options to group | Array<Option>
+* |===
+*
+* === Example
+*
+* In this example, an option group is generated with a simple value for some options.
+*
+* === Source
+*
+* [source,DataWeave,linenums]
+* ----
+* %dw 2.0
+* output application/json
+* import * from org::mule::weave::slack::Builders
+* var options = ["4.3.0", "4.2.2"] map ((item) -> option(item, item))
+* ---
+*  optionGroup("Recommended", options)
+* ----
+*
+* ==== Output
+*
+* [source,Json,linenums]
+* ----
+* {
+*   "label": {
+*     "type": "plain_text",
+*     "text": "Recommended",
+*     "emoji": true
+*   },
+*   "options": [
+*     {
+*       "text": {
+*         "type": "plain_text",
+*         "text": "4.3.0",
+*         "emoji": true
+*       },
+*       "value": "4.3.0"
+*     },
+*     {
+*       "text": {
+*         "type": "plain_text",
+*         "text": "4.2.2",
+*         "emoji": true
+*       },
+*       "value": "4.2.2"
+*     }
+*   ]
+* }
+* ----
+*/
+fun optionGroup(message: String, options: Array<Option>) : OptionGroup = optionGroup(text(message), options)
+
+/**
+*  Generates an option group object, with a plain text object and its options.
+*
+*  === Parameters
+*
+* [%header, cols="1,3"]
+* |===
+* | Name   | Description | Type
+* | text | The plain text to use | PlainText
+* | options | The options to group | Array<Option>
+* |===
+*
+* === Example
+*
+* In this example, an option group is generated with a text for some options.
+*
+* === Source
+*
+* [source,DataWeave,linenums]
+* ----
+* %dw 2.0
+* output application/json
+* import * from org::mule::weave::slack::Builders
+* var options = ["4.2.0", "4.2.1"] map ((item) -> option(item, item))
+* ---
+*  optionGroup({'type': "plain_text", text: "Others"}, options)
+* ----
+*
+* ==== Output
+*
+* [source,Json,linenums]
+* ----
+* {
+*   "label": {
+*     "type": "plain_text",
+*     "text": "Others"
+*   },
+*   "options": [
+*     {
+*       "text": {
+*         "type": "plain_text",
+*         "text": "4.2.0",
+*         "emoji": true
+*       },
+*       "value": "4.2.0"
+*     },
+*     {
+*       "text": {
+*         "type": "plain_text",
+*         "text": "4.2.1",
+*         "emoji": true
+*       },
+*       "value": "4.2.1"
+*     }
+*   ]
+* }
+* ----
+*/
+fun optionGroup(text : PlainText, options: Array<Option>) : OptionGroup = {
+    label: text,
+    options: options
+}
+
+/**
+*  Generates an static select element, with a simple plain text object as placeholder, its ID and options.
+*
+*  === Parameters
+*
+* [%header, cols="1,3"]
+* |===
+* | Name   | Description | Type
+* | message | The value to use in the desired placeholder | String
+* | id | The value to use in `action_id` field | String
+* | options | The array of options to offer | Array<Option>
+* |===
+*
+* === Example
+*
+* In this example, a static group of options are offered with a simple text placeholder.
+*
+* === Source
+*
+* [source,DataWeave,linenums]
+* ----
+* %dw 2.0
+* output application/json
+* import * from org::mule::weave::slack::Builders
+* var options = ["4.3.0", "4.2.2", "4.1.6"] map ((item) -> option(item, item))
+* ---
+*  staticSelect("Choose a version...", "version_menu", options)
+* ----
+*
+* ==== Output
+*
+* [source,Json,linenums]
+* ----
+* {
+*   "type": "static_select",
+*   "placeholder": {
+*     "type": "plain_text",
+*     "text": "Choose a version...",
+*     "emoji": true
+*   },
+*   "action_id": "version_menu",
+*   "options": [
+*     {
+*       "text": {
+*         "type": "plain_text",
+*         "text": "4.3.0",
+*         "emoji": true
+*       },
+*       "value": "4.3.0"
+*     },
+*     {
+*       "text": {
+*         "type": "plain_text",
+*         "text": "4.2.2",
+*         "emoji": true
+*       },
+*       "value": "4.2.2"
+*     },
+*     {
+*       "text": {
+*         "type": "plain_text",
+*         "text": "4.1.6",
+*         "emoji": true
+*       },
+*       "value": "4.1.6"
+*     }
+*   ]
+* }
+* ----
+*/
 fun staticSelect(placeholder: String, id: String, options: Array<Option>) : StaticSelect = staticSelect(text(placeholder), id, options)
 
-fun staticSelect(placeholder: String, id: String, optionGroups: Array<OptionGroup>) : StaticSelect = staticSelect(text(placeholder), id, optionGroups)
+/**
+*  Generates a static select element, with a simple plain text object as placeholder, its ID and option groups.
+*
+*  === Parameters
+*
+* [%header, cols="1,3"]
+* |===
+* | Name   | Description | Type
+* | message | The value to use in the desired placeholder | String
+* | id | The value to use in `action_id` field | String
+* | optionGroups | The array of options groups to offer | Array<OptionGroup>
+* |===
+*
+* === Example
+*
+* In this example, a static group of option groups are offered with a simple text placeholder.
+*
+* === Source
+*
+* [source,DataWeave,linenums]
+* ----
+* %dw 2.0
+* output application/json
+* import * from org::mule::weave::slack::Builders
+* var recommendedGroup = optionGroup("Recommended", [option("4.3.0", "latest")])
+* var otherGroup = optionGroup("Other", [option("4.1.1", "original")])
+* ---
+*  staticSelectGrouped("Choose a version...", "version_menu", [recommendedGroup, otherGroup])
+* ----
+*
+* ==== Output
+*
+* [source,Json,linenums]
+* ----
+* {
+*   "type": "static_select",
+*   "placeholder": {
+*     "type": "plain_text",
+*     "text": "Choose a version...",
+*     "emoji": true
+*   },
+*   "action_id": "version_menu",
+*   "option_groups": [
+*     {
+*       "label": {
+*         "type": "plain_text",
+*         "text": "Recommended",
+*         "emoji": true
+*       },
+*       "options": [
+*         {
+*           "text": {
+*             "type": "plain_text",
+*             "text": "4.3.0",
+*             "emoji": true
+*           },
+*           "value": "latest"
+*         }
+*       ]
+*     },
+*     {
+*       "label": {
+*         "type": "plain_text",
+*         "text": "Others",
+*         "emoji": true
+*       },
+*       "options": [
+*         {
+*           "text": {
+*             "type": "plain_text",
+*             "text": "4.1.1",
+*             "emoji": true
+*           },
+*           "value": "original"
+*         }
+*       ]
+*     }
+*   ]
+* }
+* ----
+*/
+fun staticSelectByGroups(placeholder: String, id: String, optionGroups: Array<OptionGroup>) : StaticSelect = staticSelectByGroups(text(placeholder), id, optionGroups)
 
+/**
+*  Generates an static select element, with a simple plain text object as placeholder, its ID and options.
+*
+*  === Parameters
+*
+* [%header, cols="1,3"]
+* |===
+* | Name   | Description | Type
+* | message | The value to use in the desired placeholder | String
+* | id | The value to use in `action_id` field | String
+* | options | The array of options to offer | Array<Option>
+* |===
+*
+* === Example
+*
+* In this example, a static group of options are offered with a simple text placeholder.
+*
+* === Source
+*
+* [source,DataWeave,linenums]
+* ----
+* %dw 2.0
+* output application/json
+* import * from org::mule::weave::slack::Builders
+* var options = ["4.3.0", "4.2.2", "4.1.6"] map ((item) -> option(item, item))
+* ---
+*  staticSelect("Choose a version...", "version_menu", options)
+* ----
+*
+* ==== Output
+*
+* [source,Json,linenums]
+* ----
+* {
+*   "type": "static_select",
+*   "placeholder": {
+*     "type": "plain_text",
+*     "text": "Choose a version...",
+*     "emoji": true
+*   },
+*   "action_id": "version_menu",
+*   "options": [
+*     {
+*       "text": {
+*         "type": "plain_text",
+*         "text": "4.3.0",
+*         "emoji": true
+*       },
+*       "value": "4.3.0"
+*     },
+*     {
+*       "text": {
+*         "type": "plain_text",
+*         "text": "4.2.2",
+*         "emoji": true
+*       },
+*       "value": "4.2.2"
+*     },
+*     {
+*       "text": {
+*         "type": "plain_text",
+*         "text": "4.1.6",
+*         "emoji": true
+*       },
+*       "value": "4.1.6"
+*     }
+*   ]
+* }
+* ----
+*/
 fun staticSelect(placeholder: PlainText, id: String, options: Array<Option>) : StaticSelect = {
     'type': "static_select",
     placeholder: placeholder,
@@ -146,7 +1326,87 @@ fun staticSelect(placeholder: PlainText, id: String, options: Array<Option>) : S
     options: options
 }
 
-fun staticSelect(placeholder: PlainText, id: String, optionGroups: Array<OptionGroup>) : StaticSelect = {
+/**
+*  Generates an static select element, with a plain text object as placeholder, its ID and option groups.
+*
+*  === Parameters
+*
+* [%header, cols="1,3"]
+* |===
+* | Name   | Description | Type
+* | text | The text to use as placeholder | PlainText
+* | id | The value to use in `action_id` field | String
+* | optionGroups | The array of options groups to offer | Array<OptionGroup>
+* |===
+*
+* === Example
+*
+* In this example, a static group of option groups are offered with a text placeholder.
+*
+* === Source
+*
+* [source,DataWeave,linenums]
+* ----
+* %dw 2.0
+* output application/json
+* import * from org::mule::weave::slack::Builders
+* var recommendedGroup = optionGroup("Recommended", [option("4.3.0", "latest")])
+* var otherGroup = optionGroup("Other", [option("4.1.1", "original")])
+* ---
+*  staticSelectByGroups({'type': "plain_text", text:"Some versions"}, "version_menu", [recommendedGroup, otherGroup])
+* ----
+*
+* ==== Output
+*
+* [source,Json,linenums]
+* ----
+* {
+*   "type": "static_select",
+*   "placeholder": {
+*     "type": "plain_text",
+*     "text": "Some versions"
+*   },
+*   "action_id": "version_menu",
+*   "option_groups": [
+*     {
+*       "label": {
+*         "type": "plain_text",
+*         "text": "Recommended",
+*         "emoji": true
+*       },
+*       "options": [
+*         {
+*           "text": {
+*             "type": "plain_text",
+*             "text": "4.3.0",
+*             "emoji": true
+*           },
+*           "value": "latest"
+*         }
+*       ]
+*     },
+*     {
+*       "label": {
+*         "type": "plain_text",
+*         "text": "Others",
+*         "emoji": true
+*       },
+*       "options": [
+*         {
+*           "text": {
+*             "type": "plain_text",
+*             "text": "4.1.1",
+*             "emoji": true
+*           },
+*           "value": "original"
+*         }
+*       ]
+*     }
+*   ]
+* }
+* ----
+*/
+fun staticSelectByGroups(placeholder: PlainText, id: String, optionGroups: Array<OptionGroup>) : StaticSelect = {
     'type': "static_select",
     placeholder: placeholder,
     'action_id': id,

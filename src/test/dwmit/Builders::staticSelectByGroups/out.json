@@ -1,0 +1,61 @@
+{
+  "type": "static_select",
+  "placeholder": {
+    "type": "plain_text",
+    "text": "Choose a version...",
+    "emoji": true
+  },
+  "action_id": "version_menu",
+  "option_groups": [
+    {
+      "label": {
+        "type": "plain_text",
+        "text": "Recommended",
+        "emoji": true
+      },
+      "options": [
+        {
+          "text": {
+            "type": "plain_text",
+            "text": "4.3.0",
+            "emoji": true
+          },
+          "value": "4.3.0"
+        },
+        {
+          "text": {
+            "type": "plain_text",
+            "text": "4.2.2",
+            "emoji": true
+          },
+          "value": "4.2.2"
+        }
+      ]
+    },
+    {
+      "label": {
+        "type": "plain_text",
+        "text": "Others",
+        "emoji": true
+      },
+      "options": [
+        {
+          "text": {
+            "type": "plain_text",
+            "text": "4.2.1",
+            "emoji": true
+          },
+          "value": "4.2.1"
+        },
+        {
+          "text": {
+            "type": "plain_text",
+            "text": "4.2.0",
+            "emoji": true
+          },
+          "value": "4.2.0"
+        }
+      ]
+    }
+  ]
+}
