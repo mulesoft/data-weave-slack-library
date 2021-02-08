@@ -1,6 +1,12 @@
 /**
 *
-* Provides functions to simplify the creation and composition of https://api.slack.com/block-kit[blocks], https://api.slack.com/reference/block-kit/block-elements[elements] and https://api.slack.com/reference/block-kit/composition-objects[objects]:
+* Provides functions to simplify the creation and composition of:
+*
+* - https://api.slack.com/block-kit[blocks]
+* - https://api.slack.com/reference/block-kit/block-elements[elements]
+* - https://api.slack.com/reference/block-kit/composition-objects[objects]
+*
+* These are the supported components:
 *
 * - https://api.slack.com/reference/block-kit/blocks#actions[actions]
 * - https://api.slack.com/reference/block-kit/blocks#divider[divider]
@@ -19,9 +25,9 @@ import * from org::mule::weave::slack::modules::Blocks
 import * from org::mule::weave::slack::modules::Elements
 import * from org::mule::weave::slack::modules::Objects
 /**
-*  Generates the standard block kit syntax to define a group of blocks.
+* Generates the standard block kit syntax to define a group of blocks.
 *
-*  === Parameters
+* === Parameters
 *
 * [%header, cols="1,3"]
 * |===
@@ -33,7 +39,7 @@ import * from org::mule::weave::slack::modules::Objects
 *
 * In this example, a simple section is generated and used as a block.
 *
-* === Source
+* ==== Source
 *
 * [source,DataWeave,linenums]
 * ----
@@ -69,7 +75,7 @@ fun blocks(blocks: Array<Block>) = {
 /**
 *  Generates an actions block.
 *
-*  === Parameters
+* === Parameters
 *
 * [%header, cols="1,3"]
 * |===
@@ -81,7 +87,7 @@ fun blocks(blocks: Array<Block>) = {
 *
 * In this example, an actions block featuring a simple button is generated.
 *
-* === Source
+* ==== Source
 *
 * [source,DataWeave,linenums]
 * ----
@@ -124,7 +130,7 @@ fun actions(actions: Array<Element>) : Actions = {
 *
 * In this example, a divider block is generated.
 *
-* === Source
+* ==== Source
 *
 * [source,DataWeave,linenums]
 * ----
@@ -151,7 +157,7 @@ fun divider() : Divider = {
 /**
 *  Generates a plain text object, with emojis enabled.
 *
-*  === Parameters
+* === Parameters
 *
 * [%header, cols="1,3"]
 * |===
@@ -163,7 +169,7 @@ fun divider() : Divider = {
 *
 * In this example, a text object featuring a wave emoji is generated.
 *
-* === Source
+* ==== Source
 *
 * [source,DataWeave,linenums]
 * ----
@@ -194,7 +200,7 @@ fun text(t : String) : PlainText = {
 /**
 *  Generates a mrkdwn text object.
 *
-*  === Parameters
+* === Parameters
 *
 * [%header, cols="1,3"]
 * |===
@@ -206,7 +212,7 @@ fun text(t : String) : PlainText = {
 *
 * In this example, a mrkdwn text object featuring bold text is generated.
 *
-* === Source
+* ==== Source
 *
 * [source,DataWeave,linenums]
 * ----
@@ -235,7 +241,7 @@ fun mrkdwn(message: String) : Mrkdwn = {
 /**
 *  Generates a simple section block, with a plain text object.
 *
-*  === Parameters
+* === Parameters
 *
 * [%header, cols="1,3"]
 * |===
@@ -247,7 +253,7 @@ fun mrkdwn(message: String) : Mrkdwn = {
 *
 * In this example, a section with a simple text is generated.
 *
-* === Source
+* ==== Source
 *
 * [source,DataWeave,linenums]
 * ----
@@ -277,7 +283,7 @@ fun section(message: String) : Section = section(text(message))
 /**
 *  Generates a section block, with a text object.
 *
-*  === Parameters
+* === Parameters
 *
 * [%header, cols="1,3"]
 * |===
@@ -289,7 +295,7 @@ fun section(message: String) : Section = section(text(message))
 *
 * In this example, a section with mrkdwn text is generated.
 *
-* === Source
+* ==== Source
 *
 * [source,DataWeave,linenums]
 * ----
@@ -321,7 +327,7 @@ fun section(text : Text) : Section = {
 /**
 *  Generates a section block, with a text object and an accessory element.
 *
-*  === Parameters
+* === Parameters
 *
 * [%header, cols="1,3"]
 * |===
@@ -334,7 +340,7 @@ fun section(text : Text) : Section = {
 *
 * In this example, a section with mrkdwn text and a simple button is generated.
 *
-* === Source
+* ==== Source
 *
 * [source,DataWeave,linenums]
 * ----
@@ -376,7 +382,7 @@ fun section(text: Text, accessory : Element) : Section = {
 /**
 *  Generates a section block, with an array of text objects or fields.
 *
-*  === Parameters
+* === Parameters
 *
 * [%header, cols="1,3"]
 * |===
@@ -388,7 +394,7 @@ fun section(text: Text, accessory : Element) : Section = {
 *
 * In this example, a section with a mrkdwn text and a plain text is generated.
 *
-* === Source
+* ==== Source
 *
 * [source,DataWeave,linenums]
 * ----
@@ -427,7 +433,7 @@ fun section(fields: Array<Text>) : Section = {
 /**
 *  Generates a section block, with an array of text objects,or fields, and an accessory element.
 *
-*  === Parameters
+* === Parameters
 *
 * [%header, cols="1,3"]
 * |===
@@ -440,7 +446,7 @@ fun section(fields: Array<Text>) : Section = {
 *
 * In this example, a section with mrkdwn text, plain text and a simple button is generated.
 *
-* === Source
+* ==== Source
 *
 * [source,DataWeave,linenums]
 * ----
@@ -489,7 +495,7 @@ fun section(fields: Array<Text>, accessory : Element) : Section = {
 /**
 *  Generates a header block, with a simple plain text object.
 *
-*  === Parameters
+* === Parameters
 *
 * [%header, cols="1,3"]
 * |===
@@ -501,7 +507,7 @@ fun section(fields: Array<Text>, accessory : Element) : Section = {
 *
 * In this example, a header with a simple text is generated.
 *
-* === Source
+* ==== Source
 *
 * [source,DataWeave,linenums]
 * ----
@@ -531,7 +537,7 @@ fun header(message: String) : Header = header(text(message))
 /**
 *  Generates a header block, with a plain text object.
 *
-*  === Parameters
+* === Parameters
 *
 * [%header, cols="1,3"]
 * |===
@@ -543,7 +549,7 @@ fun header(message: String) : Header = header(text(message))
 *
 * In this example, a header with a plain text object with no support for emojis is generated.
 *
-* === Source
+* ==== Source
 *
 * [source,DataWeave,linenums]
 * ----
@@ -581,7 +587,7 @@ fun header(text: PlainText) : Header = {
 *  Generates a button element, with a simple plain text
 *  object and ID.
 *
-*  === Parameters
+* === Parameters
 *
 * [%header, cols="1,3"]
 * |===
@@ -594,7 +600,7 @@ fun header(text: PlainText) : Header = {
 *
 * In this example, a button with a simple text is generated, using an ID called "bait".
 *
-* === Source
+* ==== Source
 *
 * [source,DataWeave,linenums]
 * ----
@@ -625,7 +631,7 @@ fun button(message: String, id: String) : Button = button(text(message), id)
 /**
 *  Generates a button element, with a plain text object and ID.
 *
-*  === Parameters
+* === Parameters
 *
 * [%header, cols="1,3"]
 * |===
@@ -638,7 +644,7 @@ fun button(message: String, id: String) : Button = button(text(message), id)
 *
 * In this example, a button with a text with no emoji support is generated, using an ID called "bait".
 *
-* === Source
+* ==== Source
 *
 * [source,DataWeave,linenums]
 * ----
@@ -672,7 +678,7 @@ fun button(text: PlainText, id: String) : Button = {
 /**
 *  Generates a button element, with a simple plain text object, an ID and a value.
 *
-*  === Parameters
+* === Parameters
 *
 * [%header, cols="1,3"]
 * |===
@@ -686,7 +692,7 @@ fun button(text: PlainText, id: String) : Button = {
 *
 * In this example, a button with a simple text is generated, using an ID called "bait" and a value.
 *
-* === Source
+* ==== Source
 *
 * [source,DataWeave,linenums]
 * ----
@@ -718,7 +724,7 @@ fun buttonWithValue(message: String, id: String, value: String) : Button = butto
 /**
 *  Generates a button element, with a plain text object, an ID and a value.
 *
-*  === Parameters
+* === Parameters
 *
 * [%header, cols="1,3"]
 * |===
@@ -732,7 +738,7 @@ fun buttonWithValue(message: String, id: String, value: String) : Button = butto
 *
 * In this example, a button with a text not supporting emojis is generated, using an ID called "bait" and a value.
 *
-* === Source
+* ==== Source
 *
 * [source,DataWeave,linenums]
 * ----
@@ -768,7 +774,7 @@ fun buttonWithValue(text: PlainText, id: String, val: String) : Button = {
 /**
 *  Generates a button element, with a simple plain text object, an ID and an URL.
 *
-*  === Parameters
+* === Parameters
 *
 * [%header, cols="1,3"]
 * |===
@@ -782,7 +788,7 @@ fun buttonWithValue(text: PlainText, id: String, val: String) : Button = {
 *
 * In this example, a button with a simple text is generated, using an ID called "bait" and a URL leading to the Slack site.
 *
-* === Source
+* ==== Source
 *
 * [source,DataWeave,linenums]
 * ----
@@ -814,7 +820,7 @@ fun buttonWithUrl(message: String, id: String, url: String) : Button = buttonWit
 /**
 *  Generates a button element, with a plain text object, an ID and an URL.
 *
-*  === Parameters
+* === Parameters
 *
 * [%header, cols="1,3"]
 * |===
@@ -828,7 +834,7 @@ fun buttonWithUrl(message: String, id: String, url: String) : Button = buttonWit
 *
 * In this example, a button with a no emoji supporting text is generated, using an ID called "bait" and a URL leading to the Slack site.
 *
-* === Source
+* ==== Source
 *
 * [source,DataWeave,linenums]
 * ----
@@ -865,7 +871,7 @@ fun buttonWithUrl(text: PlainText, id : String, url: String) : Button = {
 *  Generates an option object, with a simple plain text
 *  object and its value.
 *
-*  === Parameters
+* === Parameters
 *
 * [%header, cols="1,3"]
 * |===
@@ -878,7 +884,7 @@ fun buttonWithUrl(text: PlainText, id : String, url: String) : Button = {
 *
 * In this example, multiple options are generated from a list of Strings, using the same text and value.
 *
-* === Source
+* ==== Source
 *
 * [source,DataWeave,linenums]
 * ----
@@ -927,7 +933,7 @@ fun option(message: String, value: String) = option(text(message), value)
 /**
 *  Generates an option object, with a text object and its value.
 *
-*  === Parameters
+* === Parameters
 *
 * [%header, cols="1,3"]
 * |===
@@ -941,7 +947,7 @@ fun option(message: String, value: String) = option(text(message), value)
 * In this example, an option is generated with mrkdwn text to select the color red while its value references the hex
 * color representation for red.
 *
-* === Source
+* ==== Source
 *
 * [source,DataWeave,linenums]
 * ----
@@ -973,7 +979,7 @@ fun option(text: Text, val: String) : Option = {
 /**
 *  Generates an option group object, with a simple plain text object and its options.
 *
-*  === Parameters
+* === Parameters
 *
 * [%header, cols="1,3"]
 * |===
@@ -986,7 +992,7 @@ fun option(text: Text, val: String) : Option = {
 *
 * In this example, an option group is generated with a simple value for some options.
 *
-* === Source
+* ==== Source
 *
 * [source,DataWeave,linenums]
 * ----
@@ -1034,7 +1040,7 @@ fun optionGroup(message: String, options: Array<Option>) : OptionGroup = optionG
 /**
 *  Generates an option group object, with a plain text object and its options.
 *
-*  === Parameters
+* === Parameters
 *
 * [%header, cols="1,3"]
 * |===
@@ -1047,7 +1053,7 @@ fun optionGroup(message: String, options: Array<Option>) : OptionGroup = optionG
 *
 * In this example, an option group is generated with a text for some options.
 *
-* === Source
+* ==== Source
 *
 * [source,DataWeave,linenums]
 * ----
@@ -1097,7 +1103,7 @@ fun optionGroup(text : PlainText, options: Array<Option>) : OptionGroup = {
 /**
 *  Generates an static select element, with a simple plain text object as placeholder, its ID and options.
 *
-*  === Parameters
+* === Parameters
 *
 * [%header, cols="1,3"]
 * |===
@@ -1111,7 +1117,7 @@ fun optionGroup(text : PlainText, options: Array<Option>) : OptionGroup = {
 *
 * In this example, a static group of options are offered with a simple text placeholder.
 *
-* === Source
+* ==== Source
 *
 * [source,DataWeave,linenums]
 * ----
@@ -1169,7 +1175,7 @@ fun staticSelect(placeholder: String, id: String, options: Array<Option>) : Stat
 /**
 *  Generates a static select element, with a simple plain text object as placeholder, its ID and option groups.
 *
-*  === Parameters
+* === Parameters
 *
 * [%header, cols="1,3"]
 * |===
@@ -1183,7 +1189,7 @@ fun staticSelect(placeholder: String, id: String, options: Array<Option>) : Stat
 *
 * In this example, a static group of option groups are offered with a simple text placeholder.
 *
-* === Source
+* ==== Source
 *
 * [source,DataWeave,linenums]
 * ----
@@ -1252,7 +1258,7 @@ fun staticSelectByGroups(placeholder: String, id: String, optionGroups: Array<Op
 /**
 *  Generates an static select element, with a simple plain text object as placeholder, its ID and options.
 *
-*  === Parameters
+* === Parameters
 *
 * [%header, cols="1,3"]
 * |===
@@ -1266,7 +1272,7 @@ fun staticSelectByGroups(placeholder: String, id: String, optionGroups: Array<Op
 *
 * In this example, a static group of options are offered with a simple text placeholder.
 *
-* === Source
+* ==== Source
 *
 * [source,DataWeave,linenums]
 * ----
@@ -1329,7 +1335,7 @@ fun staticSelect(placeholder: PlainText, id: String, options: Array<Option>) : S
 /**
 *  Generates an static select element, with a plain text object as placeholder, its ID and option groups.
 *
-*  === Parameters
+* === Parameters
 *
 * [%header, cols="1,3"]
 * |===
@@ -1343,7 +1349,7 @@ fun staticSelect(placeholder: PlainText, id: String, options: Array<Option>) : S
 *
 * In this example, a static group of option groups are offered with a text placeholder.
 *
-* === Source
+* ==== Source
 *
 * [source,DataWeave,linenums]
 * ----

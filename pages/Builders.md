@@ -1,4 +1,10 @@
-Provides functions to simplify the creation and composition of [objects](https://api.slack.com/block-kit[blocks], https://api.slack.com/reference/block-kit/block-elements[elements] and https://api.slack.com/reference/block-kit/composition-objects):
+Provides functions to simplify the creation and composition of:
+
+- [blocks](https://api.slack.com/block-kit)
+- [elements](https://api.slack.com/reference/block-kit/block-elements)
+- [objects](https://api.slack.com/reference/block-kit/composition-objects)
+
+These are the supported components:
 
 - [actions](https://api.slack.com/reference/block-kit/blocks#actions)
 - [divider](https://api.slack.com/reference/block-kit/blocks#divider)
@@ -17,20 +23,20 @@ __________________________________________
 ### Functions
 | Name | Description|
 |------|------------|
-| [actions](#actions- ) | Generates an actions block.|
-| [blocks](#blocks- ) | Generates the standard block kit syntax to define a group of blocks.|
-| [button](#button- ) | Generates a button element, with a simple plain text<br> object and ID.|
-| [buttonWithUrl](#buttonwithurl- ) | Generates a button element, with a simple plain text object, an ID and an URL.|
-| [buttonWithValue](#buttonwithvalue- ) | Generates a button element, with a simple plain text object, an ID and a value.|
-| [divider](#divider- ) | Generates a divider block.|
-| [header](#header- ) | Generates a header block, with a simple plain text object.|
-| [mrkdwn](#mrkdwn- ) | Generates a mrkdwn text object.|
-| [option](#option- ) | Generates an option object, with a simple plain text<br> object and its value.|
-| [optionGroup](#optiongroup- ) | Generates an option group object, with a simple plain text object and its options.|
-| [section](#section- ) | Generates a simple section block, with a plain text object.|
-| [staticSelect](#staticselect- ) | Generates an static select element, with a simple plain text object as placeholder, its ID and options.|
-| [staticSelectByGroups](#staticselectbygroups- ) | Generates a static select element, with a simple plain text object as placeholder, its ID and option groups.|
-| [text](#text- ) | Generates a plain text object, with emojis enabled.|
+| [actions](#actions-index ) | Generates an actions block.|
+| [blocks](#blocks-index ) | Generates the standard block kit syntax to define a group of blocks.|
+| [button](#button-index ) | Generates a button element, with a simple plain text<br> object and ID.|
+| [buttonWithUrl](#buttonwithurl-index ) | Generates a button element, with a simple plain text object, an ID and an URL.|
+| [buttonWithValue](#buttonwithvalue-index ) | Generates a button element, with a simple plain text object, an ID and a value.|
+| [divider](#divider-index ) | Generates a divider block.|
+| [header](#header-index ) | Generates a header block, with a simple plain text object.|
+| [mrkdwn](#mrkdwn-index ) | Generates a mrkdwn text object.|
+| [option](#option-index ) | Generates an option object, with a simple plain text<br> object and its value.|
+| [optionGroup](#optiongroup-index ) | Generates an option group object, with a simple plain text object and its options.|
+| [section](#section-index ) | Generates a simple section block, with a plain text object.|
+| [staticSelect](#staticselect-index ) | Generates an static select element, with a simple plain text object as placeholder, its ID and options.|
+| [staticSelectByGroups](#staticselectbygroups-index ) | Generates a static select element, with a simple plain text object as placeholder, its ID and option groups.|
+| [text](#text-index ) | Generates a plain text object, with emojis enabled.|
 
 
 
@@ -51,7 +57,7 @@ __________________________________________
 
 Generates an actions block.
 
- ===== Parameters
+##### Parameters
 
 | Name   | Description | Type|
 |--------|-------------|-----|
@@ -62,7 +68,7 @@ Generates an actions block.
 
 In this example, an actions block featuring a simple button is generated.
 
-### Source
+###### Source
 
 ```dataweave
 %dw 2.0
@@ -99,7 +105,7 @@ __________________________________________
 
 Generates the standard block kit syntax to define a group of blocks.
 
- ===== Parameters
+##### Parameters
 
 | Name   | Description | Type|
 |--------|-------------|-----|
@@ -110,7 +116,7 @@ Generates the standard block kit syntax to define a group of blocks.
 
 In this example, a simple section is generated and used as a block.
 
-### Source
+###### Source
 
 ```dataweave
 %dw 2.0
@@ -146,7 +152,7 @@ __________________________________________
 Generates a button element, with a simple plain text
  object and ID.
 
- ===== Parameters
+##### Parameters
 
 | Name   | Description | Type|
 |--------|-------------|-----|
@@ -158,7 +164,7 @@ Generates a button element, with a simple plain text
 
 In this example, a button with a simple text is generated, using an ID called "bait".
 
-### Source
+###### Source
 
 ```dataweave
 %dw 2.0
@@ -187,7 +193,7 @@ __________________________________________
 
 Generates a button element, with a plain text object and ID.
 
- ===== Parameters
+##### Parameters
 
 | Name   | Description | Type|
 |--------|-------------|-----|
@@ -199,7 +205,7 @@ Generates a button element, with a plain text object and ID.
 
 In this example, a button with a text with no emoji support is generated, using an ID called "bait".
 
-### Source
+###### Source
 
 ```dataweave
 %dw 2.0
@@ -230,7 +236,7 @@ __________________________________________
 
 Generates a button element, with a simple plain text object, an ID and an URL.
 
- ===== Parameters
+##### Parameters
 
 | Name   | Description | Type|
 |--------|-------------|-----|
@@ -243,7 +249,7 @@ Generates a button element, with a simple plain text object, an ID and an URL.
 
 In this example, a button with a simple text is generated, using an ID called "bait" and a URL leading to the Slack site.
 
-### Source
+###### Source
 
 ```dataweave
 %dw 2.0
@@ -273,7 +279,7 @@ __________________________________________
 
 Generates a button element, with a plain text object, an ID and an URL.
 
- ===== Parameters
+##### Parameters
 
 | Name   | Description | Type|
 |--------|-------------|-----|
@@ -286,7 +292,7 @@ Generates a button element, with a plain text object, an ID and an URL.
 
 In this example, a button with a no emoji supporting text is generated, using an ID called "bait" and a URL leading to the Slack site.
 
-### Source
+###### Source
 
 ```dataweave
 %dw 2.0
@@ -318,7 +324,7 @@ __________________________________________
 
 Generates a button element, with a simple plain text object, an ID and a value.
 
- ===== Parameters
+##### Parameters
 
 | Name   | Description | Type|
 |--------|-------------|-----|
@@ -331,7 +337,7 @@ Generates a button element, with a simple plain text object, an ID and a value.
 
 In this example, a button with a simple text is generated, using an ID called "bait" and a value.
 
-### Source
+###### Source
 
 ```dataweave
 %dw 2.0
@@ -361,7 +367,7 @@ __________________________________________
 
 Generates a button element, with a plain text object, an ID and a value.
 
- ===== Parameters
+##### Parameters
 
 | Name   | Description | Type|
 |--------|-------------|-----|
@@ -374,7 +380,7 @@ Generates a button element, with a plain text object, an ID and a value.
 
 In this example, a button with a text not supporting emojis is generated, using an ID called "bait" and a value.
 
-### Source
+###### Source
 
 ```dataweave
 %dw 2.0
@@ -410,7 +416,7 @@ Generates a divider block.
 
 In this example, a divider block is generated.
 
-### Source
+###### Source
 
 ```dataweave
 %dw 2.0
@@ -436,7 +442,7 @@ __________________________________________
 
 Generates a header block, with a simple plain text object.
 
- ===== Parameters
+##### Parameters
 
 | Name   | Description | Type|
 |--------|-------------|-----|
@@ -447,7 +453,7 @@ Generates a header block, with a simple plain text object.
 
 In this example, a header with a simple text is generated.
 
-### Source
+###### Source
 
 ```dataweave
 %dw 2.0
@@ -475,7 +481,7 @@ __________________________________________
 
 Generates a header block, with a plain text object.
 
- ===== Parameters
+##### Parameters
 
 | Name   | Description | Type|
 |--------|-------------|-----|
@@ -486,7 +492,7 @@ Generates a header block, with a plain text object.
 
 In this example, a header with a plain text object with no support for emojis is generated.
 
-### Source
+###### Source
 
 ```dataweave
 %dw 2.0
@@ -521,7 +527,7 @@ __________________________________________
 
 Generates a mrkdwn text object.
 
- ===== Parameters
+##### Parameters
 
 | Name   | Description | Type|
 |--------|-------------|-----|
@@ -532,7 +538,7 @@ Generates a mrkdwn text object.
 
 In this example, a mrkdwn text object featuring bold text is generated.
 
-### Source
+###### Source
 
 ```dataweave
 %dw 2.0
@@ -560,7 +566,7 @@ __________________________________________
 Generates an option object, with a simple plain text
  object and its value.
 
- ===== Parameters
+##### Parameters
 
 | Name   | Description | Type|
 |--------|-------------|-----|
@@ -572,7 +578,7 @@ Generates an option object, with a simple plain text
 
 In this example, multiple options are generated from a list of Strings, using the same text and value.
 
-### Source
+###### Source
 
 ```dataweave
 %dw 2.0
@@ -619,7 +625,7 @@ __________________________________________
 
 Generates an option object, with a text object and its value.
 
- ===== Parameters
+##### Parameters
 
 | Name   | Description | Type|
 |--------|-------------|-----|
@@ -632,7 +638,7 @@ Generates an option object, with a text object and its value.
 In this example, an option is generated with mrkdwn text to select the color red while its value references the hex
 color representation for red.
 
-### Source
+###### Source
 
 ```dataweave
 %dw 2.0
@@ -662,7 +668,7 @@ __________________________________________
 
 Generates an option group object, with a simple plain text object and its options.
 
- ===== Parameters
+##### Parameters
 
 | Name   | Description | Type|
 |--------|-------------|-----|
@@ -674,7 +680,7 @@ Generates an option group object, with a simple plain text object and its option
 
 In this example, an option group is generated with a simple value for some options.
 
-### Source
+###### Source
 
 ```dataweave
 %dw 2.0
@@ -720,7 +726,7 @@ __________________________________________
 
 Generates an option group object, with a plain text object and its options.
 
- ===== Parameters
+##### Parameters
 
 | Name   | Description | Type|
 |--------|-------------|-----|
@@ -732,7 +738,7 @@ Generates an option group object, with a plain text object and its options.
 
 In this example, an option group is generated with a text for some options.
 
-### Source
+###### Source
 
 ```dataweave
 %dw 2.0
@@ -780,7 +786,7 @@ __________________________________________
 
 Generates a simple section block, with a plain text object.
 
- ===== Parameters
+##### Parameters
 
 | Name   | Description | Type|
 |--------|-------------|-----|
@@ -791,7 +797,7 @@ Generates a simple section block, with a plain text object.
 
 In this example, a section with a simple text is generated.
 
-### Source
+###### Source
 
 ```dataweave
 %dw 2.0
@@ -819,7 +825,7 @@ __________________________________________
 
 Generates a section block, with a text object.
 
- ===== Parameters
+##### Parameters
 
 | Name   | Description | Type|
 |--------|-------------|-----|
@@ -830,7 +836,7 @@ Generates a section block, with a text object.
 
 In this example, a section with mrkdwn text is generated.
 
-### Source
+###### Source
 
 ```dataweave
 %dw 2.0
@@ -857,7 +863,7 @@ __________________________________________
 
 Generates a section block, with a text object and an accessory element.
 
- ===== Parameters
+##### Parameters
 
 | Name   | Description | Type|
 |--------|-------------|-----|
@@ -869,7 +875,7 @@ Generates a section block, with a text object and an accessory element.
 
 In this example, a section with mrkdwn text and a simple button is generated.
 
-### Source
+###### Source
 
 ```dataweave
 %dw 2.0
@@ -905,7 +911,7 @@ __________________________________________
 
 Generates a section block, with an array of text objects or fields.
 
- ===== Parameters
+##### Parameters
 
 | Name   | Description | Type|
 |--------|-------------|-----|
@@ -916,7 +922,7 @@ Generates a section block, with an array of text objects or fields.
 
 In this example, a section with a mrkdwn text and a plain text is generated.
 
-### Source
+###### Source
 
 ```dataweave
 %dw 2.0
@@ -950,7 +956,7 @@ __________________________________________
 
 Generates a section block, with an array of text objects,or fields, and an accessory element.
 
- ===== Parameters
+##### Parameters
 
 | Name   | Description | Type|
 |--------|-------------|-----|
@@ -962,7 +968,7 @@ Generates a section block, with an array of text objects,or fields, and an acces
 
 In this example, a section with mrkdwn text, plain text and a simple button is generated.
 
-### Source
+###### Source
 
 ```dataweave
 %dw 2.0
@@ -1008,7 +1014,7 @@ __________________________________________
 
 Generates an static select element, with a simple plain text object as placeholder, its ID and options.
 
- ===== Parameters
+##### Parameters
 
 | Name   | Description | Type|
 |--------|-------------|-----|
@@ -1021,7 +1027,7 @@ Generates an static select element, with a simple plain text object as placehold
 
 In this example, a static group of options are offered with a simple text placeholder.
 
-### Source
+###### Source
 
 ```dataweave
 %dw 2.0
@@ -1077,7 +1083,7 @@ __________________________________________
 
 Generates an static select element, with a simple plain text object as placeholder, its ID and options.
 
- ===== Parameters
+##### Parameters
 
 | Name   | Description | Type|
 |--------|-------------|-----|
@@ -1090,7 +1096,7 @@ Generates an static select element, with a simple plain text object as placehold
 
 In this example, a static group of options are offered with a simple text placeholder.
 
-### Source
+###### Source
 
 ```dataweave
 %dw 2.0
@@ -1149,7 +1155,7 @@ __________________________________________
 
 Generates a static select element, with a simple plain text object as placeholder, its ID and option groups.
 
- ===== Parameters
+##### Parameters
 
 | Name   | Description | Type|
 |--------|-------------|-----|
@@ -1162,7 +1168,7 @@ Generates a static select element, with a simple plain text object as placeholde
 
 In this example, a static group of option groups are offered with a simple text placeholder.
 
-### Source
+###### Source
 
 ```dataweave
 %dw 2.0
@@ -1229,7 +1235,7 @@ __________________________________________
 
 Generates an static select element, with a plain text object as placeholder, its ID and option groups.
 
- ===== Parameters
+##### Parameters
 
 | Name   | Description | Type|
 |--------|-------------|-----|
@@ -1242,7 +1248,7 @@ Generates an static select element, with a plain text object as placeholder, its
 
 In this example, a static group of option groups are offered with a text placeholder.
 
-### Source
+###### Source
 
 ```dataweave
 %dw 2.0
@@ -1311,7 +1317,7 @@ __________________________________________
 
 Generates a plain text object, with emojis enabled.
 
- ===== Parameters
+##### Parameters
 
 | Name   | Description | Type|
 |--------|-------------|-----|
@@ -1322,7 +1328,7 @@ Generates a plain text object, with emojis enabled.
 
 In this example, a text object featuring a wave emoji is generated.
 
-### Source
+###### Source
 
 ```dataweave
 %dw 2.0
