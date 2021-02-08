@@ -19,18 +19,18 @@ __________________________________________
 ### Types
 | Name | Description|
 |------|------------|
-|[Actions](#actions-index ) | Represents an action block.|
-|[Block](#block-index ) | Generic representation of a block.|
-|[Context](#context-index ) | Represents a context block.|
-|[Divider](#divider-index ) | Represents a divider block.|
-|[File](#file-index ) | Represents a file block.|
-|[Header](#header-index ) | Represents a header block.|
-|[ImageBlock](#imageblock-index ) | Represents an image block.|
-|[Input](#input-index ) | Represents an input block.|
-|[OptionalId](#optionalid-index ) | Helper type to reuse block IDs|
-|[Section](#section-index ) | Helper type to encapsulate fields|
-|[WithFields](#withfields-index ) | Helper type to encapsulate fields|
-|[WithText](#withtext-index ) | Helper type to reuse text|
+|[Actions](#actions- ) | Represents an action block.|
+|[Block](#block- ) | Generic representation of a block.|
+|[Context](#context- ) | Represents a context block.|
+|[Divider](#divider- ) | Represents a divider block.|
+|[File](#file- ) | Represents a file block.|
+|[Header](#header- ) | Represents a header block.|
+|[ImageBlock](#imageblock- ) | Represents an image block.|
+|[Input](#input- ) | Represents an input block.|
+|[OptionalId](#optionalid- ) | Helper type to reuse block IDs|
+|[Section](#section- ) | Helper type to encapsulate fields|
+|[WithFields](#withfields- ) | Helper type to encapsulate fields|
+|[WithText](#withtext- ) | Helper type to reuse text|
 
 
 

@@ -17,19 +17,19 @@ __________________________________________
 ### Types
 | Name | Description|
 |------|------------|
-|[Confirmation](#confirmation-index ) | Represents a confirm dialog object.|
-|[Dispatch](#dispatch-index ) | Represents a dispatch action object.|
-|[DispatchOptions](#dispatchoptions-index ) | Represents the possible options of a dispatch action object.|
-|[Filter](#filter-index ) | Represents a filter conversation object.|
-|[FilterOptions](#filteroptions-index ) | Represents the possible options of a filter conversation object.|
-|[Mrkdwn](#mrkdwn-index ) | Represents an exclusively mrkdwn object.|
-|[Option](#option-index ) | Represents an option object.|
-|[OptionGroup](#optiongroup-index ) | Represents an option group object.|
-|[PlainText](#plaintext-index ) | Represents an exclusively plain object.|
-|[SimpleText](#simpletext-index ) | Helper type to represent text objects.|
-|[Text](#text-index ) | Represents a text object.|
-|[WithOptionGroup](#withoptiongroup-index ) | Helper type to compose option groups|
-|[WithOptions](#withoptions-index ) | Helper type to compose options|
+|[Confirmation](#confirmation- ) | Represents a confirm dialog object.|
+|[Dispatch](#dispatch- ) | Represents a dispatch action object.|
+|[DispatchOptions](#dispatchoptions- ) | Represents the possible options of a dispatch action object.|
+|[Filter](#filter- ) | Represents a filter conversation object.|
+|[FilterOptions](#filteroptions- ) | Represents the possible options of a filter conversation object.|
+|[Mrkdwn](#mrkdwn- ) | Represents an exclusively mrkdwn object.|
+|[Option](#option- ) | Represents an option object.|
+|[OptionGroup](#optiongroup- ) | Represents an option group object.|
+|[PlainText](#plaintext- ) | Represents an exclusively plain object.|
+|[SimpleText](#simpletext- ) | Helper type to represent text objects.|
+|[Text](#text- ) | Represents a text object.|
+|[WithOptionGroup](#withoptiongroup- ) | Helper type to compose option groups|
+|[WithOptions](#withoptions- ) | Helper type to compose options|
 
 
 

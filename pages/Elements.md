@@ -31,30 +31,30 @@ __________________________________________
 ### Types
 | Name | Description|
 |------|------------|
-|[Button](#button-index ) | Represents a button element.|
-|[Checkbox](#checkbox-index ) | Represents a checkbox group element.|
-|[ConversationsList](#conversationslist-index ) | Represents a conversation list.|
-|[DatePicker](#datepicker-index ) | Represents a datepicker element.|
-|[Element](#element-index ) | Represents a block element.|
-|[ExternalSelect](#externalselect-index ) | Represents an external select menu.|
-|[Image](#image-index ) | Represents an image element.|
-|[MultiConversationList](#multiconversationlist-index ) | Represents a multi conversation list.|
-|[MultiExternalSelect](#multiexternalselect-index ) | Represents an external multi select menu.|
-|[MultiPublicChannelsList](#multipublicchannelslist-index ) | Represents a channel list.|
-|[MultiSelect](#multiselect-index ) | Helper type to reuse multi selection|
-|[MultiSelectMenu](#multiselectmenu-index ) | Represents all multi select menus.|
-|[MultiStaticSelect](#multistaticselect-index ) | Represents a static multi select menu.|
-|[MultiUserList](#multiuserlist-index ) | Represents a multi user list.|
-|[OverflowMenu](#overflowmenu-index ) | Represents an overflow menu.|
-|[PlainTextInput](#plaintextinput-index ) | Represents a plain text input.|
-|[PublicChannelsList](#publicchannelslist-index ) | Represents a channel list.|
-|[RadioButtonGroup](#radiobuttongroup-index ) | Represents a radio button group.|
-|[Select](#select-index ) | Helper type to reuse selection|
-|[SelectMenu](#selectmenu-index ) | Represents all select menus.|
-|[StaticSelect](#staticselect-index ) | Represents a static select menu.|
-|[TimePicker](#timepicker-index ) | Represents a timepicker element.|
-|[UserList](#userlist-index ) | Represents a user list.|
-|[WithOptionalConfirm](#withoptionalconfirm-index ) | Helper type to reuse confirm option|
+|[Button](#button- ) | Represents a button element.|
+|[Checkbox](#checkbox- ) | Represents a checkbox group element.|
+|[ConversationsList](#conversationslist- ) | Represents a conversation list.|
+|[DatePicker](#datepicker- ) | Represents a datepicker element.|
+|[Element](#element- ) | Represents a block element.|
+|[ExternalSelect](#externalselect- ) | Represents an external select menu.|
+|[Image](#image- ) | Represents an image element.|
+|[MultiConversationList](#multiconversationlist- ) | Represents a multi conversation list.|
+|[MultiExternalSelect](#multiexternalselect- ) | Represents an external multi select menu.|
+|[MultiPublicChannelsList](#multipublicchannelslist- ) | Represents a channel list.|
+|[MultiSelect](#multiselect- ) | Helper type to reuse multi selection|
+|[MultiSelectMenu](#multiselectmenu- ) | Represents all multi select menus.|
+|[MultiStaticSelect](#multistaticselect- ) | Represents a static multi select menu.|
+|[MultiUserList](#multiuserlist- ) | Represents a multi user list.|
+|[OverflowMenu](#overflowmenu- ) | Represents an overflow menu.|
+|[PlainTextInput](#plaintextinput- ) | Represents a plain text input.|
+|[PublicChannelsList](#publicchannelslist- ) | Represents a channel list.|
+|[RadioButtonGroup](#radiobuttongroup- ) | Represents a radio button group.|
+|[Select](#select- ) | Helper type to reuse selection|
+|[SelectMenu](#selectmenu- ) | Represents all select menus.|
+|[StaticSelect](#staticselect- ) | Represents a static select menu.|
+|[TimePicker](#timepicker- ) | Represents a timepicker element.|
+|[UserList](#userlist- ) | Represents a user list.|
+|[WithOptionalConfirm](#withoptionalconfirm- ) | Helper type to reuse confirm option|
 
 
 

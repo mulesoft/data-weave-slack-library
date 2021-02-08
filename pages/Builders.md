@@ -17,20 +17,20 @@ __________________________________________
 ### Functions
 | Name | Description|
 |------|------------|
-| [actions](#actions-index ) | Generates an actions block.|
-| [blocks](#blocks-index ) | Generates the standard block kit syntax to define a group of blocks.|
-| [button](#button-index ) | Generates a button element, with a simple plain text<br> object and ID.|
-| [buttonWithUrl](#buttonwithurl-index ) | Generates a button element, with a simple plain text object, an ID and an URL.|
-| [buttonWithValue](#buttonwithvalue-index ) | Generates a button element, with a simple plain text object, an ID and a value.|
-| [divider](#divider-index ) | Generates a divider block.|
-| [header](#header-index ) | Generates a header block, with a simple plain text object.|
-| [mrkdwn](#mrkdwn-index ) | Generates a mrkdwn text object.|
-| [option](#option-index ) | Generates an option object, with a simple plain text<br> object and its value.|
-| [optionGroup](#optiongroup-index ) | Generates an option group object, with a simple plain text object and its options.|
-| [section](#section-index ) | Generates a simple section block, with a plain text object.|
-| [staticSelect](#staticselect-index ) | Generates an static select element, with a simple plain text object as placeholder, its ID and options.|
-| [staticSelectByGroups](#staticselectbygroups-index ) | Generates a static select element, with a simple plain text object as placeholder, its ID and option groups.|
-| [text](#text-index ) | Generates a plain text object, with emojis enabled.|
+| [actions](#actions- ) | Generates an actions block.|
+| [blocks](#blocks- ) | Generates the standard block kit syntax to define a group of blocks.|
+| [button](#button- ) | Generates a button element, with a simple plain text<br> object and ID.|
+| [buttonWithUrl](#buttonwithurl- ) | Generates a button element, with a simple plain text object, an ID and an URL.|
+| [buttonWithValue](#buttonwithvalue- ) | Generates a button element, with a simple plain text object, an ID and a value.|
+| [divider](#divider- ) | Generates a divider block.|
+| [header](#header- ) | Generates a header block, with a simple plain text object.|
+| [mrkdwn](#mrkdwn- ) | Generates a mrkdwn text object.|
+| [option](#option- ) | Generates an option object, with a simple plain text<br> object and its value.|
+| [optionGroup](#optiongroup- ) | Generates an option group object, with a simple plain text object and its options.|
+| [section](#section- ) | Generates a simple section block, with a plain text object.|
+| [staticSelect](#staticselect- ) | Generates an static select element, with a simple plain text object as placeholder, its ID and options.|
+| [staticSelectByGroups](#staticselectbygroups- ) | Generates a static select element, with a simple plain text object as placeholder, its ID and option groups.|
+| [text](#text- ) | Generates a plain text object, with emojis enabled.|
 
 
 
