@@ -21,8 +21,7 @@ type Text = PlainText | Mrkdwn
 /**
 * Helper type to represent text objects.
 */
-type SimpleText<T <: "plain_text" | "mrkdwn"> = {
-    'type': T,
+type SimpleText = {
     text: String,
     emoji?: Boolean,
     verbatim?: Boolean
@@ -31,12 +30,16 @@ type SimpleText<T <: "plain_text" | "mrkdwn"> = {
 /**
 * Represents an exclusively plain object.
 */
-type PlainText = SimpleText<"plain_text">
+type PlainText = SimpleText & {
+    "type": "plain_text"
+}
 
 /**
 * Represents an exclusively mrkdwn object.
 */
-type Mrkdwn = SimpleText<"mrkdwn">
+type Mrkdwn = SimpleText & {
+    "type": "mrkdwn"
+}
 
 /**
 * Represents a confirm dialog object.
