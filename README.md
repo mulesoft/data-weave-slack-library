@@ -30,7 +30,7 @@ ________________________________
 
 ## [org::mule::weave::slack::modules::Builders](pages/Builders.md )
 
-Provides functions to simplify the creation and composition of [objects](https://api.slack.com/block-kit[blocks], https://api.slack.com/reference/block-kit/block-elements[elements] and https://api.slack.com/reference/block-kit/composition-objects):
+Provides functions to simplify the creation and composition of [blocks](https://api.slack.com/block-kit), [elements](https://api.slack.com/reference/block-kit/block-elements) and [objects](https://api.slack.com/reference/block-kit/composition-objects):
 
 ### Functions
 | Name | Description|
@@ -40,15 +40,25 @@ Provides functions to simplify the creation and composition of [objects](https:/
 | [button](pages/Builders.md/#button- ) | Generates a button element, with a simple plain text<br> object and ID.|
 | [buttonWithUrl](pages/Builders.md/#buttonwithurl- ) | Generates a button element, with a simple plain text object, an ID and an URL.|
 | [buttonWithValue](pages/Builders.md/#buttonwithvalue- ) | Generates a button element, with a simple plain text object, an ID and a value.|
+| [context](pages/Builders.md/#context- ) | Generates a context block with a single plain text element item.|
 | [divider](pages/Builders.md/#divider- ) | Generates a divider block.|
+| [externalSelect](pages/Builders.md/#externalselect- ) | Generates an external select element, with a simple plain text object as placeholder and its ID.|
 | [header](pages/Builders.md/#header- ) | Generates a header block, with a simple plain text object.|
+| [image](pages/Builders.md/#image- ) | Generates an image element, with its URL and alternative text.|
+| [inputBlock](pages/Builders.md/#inputblock- ) | Generates an input block with a simple text label.|
+| [inputText](pages/Builders.md/#inputtext- ) | Generates an input object.|
 | [mrkdwn](pages/Builders.md/#mrkdwn- ) | Generates a mrkdwn text object.|
+| [multiStaticSelect](pages/Builders.md/#multistaticselect- ) | Generates a multi static select element, with a simple text placeholder, ID and options.|
 | [option](pages/Builders.md/#option- ) | Generates an option object, with a simple plain text<br> object and its value.|
 | [optionGroup](pages/Builders.md/#optiongroup- ) | Generates an option group object, with a simple plain text object and its options.|
-| [section](pages/Builders.md/#section- ) | Generates a simple section block, with a plain text object.|
-| [staticSelect](pages/Builders.md/#staticselect- ) | Generates an static select element, with a simple plain text object as placeholder, its ID and options.|
+| [radioButtons](pages/Builders.md/#radiobuttons- ) | Generates a radio buttons group, given its ID and options.|
+| [section](pages/Builders.md/#section- ) | Generates a simple section block, with a mrkdwn object.|
+| [staticSelect](pages/Builders.md/#staticselect- ) | Generates a static select element, with a simple plain text object as placeholder, its ID and options.|
 | [staticSelectByGroups](pages/Builders.md/#staticselectbygroups- ) | Generates a static select element, with a simple plain text object as placeholder, its ID and option groups.|
 | [text](pages/Builders.md/#text- ) | Generates a plain text object, with emojis enabled.|
+| [withStyle](pages/Builders.md/#withstyle- ) | Adds a style field to a button.|
+| [withUrl](pages/Builders.md/#withurl- ) | Adds a url field to a button.|
+| [withValue](pages/Builders.md/#withvalue- ) | Adds a value field to a button.|
 
 ________________________________
 
@@ -105,8 +115,8 @@ Representation of all Slack [objects](https://api.slack.com/reference/block-kit/
 |[OptionGroup](pages/Objects.md/#optiongroup- ) | Represents an option group object.|
 |[PlainText](pages/Objects.md/#plaintext- ) | Represents an exclusively plain object.|
 |[SimpleText](pages/Objects.md/#simpletext- ) | Helper type to represent text objects.|
+|[Style](pages/Objects.md/#style- ) | Represent the possible style options|
 |[Text](pages/Objects.md/#text- ) | Represents a text object.|
 |[WithOptionGroup](pages/Objects.md/#withoptiongroup- ) | Helper type to compose option groups|
 |[WithOptions](pages/Objects.md/#withoptions- ) | Helper type to compose options|
-
 ________________________________

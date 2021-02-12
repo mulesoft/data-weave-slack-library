@@ -7,14 +7,22 @@ Provides functions to simplify the creation and composition of:
 These are the supported components:
 
 - [actions](https://api.slack.com/reference/block-kit/blocks#actions)
+- [context](https://api.slack.com/reference/block-kit/blocks#context)
 - [divider](https://api.slack.com/reference/block-kit/blocks#divider)
 - [header](https://api.slack.com/reference/block-kit/blocks#header)
+- [image block](https://api.slack.com/reference/block-kit/blocks#image)
+- [input block](https://api.slack.com/reference/block-kit/blocks#input)
 - [section](https://api.slack.com/reference/block-kit/blocks#section)
 - [text](https://api.slack.com/reference/block-kit/composition-objects#text)
 - [button](https://api.slack.com/reference/block-kit/block-elements#button)
+- [image](https://api.slack.com/reference/block-kit/block-elements#image)
+- [input text](https://api.slack.com/reference/block-kit/block-elements#input)
+- [radio button group](https://api.slack.com/reference/block-kit/block-elements#radio)
 - [option](https://api.slack.com/reference/block-kit/composition-objects#option)
 - [option group](https://api.slack.com/reference/block-kit/composition-objects#option_group)
 - [static select](https://api.slack.com/reference/block-kit/block-elements#static_select)
+- [external select](https://api.slack.com/reference/block-kit/block-elements#external_select)
+- [multi select](https://api.slack.com/reference/block-kit/block-elements#multi_select)
 
 __________________________________________
 
@@ -28,15 +36,25 @@ __________________________________________
 | [button](#button- ) | Generates a button element, with a simple plain text<br> object and ID.|
 | [buttonWithUrl](#buttonwithurl- ) | Generates a button element, with a simple plain text object, an ID and an URL.|
 | [buttonWithValue](#buttonwithvalue- ) | Generates a button element, with a simple plain text object, an ID and a value.|
+| [context](#context- ) | Generates a context block with a single plain text element item.|
 | [divider](#divider- ) | Generates a divider block.|
+| [externalSelect](#externalselect- ) | Generates an external select element, with a simple plain text object as placeholder and its ID.|
 | [header](#header- ) | Generates a header block, with a simple plain text object.|
+| [image](#image- ) | Generates an image element, with its URL and alternative text.|
+| [inputBlock](#inputblock- ) | Generates an input block with a simple text label.|
+| [inputText](#inputtext- ) | Generates an input object.|
 | [mrkdwn](#mrkdwn- ) | Generates a mrkdwn text object.|
+| [multiStaticSelect](#multistaticselect- ) | Generates a multi static select element, with a simple text placeholder, ID and options.|
 | [option](#option- ) | Generates an option object, with a simple plain text<br> object and its value.|
 | [optionGroup](#optiongroup- ) | Generates an option group object, with a simple plain text object and its options.|
-| [section](#section- ) | Generates a simple section block, with a plain text object.|
-| [staticSelect](#staticselect- ) | Generates an static select element, with a simple plain text object as placeholder, its ID and options.|
+| [radioButtons](#radiobuttons- ) | Generates a radio buttons group, given its ID and options.|
+| [section](#section- ) | Generates a simple section block, with a mrkdwn object.|
+| [staticSelect](#staticselect- ) | Generates a static select element, with a simple plain text object as placeholder, its ID and options.|
 | [staticSelectByGroups](#staticselectbygroups- ) | Generates a static select element, with a simple plain text object as placeholder, its ID and option groups.|
 | [text](#text- ) | Generates a plain text object, with emojis enabled.|
+| [withStyle](#withstyle- ) | Adds a style field to a button.|
+| [withUrl](#withurl- ) | Adds a url field to a button.|
+| [withValue](#withvalue- ) | Adds a value field to a button.|
 
 
 
@@ -406,6 +424,88 @@ import * from org::mule::weave::slack::Builders
 __________________________________________
 
 
+## **context** [↑↑](#index )
+
+### _context(String): Context_
+
+Generates a context block with a single plain text element item.
+
+##### Parameters
+
+| Name   | Description | Type|
+|--------|-------------|-----|
+| message | The value to use as text | String|
+
+
+##### Example
+
+This example shows how `context` behaves.
+
+###### Source
+
+```dataweave
+%dw 2.0
+output application/json
+---
+context(":calendar: Make sure to add this to your events")
+```
+
+###### Output
+
+```json
+{
+  "type": "context",
+  "elements": [
+    {
+      "type": "plain_text",
+      "text": ":calendar: Make sure to add this to your events",
+      "emoji": true
+    }
+  ]
+}
+```
+__________________________________________
+
+### _context(Array<Image | Text>): Context_
+
+Generates a context block with the desired elements.
+
+##### Parameters
+
+| Name   | Description | Type|
+|--------|-------------|-----|
+| elements | The image or text elements | Array<Image|Text>|
+
+
+##### Example
+
+This example shows how `context` behaves.
+
+###### Source
+
+```dataweave
+%dw 2.0
+output application/json
+---
+context([mrkdwn("Built with :heart: by the DataWeave team")])
+```
+
+###### Output
+
+```json
+{
+  "type": "context",
+  "elements": [
+    {
+      "type": "mrkdwn",
+      "text": "Built with :heart: by the DataWeave team"
+    }
+  ]
+}
+```
+__________________________________________
+
+
 ## **divider** [↑↑](#index )
 
 ### _divider(): Divider_
@@ -431,6 +531,89 @@ import * from org::mule::weave::slack::Builders
 ```json
 {
   "type": "divider"
+}
+```
+__________________________________________
+
+
+## **externalSelect** [↑↑](#index )
+
+### _externalSelect(String, String): ExternalSelect_
+
+Generates an external select element, with a simple plain text object as placeholder and its ID.
+
+##### Parameters
+
+| Name   | Description | Type|
+|--------|-------------|-----|
+| placeholder | The value to use in the desired placeholder | String|
+| id | The value to use in `action_id` field | String|
+
+
+##### Example
+
+This example shows how `externalSelect` behaves.
+
+###### Source
+
+```dataweave
+%dw 2.0
+output application/json
+---
+externalSelect("Choose a dish", "dishes")
+```
+
+###### Output
+
+```json
+{
+  "type": "external_select",
+  "placeholder": {
+    "type": "plain_text",
+    "text": "Choose a dish",
+    "emoji": true
+  },
+  "action_id": "dishes"
+}
+```
+__________________________________________
+
+### _externalSelect(PlainText, String): ExternalSelect_
+
+Generates an external select element, with a text object as placeholder and its ID.
+
+##### Parameters
+
+| Name   | Description | Type|
+|--------|-------------|-----|
+| placeholder | The text to use in the desired placeholder | PlainText|
+| id | The value to use in `action_id` field | String|
+
+
+##### Example
+
+This example shows how `externalSelect` behaves.
+
+###### Source
+
+```dataweave
+%dw 2.0
+output application/json
+---
+externalSelect(text("Choose a dish"), "dishes")
+```
+
+###### Output
+
+```json
+{
+  "type": "external_select",
+  "placeholder": {
+    "type": "plain_text",
+    "text": "Choose a dish",
+    "emoji": true
+  },
+  "action_id": "dishes"
 }
 ```
 __________________________________________
@@ -521,6 +704,259 @@ header({
 __________________________________________
 
 
+## **image** [↑↑](#index )
+
+### _image(String, String): Image_
+
+Generates an image element, with its URL and alternative text.
+
+##### Parameters
+
+| Name   | Description | Type|
+|--------|-------------|-----|
+| url | The URL to the image | String|
+| text | The text to use if the image cannot be rendered | String|
+
+
+##### Example
+
+This example shows how `image` behaves..
+
+###### Source
+
+```dataweave
+%dw 2.0
+output application/json
+---
+image("https://api.slack.com/img/blocks/bkb_template_images/profile_1.png", "Michael Scott")
+```
+
+###### Output
+
+```json
+{
+  "type": "image",
+  "image_url": "https://api.slack.com/img/blocks/bkb_template_images/profile_1.png",
+  "alt_text": "Michael Scott"
+}
+```
+__________________________________________
+
+### _image(String, String, String): ImageBlock_
+
+Generates an image block with a simple text title.
+
+##### Parameters
+
+| Name   | Description | Type|
+|--------|-------------|-----|
+| url | The url for the image | String|
+| altText | The alternative text for the image | String|
+| title | The value to use for the text title | String|
+
+
+##### Example
+
+This example shows how `image` behaves.
+
+###### Source
+
+```dataweave
+%dw 2.0
+output application/json
+---
+image("https://api.slack.com/img/blocks/bkb_template_images/profile_1.png", "profile pic", "Your new profile picture is saved")
+```
+
+###### Output
+
+```json
+{
+  "type": "image",
+  "image_url": "https://api.slack.com/img/blocks/bkb_template_images/profile_1.png",
+  "alt_text": "profile pic",
+  "title": {
+    "type": "plain_text",
+    "text": "Your new profile picture is saved",
+    "emoji": true
+  }
+}
+```
+__________________________________________
+
+### _image(String, String, PlainText): ImageBlock_
+
+Generates an image block with a text title.
+
+##### Parameters
+
+| Name   | Description | Type|
+|--------|-------------|-----|
+| url | The url for the image | String|
+| altText | The alternative text for the image | String|
+| title | The text value to use as title | PlainText|
+
+
+##### Example
+
+This example shows how `image` behaves.
+
+###### Source
+
+```dataweave
+%dw 2.0
+output application/json
+---
+image("https://api.slack.com/img/blocks/bkb_template_images/profile_1.png", "profile pic", text("Your new profile picture is saved"))
+```
+
+###### Output
+
+```json
+{
+  "type": "image",
+  "image_url": "https://api.slack.com/img/blocks/bkb_template_images/profile_1.png",
+  "alt_text": "profile pic",
+  "title": {
+    "type": "plain_text",
+    "text": "Your new profile picture is saved",
+    "emoji": true
+  }
+}
+```
+__________________________________________
+
+
+## **inputBlock** [↑↑](#index )
+
+### _inputBlock(String, Element): Input_
+
+Generates an input block with a simple text label.
+
+##### Parameters
+
+| Name   | Description | Type|
+|--------|-------------|-----|
+| label | The label for the input | String|
+| element | The element to use in the input | Element|
+
+
+##### Example
+
+This example shows how `inputBlock` behaves.
+
+###### Source
+
+```dataweave
+%dw 2.0
+output application/json
+---
+inputBlock("Please select your desired lunch:", inputText("lunch"))
+```
+
+###### Output
+
+```json
+{
+  "type": "input",
+  "label": {
+    "type": "plain_text",
+    "text": "Please select your desired lunch:",
+    "emoji": true
+  },
+  "element": {
+    "type": "plain_text_input",
+    "action_id": "lunch",
+    "multiline": false
+  }
+}
+```
+__________________________________________
+
+### _inputBlock(PlainText, Element): Input_
+
+Generates an input block.
+
+##### Parameters
+
+| Name   | Description | Type|
+|--------|-------------|-----|
+| label | The label for the input | PlainText|
+| element | The element to use in the input | Element|
+
+
+##### Example
+
+This example shows how `inputBlock` behaves.
+
+###### Source
+
+```dataweave
+%dw 2.0
+output application/json
+---
+inputBlock(text("Please select your desired lunch:"), inputText("lunch"))
+```
+
+###### Output
+
+```json
+{
+  "type": "input",
+  "label": {
+    "type": "plain_text",
+    "text": "Please select your desired lunch:",
+    "emoji": true
+  },
+  "element": {
+    "type": "plain_text_input",
+    "action_id": "lunch",
+    "multiline": false
+  }
+}
+```
+__________________________________________
+
+
+## **inputText** [↑↑](#index )
+
+### _inputText(String, Boolean): PlainTextInput_
+
+Generates an input object.
+
+##### Parameters
+
+| Name   | Description | Type|
+|--------|-------------|-----|
+| id | The value to use in the `action_id` field | String|
+| multiline | Whether the input should be multiline. Defaults to false. | Boolean|
+
+
+##### Example
+
+This example shows how `inputText` behaves.
+
+###### Source
+
+```dataweave
+%dw 2.0
+output application/json
+---
+inputText("suggestions", true)
+```
+
+###### Output
+
+```json
+{
+  "type": "plain_text_input",
+  "action_id": "suggestions",
+  "multiline": true
+}
+```
+__________________________________________
+
+
 ## **mrkdwn** [↑↑](#index )
 
 ### _mrkdwn(String): Mrkdwn_
@@ -554,6 +990,145 @@ import * from org::mule::weave::slack::Builders
 {
   "type": "mrkdwn",
   "text": "*Hello*"
+}
+```
+__________________________________________
+
+
+## **multiStaticSelect** [↑↑](#index )
+
+### _multiStaticSelect(String, String, Array<Option>): MultiStaticSelect_
+
+Generates a multi static select element, with a simple text placeholder, ID and options.
+
+##### Parameters
+
+| Name   | Description | Type|
+|--------|-------------|-----|
+| placeholder | The value to use in the desired placeholder | String|
+| id | The value to use in the `action_id` field | String|
+| options | The options to select | Array<Option>|
+
+
+##### Example
+
+This example shows how `multiStaticSelect` behaves.
+
+###### Source
+
+```dataweave
+%dw 2.0
+output application/json
+var versions = ["4.2.1", "4.2.2", "4.3.0"]
+---
+multiStaticSelect("Choose versions...", "versions", versions map ((item, index) -> option(item, item)))
+```
+
+###### Output
+
+```json
+{
+  "type": "multi_static_select",
+  "placeholder": {
+    "type": "plain_text",
+    "text": "Choose versions...",
+    "emoji": true
+  },
+  "action_id": "versions",
+  "options": [
+    {
+      "text": {
+        "type": "plain_text",
+        "text": "4.2.1",
+        "emoji": true
+      },
+      "value": "4.2.1"
+    },
+    {
+      "text": {
+        "type": "plain_text",
+        "text": "4.2.2",
+        "emoji": true
+      },
+      "value": "4.2.2"
+    },
+    {
+      "text": {
+        "type": "plain_text",
+        "text": "4.3.0",
+        "emoji": true
+      },
+      "value": "4.3.0"
+    }
+  ]
+}
+```
+__________________________________________
+
+### _multiStaticSelect(PlainText, String, Array<Option>): MultiStaticSelect_
+
+Generates a multi static select element, with its placeholder, ID and options.
+
+##### Parameters
+
+| Name   | Description | Type|
+|--------|-------------|-----|
+| placeholder | The text to use as placeholder | PlainText|
+| id | The value to use in the `action_id` field | String|
+| options | The options to select | Array<Option>|
+
+
+##### Example
+
+This example shows how `multiStaticSelect` behaves.
+
+###### Source
+
+```dataweave
+%dw 2.0
+output application/json
+var versions = ["4.2.1", "4.2.2", "4.3.0"]
+---
+multiStaticSelect(text("Choose versions..."), "versions", versions map ((item, index) -> option(item, item)))
+```
+
+###### Output
+
+```json
+{
+  "type": "multi_static_select",
+  "placeholder": {
+    "type": "plain_text",
+    "text": "Choose versions...",
+    "emoji": true
+  },
+  "action_id": "versions",
+  "options": [
+    {
+      "text": {
+        "type": "plain_text",
+        "text": "4.2.1",
+        "emoji": true
+      },
+      "value": "4.2.1"
+    },
+    {
+      "text": {
+        "type": "plain_text",
+        "text": "4.2.2",
+        "emoji": true
+      },
+      "value": "4.2.2"
+    },
+    {
+      "text": {
+        "type": "plain_text",
+        "text": "4.3.0",
+        "emoji": true
+      },
+      "value": "4.3.0"
+    }
+  ]
 }
 ```
 __________________________________________
@@ -780,22 +1355,86 @@ var options = ["4.2.0", "4.2.1"] map ((item) -> option(item, item))
 __________________________________________
 
 
-## **section** [↑↑](#index )
+## **radioButtons** [↑↑](#index )
 
-### _section(String): Section_
+### _radioButtons(String, Array<Option>): RadioButtonGroup_
 
-Generates a simple section block, with a plain text object.
+Generates a radio buttons group, given its ID and options.
 
 ##### Parameters
 
 | Name   | Description | Type|
 |--------|-------------|-----|
-| message | The value to use in the desired text | String|
+| id | The value to use in the `action_id` field | String|
+| options | The options to group | Array<Option>|
 
 
 ##### Example
 
-In this example, a section with a simple text is generated.
+This example shows how `radioButtons` behaves.
+
+###### Source
+
+```dataweave
+%dw 2.0
+output application/json
+---
+radioButtons("food", ["spaghetti", "fusilli", "orecchiette"] map option($, $))
+```
+
+###### Output
+
+```json
+{
+  "type": "radio_buttons",
+  "action_id": "food",
+  "options": [
+    {
+      "text": {
+        "type": "plain_text",
+        "text": "spaghetti",
+        "emoji": true
+      },
+      "value": "spaghetti"
+    },
+    {
+      "text": {
+        "type": "plain_text",
+        "text": "fusilli",
+        "emoji": true
+      },
+      "value": "fusilli"
+    },
+    {
+      "text": {
+        "type": "plain_text",
+        "text": "orecchiette",
+        "emoji": true
+      },
+      "value": "orecchiette"
+    }
+  ]
+}
+```
+__________________________________________
+
+
+## **section** [↑↑](#index )
+
+### _section(String): Section_
+
+Generates a simple section block, with a mrkdwn object.
+
+##### Parameters
+
+| Name   | Description | Type|
+|--------|-------------|-----|
+| message | The value to use in the desired mrkdwn text | String|
+
+
+##### Example
+
+In this example, a section with a mrkdwn text is generated.
 
 ###### Source
 
@@ -813,9 +1452,8 @@ import * from org::mule::weave::slack::Builders
 {
   "type": "section",
   "text": {
-    "type": "plain_text",
-    "text": "Hello",
-    "emoji": true
+    "type": "mrkdwn",
+    "text": "Hello!"
   }
 }
 ```
@@ -856,6 +1494,54 @@ import * from org::mule::weave::slack::Builders
     "text": "*Hello*"
   }
 }
+```
+__________________________________________
+
+### _section(String, Element): Section_
+
+Generates a section block, with a mrkdwn text object and an accessory element.
+
+##### Parameters
+
+| Name   | Description | Type|
+|--------|-------------|-----|
+| message | The value to use in the desired mrkdwn text | String|
+| accessory | The element to use | Element|
+
+
+##### Example
+
+In this example, a section with simple text and a simple button is generated.
+
+###### Source
+
+```dataweave
+%dw 2.0
+output application/json
+---
+section("*Tim's Farewell Party* is tonight at 8 PM", button("RSVP", "invite"))
+
+```
+
+###### Output
+
+```json
+{
+    "type": "section",
+    "text": {
+      "type": "mrkdwn",
+      "text": "*Tim's Farewell Party* is tonight at 8 PM"
+    },
+    "accessory": {
+      "type": "button",
+      "text": {
+        "type": "plain_text",
+        "text": "RSVP",
+        "emoji": true
+      },
+      "action_id": "invite"
+    }
+  }
 ```
 __________________________________________
 
@@ -1012,7 +1698,7 @@ __________________________________________
 
 ### _staticSelect(String, String, Array<Option>): StaticSelect_
 
-Generates an static select element, with a simple plain text object as placeholder, its ID and options.
+Generates a static select element, with a simple plain text object as placeholder, its ID and options.
 
 ##### Parameters
 
@@ -1345,6 +2031,141 @@ import * from org::mule::weave::slack::Builders
   "type": "plain_text",
   "text": "Hello! :wave:",
   "emoji": true
+}
+```
+__________________________________________
+
+
+## **withStyle** [↑↑](#index )
+
+### _withStyle(Button, Style): Button_
+
+Adds a style field to a button.
+
+##### Parameters
+
+| Name   | Description | Type|
+|--------|-------------|-----|
+| button | The button to add a value to | Button|
+| style | The style to add | Style|
+
+
+##### Example
+
+This example shows how `withStyle` is used.
+
+###### Source
+
+```dataweave
+%dw 2.0
+output application/json
+---
+button("Click me!", "bait") withStyle "danger"
+
+```
+
+###### Output
+
+```json
+{
+  "type": "button",
+  "text": {
+    "type": "plain_text",
+    "text": "Click me!",
+    "emoji": true
+  },
+  "action_id": "bait",
+  "style": "danger"
+}
+```
+__________________________________________
+
+
+## **withUrl** [↑↑](#index )
+
+### _withUrl(Button, String): Button_
+
+Adds a url field to a button.
+
+##### Parameters
+
+| Name   | Description | Type|
+|--------|-------------|-----|
+| button | The button to add a value to | Button|
+| url | The url to add | String|
+
+
+##### Example
+
+This example shows how `withUrl` is used.
+
+###### Source
+
+```dataweave
+%dw 2.0
+output application/json
+---
+button("Click me!", "bait") withUrl "http://httpbin.org"
+
+```
+
+###### Output
+
+```json
+{
+  "type": "button",
+  "text": {
+    "type": "plain_text",
+    "text": "Click me!",
+    "emoji": true
+  },
+  "action_id": "bait",
+  "url": "http://httpbin.org"
+}
+```
+__________________________________________
+
+
+## **withValue** [↑↑](#index )
+
+### _withValue(Button, String): Button_
+
+Adds a value field to a button.
+
+##### Parameters
+
+| Name   | Description | Type|
+|--------|-------------|-----|
+| button | The button to add a value to | Button|
+| value | The value to add | String|
+
+
+##### Example
+
+This example shows how `withValue` is used.
+
+###### Source
+
+```dataweave
+%dw 2.0
+output application/json
+---
+button("Click me!", "bait") withValue "spam"
+
+```
+
+###### Output
+
+```json
+{
+  "type": "button",
+  "text": {
+    "type": "plain_text",
+    "text": "Click me!",
+    "emoji": true
+  },
+  "action_id": "bait",
+  "value": "spam"
 }
 ```
 __________________________________________

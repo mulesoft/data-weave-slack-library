@@ -5,7 +5,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>1e0dbdda-5cda-4968-a636-0980a2c42cb1</groupId>
 	<artifactId>data-weave-slack-module</artifactId>
-	<version>0.2.1</version>
+	<version>0.3.0</version>
 	<packaging>dw-library</packaging>
 	<name>DataWeave Slack Module</name>
 	<properties>

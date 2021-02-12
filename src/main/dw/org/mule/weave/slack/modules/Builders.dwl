@@ -9,14 +9,22 @@
 * These are the supported components:
 *
 * - https://api.slack.com/reference/block-kit/blocks#actions[actions]
+* - https://api.slack.com/reference/block-kit/blocks#context[context]
 * - https://api.slack.com/reference/block-kit/blocks#divider[divider]
 * - https://api.slack.com/reference/block-kit/blocks#header[header]
+* - https://api.slack.com/reference/block-kit/blocks#image[image block]
+* - https://api.slack.com/reference/block-kit/blocks#input[input block]
 * - https://api.slack.com/reference/block-kit/blocks#section[section]
 * - https://api.slack.com/reference/block-kit/composition-objects#text[text]
 * - https://api.slack.com/reference/block-kit/block-elements#button[button]
+* - https://api.slack.com/reference/block-kit/block-elements#image[image]
+* - https://api.slack.com/reference/block-kit/block-elements#input[input text]
+* - https://api.slack.com/reference/block-kit/block-elements#radio[radio button group]
 * - https://api.slack.com/reference/block-kit/composition-objects#option[option]
 * - https://api.slack.com/reference/block-kit/composition-objects#option_group[option group]
 * - https://api.slack.com/reference/block-kit/block-elements#static_select[static select]
+* - https://api.slack.com/reference/block-kit/block-elements#external_select[external select]
+* - https://api.slack.com/reference/block-kit/block-elements#multi_select[multi select]
 *
 */
 
@@ -727,7 +735,7 @@ fun button(text: PlainText, id: String) : Button = {
 }
 
 /**
-* Add a value field to a button.
+* Adds a value field to a button.
 *
 * === Parameters
 *
@@ -740,7 +748,7 @@ fun button(text: PlainText, id: String) : Button = {
 *
 * === Example
 *
-* This example shows how the `withValue` is used.
+* This example shows how `withValue` is used.
 *
 * ==== Source
 *
@@ -757,13 +765,108 @@ fun button(text: PlainText, id: String) : Button = {
 *
 * [source,Json,linenums]
 * ----
-*
+* {
+*   "type": "button",
+*   "text": {
+*     "type": "plain_text",
+*     "text": "Click me!",
+*     "emoji": true
+*   },
+*   "action_id": "bait",
+*   "value": "spam"
+* }
 * ----
 **/
 fun withValue(button: Button, value: String) : Button = button mergeWith {value: value}
 
+/**
+* Adds a url field to a button.
+*
+* === Parameters
+*
+* [%header, cols="1,3"]
+* |===
+* | Name   | Description | Type
+* | button | The button to add a value to | Button
+* | url | The url to add | String
+* |===
+*
+* === Example
+*
+* This example shows how `withUrl` is used.
+*
+* ==== Source
+*
+* [source,DataWeave,linenums]
+* ----
+* %dw 2.0
+* output application/json
+* ---
+* button("Click me!", "bait") withUrl "http://httpbin.org"
+*
+* ----
+*
+* ==== Output
+*
+* [source,Json,linenums]
+* ----
+* {
+*   "type": "button",
+*   "text": {
+*     "type": "plain_text",
+*     "text": "Click me!",
+*     "emoji": true
+*   },
+*   "action_id": "bait",
+*   "url": "http://httpbin.org"
+* }
+* ----
+**/
 fun withUrl(button: Button, url: String) : Button = button mergeWith {url: url}
 
+/**
+* Adds a style field to a button.
+*
+* === Parameters
+*
+* [%header, cols="1,3"]
+* |===
+* | Name   | Description | Type
+* | button | The button to add a value to | Button
+* | style | The style to add | Style
+* |===
+*
+* === Example
+*
+* This example shows how `withStyle` is used.
+*
+* ==== Source
+*
+* [source,DataWeave,linenums]
+* ----
+* %dw 2.0
+* output application/json
+* ---
+* button("Click me!", "bait") withStyle "danger"
+*
+* ----
+*
+* ==== Output
+*
+* [source,Json,linenums]
+* ----
+* {
+*   "type": "button",
+*   "text": {
+*     "type": "plain_text",
+*     "text": "Click me!",
+*     "emoji": true
+*   },
+*   "action_id": "bait",
+*   "style": "danger"
+* }
+* ----
+**/
 fun withStyle(button: Button, style: Style) : Button = button mergeWith {style: style}
 
 /**
@@ -1182,7 +1285,7 @@ fun optionGroup(text : PlainText, options: Array<Option>) : OptionGroup = {
 }
 
 /**
-*  Generates an static select element, with a simple plain text object as placeholder, its ID and options.
+*  Generates a static select element, with a simple plain text object as placeholder, its ID and options.
 *
 * === Parameters
 *
@@ -1500,23 +1603,21 @@ fun staticSelectByGroups(placeholder: PlainText, id: String, optionGroups: Array
     'option_groups': optionGroups
 }
 
-fun externalSelect(placeholder: String, id: String) : ExternalSelect = externalSelect(text(placeholder), id)
-
 /**
-*
+* Generates an external select element, with a simple plain text object as placeholder and its ID.
 *
 * === Parameters
 *
 * [%header, cols="1,3"]
 * |===
 * | Name   | Description | Type
-* | id | | 
-* | placeholder | |
+* | placeholder | The value to use in the desired placeholder | String
+* | id | The value to use in `action_id` field | String
 * |===
 *
 * === Example
 *
-* This example shows how the `externalSelect` behaves under different inputs.
+* This example shows how `externalSelect` behaves.
 *
 * ==== Source
 *
@@ -1525,15 +1626,65 @@ fun externalSelect(placeholder: String, id: String) : ExternalSelect = externalS
 * %dw 2.0
 * output application/json
 * ---
-*
-*
+* externalSelect("Choose a dish", "dishes")
 * ----
 *
 * ==== Output
 *
 * [source,Json,linenums]
 * ----
+* {
+*   "type": "external_select",
+*   "placeholder": {
+*     "type": "plain_text",
+*     "text": "Choose a dish",
+*     "emoji": true
+*   },
+*   "action_id": "dishes"
+* }
+* ----
+**/
+fun externalSelect(placeholder: String, id: String) : ExternalSelect = externalSelect(text(placeholder), id)
+
+/**
+* Generates an external select element, with a text object as placeholder and its ID.
 *
+* === Parameters
+*
+* [%header, cols="1,3"]
+* |===
+* | Name   | Description | Type
+* | placeholder | The text to use in the desired placeholder | PlainText
+* | id | The value to use in `action_id` field | String
+* |===
+*
+* === Example
+*
+* This example shows how `externalSelect` behaves.
+*
+* ==== Source
+*
+* [source,DataWeave,linenums]
+* ----
+* %dw 2.0
+* output application/json
+* ---
+* externalSelect(text("Choose a dish"), "dishes")
+* ----
+*
+* ==== Output
+*
+* [source,Json,linenums]
+* ----
+* {
+*   "type": "external_select",
+*   "placeholder": {
+*     "type": "plain_text",
+*     "text": "Choose a dish",
+*     "emoji": true
+*   },
+*   "action_id": "dishes"
+* }
 * ----
 **/
 fun externalSelect(placeholder: PlainText, id : String) : ExternalSelect = {
@@ -1543,20 +1694,20 @@ fun externalSelect(placeholder: PlainText, id : String) : ExternalSelect = {
 }
 
 /**
-*
+* Generates an image element, with its URL and alternative text.
 *
 * === Parameters
 *
 * [%header, cols="1,3"]
 * |===
-* | Name   | Description
-* | url |
-* | text |
+* | Name   | Description | Type
+* | url | The URL to the image | String
+* | text | The text to use if the image cannot be rendered | String
 * |===
 *
 * === Example
 *
-* This example shows how the `image` behaves under different inputs.
+* This example shows how `image` behaves..
 *
 * ==== Source
 *
@@ -1565,15 +1716,18 @@ fun externalSelect(placeholder: PlainText, id : String) : ExternalSelect = {
 * %dw 2.0
 * output application/json
 * ---
-*
-*
+* image("https://api.slack.com/img/blocks/bkb_template_images/profile_1.png", "Michael Scott")
 * ----
 *
 * ==== Output
 *
 * [source,Json,linenums]
 * ----
-*
+* {
+*   "type": "image",
+*   "image_url": "https://api.slack.com/img/blocks/bkb_template_images/profile_1.png",
+*   "alt_text": "Michael Scott"
+* }
 * ----
 **/
 fun image(url : String, text: String) : Image = {
@@ -1582,39 +1736,533 @@ fun image(url : String, text: String) : Image = {
     alt_text: text
 }
 
+/**
+* Generates an image block with a simple text title.
+*
+* === Parameters
+*
+* [%header, cols="1,3"]
+* |===
+* | Name   | Description | Type
+* | url | The url for the image | String
+* | altText | The alternative text for the image | String
+* | title | The value to use for the text title | String
+* |===
+*
+* === Example
+*
+* This example shows how `image` behaves.
+*
+* ==== Source
+*
+* [source,DataWeave,linenums]
+* ----
+* %dw 2.0
+* output application/json
+* ---
+* image("https://api.slack.com/img/blocks/bkb_template_images/profile_1.png", "profile pic", "Your new profile picture is saved")
+* ----
+*
+* ==== Output
+*
+* [source,Json,linenums]
+* ----
+* {
+*   "type": "image",
+*   "image_url": "https://api.slack.com/img/blocks/bkb_template_images/profile_1.png",
+*   "alt_text": "profile pic",
+*   "title": {
+*     "type": "plain_text",
+*     "text": "Your new profile picture is saved",
+*     "emoji": true
+*   }
+* }
+* ----
+**/
 fun image(url : String, altText: String, title: String) : ImageBlock = image(url, altText, text(title))
 
+/**
+* Generates an image block with a text title.
+*
+* === Parameters
+*
+* [%header, cols="1,3"]
+* |===
+* | Name   | Description | Type
+* | url | The url for the image | String
+* | altText | The alternative text for the image | String
+* | title | The text value to use as title | PlainText
+* |===
+*
+* === Example
+*
+* This example shows how `image` behaves.
+*
+* ==== Source
+*
+* [source,DataWeave,linenums]
+* ----
+* %dw 2.0
+* output application/json
+* ---
+* image("https://api.slack.com/img/blocks/bkb_template_images/profile_1.png", "profile pic", text("Your new profile picture is saved"))
+* ----
+*
+* ==== Output
+*
+* [source,Json,linenums]
+* ----
+* {
+*   "type": "image",
+*   "image_url": "https://api.slack.com/img/blocks/bkb_template_images/profile_1.png",
+*   "alt_text": "profile pic",
+*   "title": {
+*     "type": "plain_text",
+*     "text": "Your new profile picture is saved",
+*     "emoji": true
+*   }
+* }
+* ----
+**/
 fun image(url : String, altText: String, title: PlainText) : ImageBlock = image(url, altText) mergeWith {title: title}
 
+/**
+* Generates a context block with a single plain text element item.
+*
+* === Parameters
+*
+* [%header, cols="1,3"]
+* |===
+* | Name   | Description | Type
+* | message | The value to use as text | String
+* |===
+*
+* === Example
+*
+* This example shows how `context` behaves.
+*
+* ==== Source
+*
+* [source,DataWeave,linenums]
+* ----
+* %dw 2.0
+* output application/json
+* ---
+* context(":calendar: Make sure to add this to your events")
+* ----
+*
+* ==== Output
+*
+* [source,Json,linenums]
+* ----
+* {
+*   "type": "context",
+*   "elements": [
+*     {
+*       "type": "plain_text",
+*       "text": ":calendar: Make sure to add this to your events",
+*       "emoji": true
+*     }
+*   ]
+* }
+* ----
+**/
 fun context(message: String) : Context = context([text(message)])
 
+/**
+* Generates a context block with the desired elements.
+*
+* === Parameters
+*
+* [%header, cols="1,3"]
+* |===
+* | Name   | Description | Type
+* | elements | The image or text elements | Array<Image|Text>
+* |===
+*
+* === Example
+*
+* This example shows how `context` behaves.
+*
+* ==== Source
+*
+* [source,DataWeave,linenums]
+* ----
+* %dw 2.0
+* output application/json
+* ---
+* context([mrkdwn("Built with :heart: by the DataWeave team")])
+* ----
+*
+* ==== Output
+*
+* [source,Json,linenums]
+* ----
+* {
+*   "type": "context",
+*   "elements": [
+*     {
+*       "type": "mrkdwn",
+*       "text": "Built with :heart: by the DataWeave team"
+*     }
+*   ]
+* }
+* ----
+**/
 fun context(elements: Array<Image|Text>) : Context = {
     "type": "context",
     elements: elements
 }
 
+/**
+* Generates an input block with a simple text label.
+*
+* === Parameters
+*
+* [%header, cols="1,3"]
+* |===
+* | Name   | Description | Type
+* | label | The label for the input | String
+* | element | The element to use in the input | Element
+* |===
+*
+* === Example
+*
+* This example shows how `inputBlock` behaves.
+*
+* ==== Source
+*
+* [source,DataWeave,linenums]
+* ----
+* %dw 2.0
+* output application/json
+* ---
+* inputBlock("Please select your desired lunch:", inputText("lunch"))
+* ----
+*
+* ==== Output
+*
+* [source,Json,linenums]
+* ----
+* {
+*   "type": "input",
+*   "label": {
+*     "type": "plain_text",
+*     "text": "Please select your desired lunch:",
+*     "emoji": true
+*   },
+*   "element": {
+*     "type": "plain_text_input",
+*     "action_id": "lunch",
+*     "multiline": false
+*   }
+* }
+* ----
+**/
 fun inputBlock(label: String, element: Element) : Input = inputBlock(text(label), element)
 
-fun inputText(id: String, multiline: Boolean = false) : PlainTextInput = {
-    "type": "plain_text_input",
-    action_id: id,
-    multiline: multiline
-}
-
+/**
+* Generates an input block.
+*
+* === Parameters
+*
+* [%header, cols="1,3"]
+* |===
+* | Name   | Description | Type
+* | label | The label for the input | PlainText
+* | element | The element to use in the input | Element
+* |===
+*
+* === Example
+*
+* This example shows how `inputBlock` behaves.
+*
+* ==== Source
+*
+* [source,DataWeave,linenums]
+* ----
+* %dw 2.0
+* output application/json
+* ---
+* inputBlock(text("Please select your desired lunch:"), inputText("lunch"))
+* ----
+*
+* ==== Output
+*
+* [source,Json,linenums]
+* ----
+* {
+*   "type": "input",
+*   "label": {
+*     "type": "plain_text",
+*     "text": "Please select your desired lunch:",
+*     "emoji": true
+*   },
+*   "element": {
+*     "type": "plain_text_input",
+*     "action_id": "lunch",
+*     "multiline": false
+*   }
+* }
+* ----
+**/
 fun inputBlock(label: PlainText, element: Element) : Input = {
     "type": "input",
     label: label,
     element: element
 }
 
+/**
+* Generates an input object.
+*
+* === Parameters
+*
+* [%header, cols="1,3"]
+* |===
+* | Name   | Description | Type
+* | id | The value to use in the `action_id` field | String
+* | multiline | Whether the input should be multiline. Defaults to false. | Boolean
+* |===
+*
+* === Example
+*
+* This example shows how `inputText` behaves.
+*
+* ==== Source
+*
+* [source,DataWeave,linenums]
+* ----
+* %dw 2.0
+* output application/json
+* ---
+* inputText("suggestions", true)
+* ----
+*
+* ==== Output
+*
+* [source,Json,linenums]
+* ----
+* {
+*   "type": "plain_text_input",
+*   "action_id": "suggestions",
+*   "multiline": true
+* }
+* ----
+**/
+fun inputText(id: String, multiline: Boolean = false) : PlainTextInput = {
+    "type": "plain_text_input",
+    action_id: id,
+    multiline: multiline
+}
+
+/**
+* Generates a radio buttons group, given its ID and options.
+*
+* === Parameters
+*
+* [%header, cols="1,3"]
+* |===
+* | Name   | Description | Type
+* | id | The value to use in the `action_id` field | String
+* | options | The options to group | Array<Option>
+* |===
+*
+* === Example
+*
+* This example shows how `radioButtons` behaves.
+*
+* ==== Source
+*
+* [source,DataWeave,linenums]
+* ----
+* %dw 2.0
+* output application/json
+* ---
+* radioButtons("food", ["spaghetti", "fusilli", "orecchiette"] map option($, $))
+* ----
+*
+* ==== Output
+*
+* [source,Json,linenums]
+* ----
+* {
+*   "type": "radio_buttons",
+*   "action_id": "food",
+*   "options": [
+*     {
+*       "text": {
+*         "type": "plain_text",
+*         "text": "spaghetti",
+*         "emoji": true
+*       },
+*       "value": "spaghetti"
+*     },
+*     {
+*       "text": {
+*         "type": "plain_text",
+*         "text": "fusilli",
+*         "emoji": true
+*       },
+*       "value": "fusilli"
+*     },
+*     {
+*       "text": {
+*         "type": "plain_text",
+*         "text": "orecchiette",
+*         "emoji": true
+*       },
+*       "value": "orecchiette"
+*     }
+*   ]
+* }
+* ----
+**/
 fun radioButtons(id: String, options: Array<Option>) : RadioButtonGroup = {
     "type": "radio_buttons",
     action_id: id,
     options: options
 }
 
+/**
+* Generates a multi static select element, with a simple text placeholder, ID and options.
+*
+* === Parameters
+*
+* [%header, cols="1,3"]
+* |===
+* | Name   | Description | Type
+* | placeholder | The value to use in the desired placeholder | String
+* | id | The value to use in the `action_id` field | String
+* | options | The options to select | Array<Option>
+* |===
+*
+* === Example
+*
+* This example shows how `multiStaticSelect` behaves.
+*
+* ==== Source
+*
+* [source,DataWeave,linenums]
+* ----
+* %dw 2.0
+* output application/json
+* var versions = ["4.2.1", "4.2.2", "4.3.0"]
+* ---
+* multiStaticSelect("Choose versions...", "versions", versions map ((item, index) -> option(item, item)))
+* ----
+*
+* ==== Output
+*
+* [source,Json,linenums]
+* ----
+* {
+*   "type": "multi_static_select",
+*   "placeholder": {
+*     "type": "plain_text",
+*     "text": "Choose versions...",
+*     "emoji": true
+*   },
+*   "action_id": "versions",
+*   "options": [
+*     {
+*       "text": {
+*         "type": "plain_text",
+*         "text": "4.2.1",
+*         "emoji": true
+*       },
+*       "value": "4.2.1"
+*     },
+*     {
+*       "text": {
+*         "type": "plain_text",
+*         "text": "4.2.2",
+*         "emoji": true
+*       },
+*       "value": "4.2.2"
+*     },
+*     {
+*       "text": {
+*         "type": "plain_text",
+*         "text": "4.3.0",
+*         "emoji": true
+*       },
+*       "value": "4.3.0"
+*     }
+*   ]
+* }
+* ----
+**/
 fun multiStaticSelect(placeholder: String, id: String, options: Array<Option>) : MultiStaticSelect = multiStaticSelect(text(placeholder), id, options)
 
+/**
+* Generates a multi static select element, with its placeholder, ID and options.
+*
+* === Parameters
+*
+* [%header, cols="1,3"]
+* |===
+* | Name   | Description | Type
+* | placeholder | The text to use as placeholder | PlainText
+* | id | The value to use in the `action_id` field | String
+* | options | The options to select | Array<Option>
+* |===
+*
+* === Example
+*
+* This example shows how `multiStaticSelect` behaves.
+*
+* ==== Source
+*
+* [source,DataWeave,linenums]
+* ----
+* %dw 2.0
+* output application/json
+* var versions = ["4.2.1", "4.2.2", "4.3.0"]
+* ---
+* multiStaticSelect(text("Choose versions..."), "versions", versions map ((item, index) -> option(item, item)))
+* ----
+*
+* ==== Output
+*
+* [source,Json,linenums]
+* ----
+* {
+*   "type": "multi_static_select",
+*   "placeholder": {
+*     "type": "plain_text",
+*     "text": "Choose versions...",
+*     "emoji": true
+*   },
+*   "action_id": "versions",
+*   "options": [
+*     {
+*       "text": {
+*         "type": "plain_text",
+*         "text": "4.2.1",
+*         "emoji": true
+*       },
+*       "value": "4.2.1"
+*     },
+*     {
+*       "text": {
+*         "type": "plain_text",
+*         "text": "4.2.2",
+*         "emoji": true
+*       },
+*       "value": "4.2.2"
+*     },
+*     {
+*       "text": {
+*         "type": "plain_text",
+*         "text": "4.3.0",
+*         "emoji": true
+*       },
+*       "value": "4.3.0"
+*     }
+*   ]
+* }
+* ----
+**/
 fun multiStaticSelect(placeholder: PlainText, id: String, options: Array<Option>) : MultiStaticSelect = {
     "type": "multi_static_select",
     placeholder: placeholder,

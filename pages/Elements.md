@@ -78,7 +78,7 @@ Represents a button element.
 #### Definition
 
 ```dataweave
-WithOptionalConfirm & { "type": "button", text: PlainText, action_id: String, url?: String, value?: String, style?: String }
+WithOptionalConfirm & { "type": "button", text: PlainText, action_id: String, url?: String, value?: String, style?: Style }
 ```
 
 

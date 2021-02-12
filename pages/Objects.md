@@ -27,6 +27,7 @@ __________________________________________
 |[OptionGroup](#optiongroup- ) | Represents an option group object.|
 |[PlainText](#plaintext- ) | Represents an exclusively plain object.|
 |[SimpleText](#simpletext- ) | Helper type to represent text objects.|
+|[Style](#style- ) | Represent the possible style options|
 |[Text](#text- ) | Represents a text object.|
 |[WithOptionGroup](#withoptiongroup- ) | Helper type to compose option groups|
 |[WithOptions](#withoptions- ) | Helper type to compose options|
@@ -53,7 +54,7 @@ Represents a confirm dialog object.
 #### Definition
 
 ```dataweave
-{ title: PlainText, text: Text, confirm: PlainText, deny: PlainText, style?: String }
+{ title: PlainText, text: Text, confirm: PlainText, deny: PlainText, style?: Style }
 ```
 
 
@@ -144,6 +145,16 @@ Helper type to represent text objects.
 
 ```dataweave
 { "type": T, text: String, emoji?: Boolean, verbatim?: Boolean }
+```
+
+
+### **Style** [↑↑](#index )
+Represent the possible style options
+
+#### Definition
+
+```dataweave
+"primary" | "danger"
 ```
 
 
