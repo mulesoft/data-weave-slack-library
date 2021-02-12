@@ -38,10 +38,10 @@ type Element = Button | Checkbox | DatePicker | Image | MultiSelectMenu | Overfl
 type Button = WithOptionalConfirm & {
     'type': "button",
     text: PlainText,
-    'action_id': String,
+    action_id: String,
     url?: String,
     value?: String,
-    style?: String
+    style?: Style
 }
 
 /**
@@ -49,9 +49,9 @@ type Button = WithOptionalConfirm & {
 */
 type Checkbox = WithOptionalConfirm & {
     'type': "checkboxes",
-    'action_id': String,
+    action_id: String,
     options: Array<Option>,
-    'initial_options'?: Array<Option>
+    initial_options?: Array<Option>
 }
 
 /**
@@ -59,9 +59,9 @@ type Checkbox = WithOptionalConfirm & {
 */
 type DatePicker = WithOptionalConfirm & {
     'type': "datepicker",
-    'action_id': String,
+    action_id: String,
     placeholder?: PlainText,
-    'initial_date'?: String
+    initial_date?: String
 }
 
 /**
@@ -69,8 +69,8 @@ type DatePicker = WithOptionalConfirm & {
 */
 type Image = {
     'type': "image",
-    'image_url': String,
-    'alt_text': String
+    image_url: String,
+    alt_text: String
 }
 
 /**
@@ -83,7 +83,7 @@ type MultiSelectMenu = MultiStaticSelect | MultiExternalSelect | MultiUserList |
 */
 type MultiStaticSelect = (MultiSelect & WithOptions | MultiSelect & WithOptionGroup) & {
    'type': "multi_static_select",
-   'initial_options'?: Array<Option>,
+   initial_options?: Array<Option>,
 }
 
 /**
@@ -91,8 +91,8 @@ type MultiStaticSelect = (MultiSelect & WithOptions | MultiSelect & WithOptionGr
 */
 type MultiExternalSelect = MultiSelect & {
     'type': "multi_external_select",
-    'initial_options'?: Array<Option>,
-    'min_query_length'?: Number
+    initial_options?: Array<Option>,
+    min_query_length?: Number
 }
 
 /**
@@ -100,7 +100,7 @@ type MultiExternalSelect = MultiSelect & {
 */
 type MultiUserList = MultiSelect & {
     'type': "multi_users_select",
-    'initial_users'?: Array<String>
+    initial_users?: Array<String>
 }
 
 /**
@@ -108,8 +108,8 @@ type MultiUserList = MultiSelect & {
 */
 type MultiConversationList = MultiSelect & {
     'type': "multi_conversations_select",
-    'initial_conversations'?: Array<String>,
-    'default_to_current_conversation'?: Boolean,
+    initial_conversations?: Array<String>,
+    default_to_current_conversation?: Boolean,
     filter?: Filter
 }
 
@@ -118,7 +118,7 @@ type MultiConversationList = MultiSelect & {
 */
 type MultiPublicChannelsList = MultiSelect & {
     'type': "multi_channels_select",
-    'initial_channels'?: Array<String>
+    initial_channels?: Array<String>
 }
 
 /**
@@ -126,7 +126,7 @@ type MultiPublicChannelsList = MultiSelect & {
 */
 type OverflowMenu = WithOptions & WithOptionalConfirm & {
     'type': "overflow",
-    'action_id': String
+    action_id: String
 }
 
 /**
@@ -134,13 +134,13 @@ type OverflowMenu = WithOptions & WithOptionalConfirm & {
 */
 type PlainTextInput = {
     'type': "plain_text_input",
-    'action_id': String,
+    action_id: String,
     placeholder?: PlainText,
-    'initial_value'?: String,
+    initial_value?: String,
     multiline?: Boolean,
-    'min_length'?: Number,
-    'max_length'?: Number,
-    'dispatch_action_config'?: Dispatch
+    min_length?: Number,
+    max_length?: Number,
+    dispatch_action_config?: Dispatch
 }
 
 /**
@@ -148,9 +148,9 @@ type PlainTextInput = {
 */
 type RadioButtonGroup = WithOptionalConfirm & {
     'type': "radio_buttons",
-    'action_id': String,
+    action_id: String,
     options: Array<Option>,
-    'initial_option'?: Option
+    initial_option?: Option
 }
 
 /**
@@ -163,7 +163,7 @@ type SelectMenu = StaticSelect | ExternalSelect | UserList | ConversationsList |
 */
 type StaticSelect = (Select & WithOptions | Select & WithOptionGroup) & {
     'type': "static_select",
-    'initial_option'?: Option
+    initial_option?: Option
 }
 
 /**
@@ -171,8 +171,8 @@ type StaticSelect = (Select & WithOptions | Select & WithOptionGroup) & {
 */
 type ExternalSelect = Select & {
     'type': "external_select",
-    'initial_option'?: Option,
-    'min_query_length'?: Number
+    initial_option?: Option,
+    min_query_length?: Number
 }
 
 /**
@@ -180,7 +180,7 @@ type ExternalSelect = Select & {
 */
 type UserList = Select & {
     'type': "users_select",
-    'initial_user'?: String
+    initial_user?: String
 }
 
 /**
@@ -188,9 +188,9 @@ type UserList = Select & {
 */
 type ConversationsList = Select & {
     'type': "conversations_select",
-    'initial_conversation'?: String,
-    'default_to_current_conversation'?: Boolean,
-    'response_url_enabled'?: Boolean,
+    initial_conversation?: String,
+    default_to_current_conversation?: Boolean,
+    response_url_enabled?: Boolean,
     filter?: Filter
 }
 
@@ -199,8 +199,8 @@ type ConversationsList = Select & {
 */
 type PublicChannelsList = Select & {
     'type': "channels_select",
-    'initial_channel'?: String,
-    'response_url_enabled'?: Boolean
+    initial_channel?: String,
+    response_url_enabled?: Boolean
 }
 
 /**
@@ -208,16 +208,16 @@ type PublicChannelsList = Select & {
 */
 type TimePicker = WithOptionalConfirm & {
     'type': "timepicker",
-    'action_id': String,
+    action_id: String,
     placeholder?: PlainText,
-    'initial_time': String
+    initial_time: String
 }
 
 /**
 * Helper type to reuse multi selection
 */
 type MultiSelect = Select & {
-    'max_selected_items'?: Number
+    max_selected_items?: Number
 }
 
 /**
@@ -225,7 +225,7 @@ type MultiSelect = Select & {
 */
 type Select = WithOptionalConfirm & {
     placeholder: PlainText,
-    'action_id': String,
+    action_id: String,
 }
 
 /**

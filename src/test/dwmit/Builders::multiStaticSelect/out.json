@@ -1,0 +1,35 @@
+{
+  "type": "multi_static_select",
+  "placeholder": {
+    "type": "plain_text",
+    "text": "Choose versions...",
+    "emoji": true
+  },
+  "action_id": "versions",
+  "options": [
+    {
+      "text": {
+        "type": "plain_text",
+        "text": "4.2.1",
+        "emoji": true
+      },
+      "value": "4.2.1"
+    },
+    {
+      "text": {
+        "type": "plain_text",
+        "text": "4.2.2",
+        "emoji": true
+      },
+      "value": "4.2.2"
+    },
+    {
+      "text": {
+        "type": "plain_text",
+        "text": "4.3.0",
+        "emoji": true
+      },
+      "value": "4.3.0"
+    }
+  ]
+}

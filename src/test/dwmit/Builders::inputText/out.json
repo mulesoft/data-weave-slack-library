@@ -1,0 +1,5 @@
+{
+  "type": "plain_text_input",
+  "action_id": "suggestions",
+  "multiline": true
+}

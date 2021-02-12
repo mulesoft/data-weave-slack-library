@@ -1,0 +1,51 @@
+{
+  "type": "input",
+  "label": {
+    "type": "plain_text",
+    "text": "Please select your desired lunch:",
+    "emoji": true
+  },
+  "element": {
+    "type": "static_select",
+    "placeholder": {
+      "type": "plain_text",
+      "text": "Options",
+      "emoji": true
+    },
+    "action_id": "food",
+    "options": [
+      {
+        "text": {
+          "type": "plain_text",
+          "text": "Thai",
+          "emoji": true
+        },
+        "value": "thai"
+      },
+      {
+        "text": {
+          "type": "plain_text",
+          "text": "Italian",
+          "emoji": true
+        },
+        "value": "italian"
+      },
+      {
+        "text": {
+          "type": "plain_text",
+          "text": "Greek",
+          "emoji": true
+        },
+        "value": "greek"
+      },
+      {
+        "text": {
+          "type": "plain_text",
+          "text": "Chinese",
+          "emoji": true
+        },
+        "value": "chinese"
+      }
+    ]
+  }
+}

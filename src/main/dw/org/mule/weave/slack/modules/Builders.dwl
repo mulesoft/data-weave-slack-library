@@ -24,6 +24,7 @@
 import * from org::mule::weave::slack::modules::Blocks
 import * from org::mule::weave::slack::modules::Elements
 import * from org::mule::weave::slack::modules::Objects
+import mergeWith from dw::core::Objects
 /**
 * Generates the standard block kit syntax to define a group of blocks.
 *
@@ -191,9 +192,9 @@ fun divider() : Divider = {
 * }
 * ----
 */
-fun text(t : String) : PlainText = {
+fun text(message : String) : PlainText = {
     'type': "plain_text",
-    text: t,
+    text: message,
     emoji: true
 }
 
@@ -239,19 +240,19 @@ fun mrkdwn(message: String) : Mrkdwn = {
 }
 
 /**
-*  Generates a simple section block, with a plain text object.
+*  Generates a simple section block, with a mrkdwn object.
 *
 * === Parameters
 *
 * [%header, cols="1,3"]
 * |===
 * | Name   | Description | Type
-* | message | The value to use in the desired text | String
+* | message | The value to use in the desired mrkdwn text | String
 * |===
 *
 * === Example
 *
-* In this example, a section with a simple text is generated.
+* In this example, a section with a mrkdwn text is generated.
 *
 * ==== Source
 *
@@ -271,14 +272,13 @@ fun mrkdwn(message: String) : Mrkdwn = {
 * {
 *   "type": "section",
 *   "text": {
-*     "type": "plain_text",
-*     "text": "Hello",
-*     "emoji": true
+*     "type": "mrkdwn",
+*     "text": "Hello!"
 *   }
 * }
 * ----
 */
-fun section(message: String) : Section = section(text(message))
+fun section(message: String) : Section = section(mrkdwn(message))
 
 /**
 *  Generates a section block, with a text object.
@@ -323,6 +323,57 @@ fun section(text : Text) : Section = {
     'type': "section",
     text: text
 }
+
+/**
+* Generates a section block, with a mrkdwn text object and an accessory element.
+*
+* === Parameters
+*
+* [%header, cols="1,3"]
+* |===
+* | Name   | Description | Type
+* | message | The value to use in the desired mrkdwn text | String
+* | accessory | The element to use | Element
+* |===
+*
+* === Example
+*
+* In this example, a section with simple text and a simple button is generated.
+*
+* ==== Source
+*
+* [source,DataWeave,linenums]
+* ----
+* %dw 2.0
+* output application/json
+* ---
+* section("*Tim's Farewell Party* is tonight at 8 PM", button("RSVP", "invite"))
+*
+* ----
+*
+* ==== Output
+*
+* [source,Json,linenums]
+* ----
+* {
+*     "type": "section",
+*     "text": {
+*       "type": "mrkdwn",
+*       "text": "*Tim's Farewell Party* is tonight at 8 PM"
+*     },
+*     "accessory": {
+*       "type": "button",
+*       "text": {
+*         "type": "plain_text",
+*         "text": "RSVP",
+*         "emoji": true
+*       },
+*       "action_id": "invite"
+*     }
+*   }
+* ----
+**/
+fun section(message: String, accessory: Element) : Section = section(mrkdwn(message), accessory)
 
 /**
 *  Generates a section block, with a text object and an accessory element.
@@ -672,8 +723,48 @@ fun button(message: String, id: String) : Button = button(text(message), id)
 fun button(text: PlainText, id: String) : Button = {
     'type': "button",
     text: text,
-    'action_id': id
+    action_id: id
 }
+
+/**
+* Add a value field to a button.
+*
+* === Parameters
+*
+* [%header, cols="1,3"]
+* |===
+* | Name   | Description | Type
+* | button | The button to add a value to | Button
+* | value | The value to add | String
+* |===
+*
+* === Example
+*
+* This example shows how the `withValue` is used.
+*
+* ==== Source
+*
+* [source,DataWeave,linenums]
+* ----
+* %dw 2.0
+* output application/json
+* ---
+* button("Click me!", "bait") withValue "spam"
+*
+* ----
+*
+* ==== Output
+*
+* [source,Json,linenums]
+* ----
+*
+* ----
+**/
+fun withValue(button: Button, value: String) : Button = button mergeWith {value: value}
+
+fun withUrl(button: Button, url: String) : Button = button mergeWith {url: url}
+
+fun withStyle(button: Button, style: Style) : Button = button mergeWith {style: style}
 
 /**
 *  Generates a button element, with a simple plain text object, an ID and a value.
@@ -764,12 +855,7 @@ fun buttonWithValue(message: String, id: String, value: String) : Button = butto
 * }
 * ----
 */
-fun buttonWithValue(text: PlainText, id: String, val: String) : Button = {
-    'type': "button",
-    text: text,
-    'action_id': id,
-    value: val
-}
+fun buttonWithValue(text: PlainText, id: String, value: String) : Button = button(text, id) withValue value
 
 /**
 *  Generates a button element, with a simple plain text object, an ID and an URL.
@@ -860,12 +946,7 @@ fun buttonWithUrl(message: String, id: String, url: String) : Button = buttonWit
 * }
 * ----
 */
-fun buttonWithUrl(text: PlainText, id : String, url: String) : Button = {
-    'type': "button",
-    text: text,
-    'action_id': id,
-    url: url
-}
+fun buttonWithUrl(text: PlainText, id : String, url: String) : Button = button(text, id) withUrl url
 
 /**
 *  Generates an option object, with a simple plain text
@@ -1328,7 +1409,7 @@ fun staticSelectByGroups(placeholder: String, id: String, optionGroups: Array<Op
 fun staticSelect(placeholder: PlainText, id: String, options: Array<Option>) : StaticSelect = {
     'type': "static_select",
     placeholder: placeholder,
-    'action_id': id,
+    action_id: id,
     options: options
 }
 
@@ -1415,6 +1496,128 @@ fun staticSelect(placeholder: PlainText, id: String, options: Array<Option>) : S
 fun staticSelectByGroups(placeholder: PlainText, id: String, optionGroups: Array<OptionGroup>) : StaticSelect = {
     'type': "static_select",
     placeholder: placeholder,
-    'action_id': id,
+    action_id: id,
     'option_groups': optionGroups
+}
+
+fun externalSelect(placeholder: String, id: String) : ExternalSelect = externalSelect(text(placeholder), id)
+
+/**
+*
+*
+* === Parameters
+*
+* [%header, cols="1,3"]
+* |===
+* | Name   | Description | Type
+* | id | | 
+* | placeholder | |
+* |===
+*
+* === Example
+*
+* This example shows how the `externalSelect` behaves under different inputs.
+*
+* ==== Source
+*
+* [source,DataWeave,linenums]
+* ----
+* %dw 2.0
+* output application/json
+* ---
+*
+*
+* ----
+*
+* ==== Output
+*
+* [source,Json,linenums]
+* ----
+*
+* ----
+**/
+fun externalSelect(placeholder: PlainText, id : String) : ExternalSelect = {
+    "type" : "external_select",
+    placeholder: placeholder,
+    action_id: id
+}
+
+/**
+*
+*
+* === Parameters
+*
+* [%header, cols="1,3"]
+* |===
+* | Name   | Description
+* | url |
+* | text |
+* |===
+*
+* === Example
+*
+* This example shows how the `image` behaves under different inputs.
+*
+* ==== Source
+*
+* [source,DataWeave,linenums]
+* ----
+* %dw 2.0
+* output application/json
+* ---
+*
+*
+* ----
+*
+* ==== Output
+*
+* [source,Json,linenums]
+* ----
+*
+* ----
+**/
+fun image(url : String, text: String) : Image = {
+    "type": "image",
+    image_url: url,
+    alt_text: text
+}
+
+fun image(url : String, altText: String, title: String) : ImageBlock = image(url, altText, text(title))
+
+fun image(url : String, altText: String, title: PlainText) : ImageBlock = image(url, altText) mergeWith {title: title}
+
+fun context(message: String) : Context = context([text(message)])
+
+fun context(elements: Array<Image|Text>) : Context = {
+    "type": "context",
+    elements: elements
+}
+
+fun inputBlock(label: String, element: Element) : Input = inputBlock(text(label), element)
+
+fun inputText(id: String, multiline: Boolean = false) : PlainTextInput = {
+    "type": "plain_text_input",
+    action_id: id,
+    multiline: multiline
+}
+
+fun inputBlock(label: PlainText, element: Element) : Input = {
+    "type": "input",
+    label: label,
+    element: element
+}
+
+fun radioButtons(id: String, options: Array<Option>) : RadioButtonGroup = {
+    "type": "radio_buttons",
+    action_id: id,
+    options: options
+}
+
+fun multiStaticSelect(placeholder: String, id: String, options: Array<Option>) : MultiStaticSelect = multiStaticSelect(text(placeholder), id, options)
+
+fun multiStaticSelect(placeholder: PlainText, id: String, options: Array<Option>) : MultiStaticSelect = {
+    "type": "multi_static_select",
+    placeholder: placeholder,
+    action_id: id,
+    options: options
 }

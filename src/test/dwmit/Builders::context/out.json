@@ -1,0 +1,9 @@
+{
+  "type": "context",
+  "elements": [
+    {
+      "type": "mrkdwn",
+      "text": "Built with :heart: by the DataWeave team"
+    }
+  ]
+}

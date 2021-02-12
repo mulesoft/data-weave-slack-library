@@ -1,0 +1,30 @@
+{
+  "type": "radio_buttons",
+  "action_id": "food",
+  "options": [
+    {
+      "text": {
+        "type": "plain_text",
+        "text": "spaghetti",
+        "emoji": true
+      },
+      "value": "spaghetti"
+    },
+    {
+      "text": {
+        "type": "plain_text",
+        "text": "fusilli",
+        "emoji": true
+      },
+      "value": "fusilli"
+    },
+    {
+      "text": {
+        "type": "plain_text",
+        "text": "orecchiette",
+        "emoji": true
+      },
+      "value": "orecchiette"
+    }
+  ]
+}

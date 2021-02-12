@@ -2,4 +2,4 @@
 import * from org::mule::weave::slack::modules::Builders
 output application/json
 ---
-section("*Hello*")
+context([mrkdwn("Built with :heart: by the DataWeave team")])

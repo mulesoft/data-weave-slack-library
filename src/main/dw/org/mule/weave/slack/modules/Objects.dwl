@@ -46,8 +46,13 @@ type Confirmation = {
     text: Text,
     confirm: PlainText,
     deny: PlainText,
-    style?: String
+    style?: Style
 }
+
+/**
+* Represent the possible style options
+*/
+type Style = "primary" | "danger"
 
 /**
 * Represents an option object.
@@ -71,8 +76,8 @@ type OptionGroup = WithOptions & {
 */
 type Filter = {
     include?: Array<FilterOptions>,
-    'exclude_external_shared_channels'?: Boolean,
-    'external_bot_users'?: Boolean
+    exclude_external_shared_channels?: Boolean,
+    external_bot_users?: Boolean
 }
 
 /**
@@ -84,7 +89,7 @@ type FilterOptions = "im" | "mpim" | "private" | "public"
 * Represents a dispatch action object.
 */
 type Dispatch = {
-    'trigger_actions_on'?: Array<DispatchOptions>
+    trigger_actions_on?: Array<DispatchOptions>
 }
 
 /**
@@ -103,5 +108,5 @@ type WithOptions = {
 * Helper type to compose option groups
 */
 type WithOptionGroup = {
-    'option_groups': Array<OptionGroup>
+    option_groups: Array<OptionGroup>
 }

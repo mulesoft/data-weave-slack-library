@@ -53,7 +53,7 @@ type Context = OptionalId & {
 type File = OptionalId & {
     'type': "file",
     source: "remote",
-    'external_id': String
+    external_id: String
 }
 
 /**
@@ -78,7 +78,7 @@ type Input = OptionalId & {
     'type': "input",
     label: PlainText,
     element: Element,
-    'dispatch_action'?: Boolean,
+    dispatch_action?: Boolean,
     hint?: PlainText,
     optiona?: Boolean
 }
@@ -109,5 +109,5 @@ type WithFields = {
 * Helper type to reuse block IDs
 */
 type OptionalId = {
-    'block_id'?: String
+    block_id?: String
 }

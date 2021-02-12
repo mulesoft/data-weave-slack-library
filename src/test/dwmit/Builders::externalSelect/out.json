@@ -1,0 +1,9 @@
+{
+  "type": "external_select",
+  "placeholder": {
+    "type": "plain_text",
+    "text": "Choose a dish",
+    "emoji": true
+  },
+  "action_id": "dishes"
+}

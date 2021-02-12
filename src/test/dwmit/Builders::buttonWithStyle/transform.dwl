@@ -2,4 +2,4 @@
 import * from org::mule::weave::slack::modules::Builders
 output application/json
 ---
-section("*Hello*")
+buttonWithValue(text("Back"), "back", "4.3.0") withStyle "danger"
