@@ -1,20 +1,14 @@
 /**
 *
 * Representation of all Slack https://api.slack.com/reference/block-kit/composition-objects[objects]:
-*
-* - https://api.slack.com/reference/block-kit/composition-objects#text[text]
-* - https://api.slack.com/reference/block-kit/composition-objects#confirm[confirm dialog]
-* - https://api.slack.com/reference/block-kit/composition-objects#option[option]
-* - https://api.slack.com/reference/block-kit/composition-objects#option_group[option group]
-* - https://api.slack.com/reference/block-kit/composition-objects#filter_conversations[filter conversation]
-* - https://api.slack.com/reference/block-kit/composition-objects#dispatch_action_config[dispatch action]
-*
 */
 
 %dw 2.0
 
 /**
 * Represents a text object.
+*
+* https://api.slack.com/reference/block-kit/composition-objects#text[text]
 */
 type Text = PlainText | Mrkdwn
 
@@ -43,6 +37,8 @@ type Mrkdwn = SimpleText & {
 
 /**
 * Represents a confirm dialog object.
+*
+* https://api.slack.com/reference/block-kit/composition-objects#confirm[confirm dialog]
 */
 type Confirmation = {
     title: PlainText,
@@ -59,6 +55,8 @@ type Style = "primary" | "danger"
 
 /**
 * Represents an option object.
+*
+* https://api.slack.com/reference/block-kit/composition-objects#option[option]
 */
 type Option = {
     text: Text,
@@ -69,13 +67,31 @@ type Option = {
 
 /**
 * Represents an option group object.
+*
+* https://api.slack.com/reference/block-kit/composition-objects#option_group[option group]
 */
 type OptionGroup = WithOptions & {
     label: PlainText
 }
 
 /**
+* Represents a dispatch action object.
+*
+* https://api.slack.com/reference/block-kit/composition-objects#dispatch_action_config[dispatch action]
+*/
+type Dispatch = {
+    trigger_actions_on?: Array<DispatchOptions>
+}
+
+/**
+* Represents the possible options of a dispatch action object.
+*/
+type DispatchOptions = "on_enter_pressed" | "on_character_entered"
+
+/**
 * Represents a filter conversation object.
+*
+* https://api.slack.com/reference/block-kit/composition-objects#filter_conversations[filter conversation]
 */
 type Filter = {
     include?: Array<FilterOptions>,
@@ -87,18 +103,6 @@ type Filter = {
 * Represents the possible options of a filter conversation object.
 */
 type FilterOptions = "im" | "mpim" | "private" | "public"
-
-/**
-* Represents a dispatch action object.
-*/
-type Dispatch = {
-    trigger_actions_on?: Array<DispatchOptions>
-}
-
-/**
-* Represents the possible options of a dispatch action object.
-*/
-type DispatchOptions = "on_enter_pressed" | "on_character_entered"
 
 /**
 * Helper type to compose options
