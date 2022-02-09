@@ -1,16 +1,6 @@
 /**
 *
 * Representation of all Slack https://api.slack.com/reference/block-kit/blocks[blocks]:
-*
-* - https://api.slack.com/reference/block-kit/blocks#actions[actions]
-* - https://api.slack.com/reference/block-kit/blocks#context[context]
-* - https://api.slack.com/reference/block-kit/blocks#divider[divider]
-* - https://api.slack.com/reference/block-kit/blocks#file[file]
-* - https://api.slack.com/reference/block-kit/blocks#header[header]
-* - https://api.slack.com/reference/block-kit/blocks#image[image]
-* - https://api.slack.com/reference/block-kit/blocks#input[input]
-* - https://api.slack.com/reference/block-kit/blocks#section[section]
-*
 */
 
 %dw 2.0
@@ -26,6 +16,8 @@ type Block = OptionalId & {
 
 /**
 * Represents an action block.
+*
+* https://api.slack.com/reference/block-kit/blocks#actions[actions]
 */
 type Actions = OptionalId & {
     'type': "actions",
@@ -33,14 +25,9 @@ type Actions = OptionalId & {
 }
 
 /**
-* Represents a divider block.
-*/
-type Divider = OptionalId & {
-    'type': "divider"
-}
-
-/**
 * Represents a context block.
+*
+* https://api.slack.com/reference/block-kit/blocks#context[context]
 */
 type Context = OptionalId & {
     'type': "context",
@@ -48,7 +35,18 @@ type Context = OptionalId & {
 }
 
 /**
+* Represents a divider block.
+*
+* https://api.slack.com/reference/block-kit/blocks#divider[divider]
+*/
+type Divider = OptionalId & {
+    'type': "divider"
+}
+
+/**
 * Represents a file block.
+*
+* https://api.slack.com/reference/block-kit/blocks#file[file]
 */
 type File = OptionalId & {
     'type': "file",
@@ -58,6 +56,8 @@ type File = OptionalId & {
 
 /**
 * Represents a header block.
+*
+* https://api.slack.com/reference/block-kit/blocks#header[header]
 */
 type Header = OptionalId & {
     'type': "header",
@@ -66,6 +66,8 @@ type Header = OptionalId & {
 
 /**
 * Represents an image block.
+*
+* https://api.slack.com/reference/block-kit/blocks#image[image]
 */
 type ImageBlock = OptionalId & Image & {
     title?: PlainText
@@ -73,6 +75,8 @@ type ImageBlock = OptionalId & Image & {
 
 /**
 * Represents an input block.
+*
+* https://api.slack.com/reference/block-kit/blocks#input[input]
 */
 type Input = OptionalId & {
     'type': "input",
@@ -84,7 +88,9 @@ type Input = OptionalId & {
 }
 
 /**
-* Helper type to encapsulate fields
+* Represents a section block.
+*
+* https://api.slack.com/reference/block-kit/blocks#section[section]
 */
 type Section = (OptionalId & WithText | OptionalId & WithFields) & {
     'type': "section",
@@ -106,7 +112,7 @@ type WithFields = {
 }
 
 /**
-* Helper type to reuse block IDs
+* Helper type to reuse block with optional IDs
 */
 type OptionalId = {
     block_id?: String

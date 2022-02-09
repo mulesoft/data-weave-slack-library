@@ -1,31 +1,9 @@
 /**
-*
 * Provides functions to simplify the creation and composition of:
 *
 * - https://api.slack.com/block-kit[blocks]
 * - https://api.slack.com/reference/block-kit/block-elements[elements]
 * - https://api.slack.com/reference/block-kit/composition-objects[objects]
-*
-* These are the supported components:
-*
-* - https://api.slack.com/reference/block-kit/blocks#actions[actions]
-* - https://api.slack.com/reference/block-kit/blocks#context[context]
-* - https://api.slack.com/reference/block-kit/blocks#divider[divider]
-* - https://api.slack.com/reference/block-kit/blocks#header[header]
-* - https://api.slack.com/reference/block-kit/blocks#image[image block]
-* - https://api.slack.com/reference/block-kit/blocks#input[input block]
-* - https://api.slack.com/reference/block-kit/blocks#section[section]
-* - https://api.slack.com/reference/block-kit/composition-objects#text[text]
-* - https://api.slack.com/reference/block-kit/block-elements#button[button]
-* - https://api.slack.com/reference/block-kit/block-elements#image[image]
-* - https://api.slack.com/reference/block-kit/block-elements#input[input text]
-* - https://api.slack.com/reference/block-kit/block-elements#radio[radio button group]
-* - https://api.slack.com/reference/block-kit/composition-objects#option[option]
-* - https://api.slack.com/reference/block-kit/composition-objects#option_group[option group]
-* - https://api.slack.com/reference/block-kit/block-elements#static_select[static select]
-* - https://api.slack.com/reference/block-kit/block-elements#external_select[external select]
-* - https://api.slack.com/reference/block-kit/block-elements#multi_select[multi select]
-*
 */
 
 %dw 2.0
@@ -33,6 +11,7 @@ import * from org::mule::weave::slack::modules::Blocks
 import * from org::mule::weave::slack::modules::Elements
 import * from org::mule::weave::slack::modules::Objects
 import mergeWith from dw::core::Objects
+
 /**
 * Generates the standard block kit syntax to define a group of blocks.
 *
@@ -83,6 +62,8 @@ fun blocks(blocks: Array<Block>) = {
 
 /**
 *  Generates an actions block.
+*
+* https://api.slack.com/reference/block-kit/blocks#actions[actions]
 *
 * === Parameters
 *
@@ -135,6 +116,8 @@ fun actions(actions: Array<Element>) : Actions = {
 /**
 *  Generates a divider block.
 *
+* https://api.slack.com/reference/block-kit/blocks#divider[divider]
+*
 * === Example
 *
 * In this example, a divider block is generated.
@@ -165,6 +148,8 @@ fun divider() : Divider = {
 
 /**
 *  Generates a plain text object, with emojis enabled.
+*
+* https://api.slack.com/reference/block-kit/composition-objects#text[text]
 *
 * === Parameters
 *
@@ -209,6 +194,8 @@ fun text(message : String) : PlainText = {
 /**
 *  Generates a mrkdwn text object.
 *
+* https://api.slack.com/reference/block-kit/composition-objects#text[text]
+*
 * === Parameters
 *
 * [%header, cols="1,3"]
@@ -250,6 +237,8 @@ fun mrkdwn(message: String) : Mrkdwn = {
 /**
 *  Generates a simple section block, with a mrkdwn object.
 *
+* https://api.slack.com/reference/block-kit/blocks#section[section]
+*
 * === Parameters
 *
 * [%header, cols="1,3"]
@@ -290,6 +279,8 @@ fun section(message: String) : Section = section(mrkdwn(message))
 
 /**
 *  Generates a section block, with a text object.
+*
+* https://api.slack.com/reference/block-kit/blocks#section[section]
 *
 * === Parameters
 *
@@ -334,6 +325,8 @@ fun section(text : Text) : Section = {
 
 /**
 * Generates a section block, with a mrkdwn text object and an accessory element.
+*
+* https://api.slack.com/reference/block-kit/blocks#section[section]
 *
 * === Parameters
 *
@@ -385,6 +378,8 @@ fun section(message: String, accessory: Element) : Section = section(mrkdwn(mess
 
 /**
 *  Generates a section block, with a text object and an accessory element.
+*
+* https://api.slack.com/reference/block-kit/blocks#section[section]
 *
 * === Parameters
 *
@@ -441,6 +436,8 @@ fun section(text: Text, accessory : Element) : Section = {
 /**
 *  Generates a section block, with an array of text objects or fields.
 *
+* https://api.slack.com/reference/block-kit/blocks#section[section]
+*
 * === Parameters
 *
 * [%header, cols="1,3"]
@@ -490,7 +487,9 @@ fun section(fields: Array<Text>) : Section = {
 }
 
 /**
-*  Generates a section block, with an array of text objects,or fields, and an accessory element.
+*  Generates a section block, with an array of text objects, or fields, and an accessory element.
+*
+* https://api.slack.com/reference/block-kit/blocks#section[section]
 *
 * === Parameters
 *
@@ -554,6 +553,8 @@ fun section(fields: Array<Text>, accessory : Element) : Section = {
 /**
 *  Generates a header block, with a simple plain text object.
 *
+* https://api.slack.com/reference/block-kit/blocks#header[header]
+*
 * === Parameters
 *
 * [%header, cols="1,3"]
@@ -595,6 +596,8 @@ fun header(message: String) : Header = header(text(message))
 
 /**
 *  Generates a header block, with a plain text object.
+*
+* https://api.slack.com/reference/block-kit/blocks#header[header]
 *
 * === Parameters
 *
@@ -646,6 +649,8 @@ fun header(text: PlainText) : Header = {
 *  Generates a button element, with a simple plain text
 *  object and ID.
 *
+* https://api.slack.com/reference/block-kit/block-elements#button[button]
+*
 * === Parameters
 *
 * [%header, cols="1,3"]
@@ -689,6 +694,8 @@ fun button(message: String, id: String) : Button = button(text(message), id)
 
 /**
 *  Generates a button element, with a plain text object and ID.
+*
+* https://api.slack.com/reference/block-kit/block-elements#button[button]
 *
 * === Parameters
 *
@@ -872,6 +879,8 @@ fun withStyle(button: Button, style: Style) : Button = button mergeWith {style: 
 /**
 *  Generates a button element, with a simple plain text object, an ID and a value.
 *
+* https://api.slack.com/reference/block-kit/block-elements#button[button]
+*
 * === Parameters
 *
 * [%header, cols="1,3"]
@@ -918,6 +927,8 @@ fun buttonWithValue(message: String, id: String, value: String) : Button = butto
 /**
 *  Generates a button element, with a plain text object, an ID and a value.
 *
+* https://api.slack.com/reference/block-kit/block-elements#button[button]
+*
 * === Parameters
 *
 * [%header, cols="1,3"]
@@ -962,6 +973,8 @@ fun buttonWithValue(text: PlainText, id: String, value: String) : Button = butto
 
 /**
 *  Generates a button element, with a simple plain text object, an ID and an URL.
+*
+* https://api.slack.com/reference/block-kit/block-elements#button[button]
 *
 * === Parameters
 *
@@ -1009,6 +1022,8 @@ fun buttonWithUrl(message: String, id: String, url: String) : Button = buttonWit
 /**
 *  Generates a button element, with a plain text object, an ID and an URL.
 *
+* https://api.slack.com/reference/block-kit/block-elements#button[button]
+*
 * === Parameters
 *
 * [%header, cols="1,3"]
@@ -1054,6 +1069,8 @@ fun buttonWithUrl(text: PlainText, id : String, url: String) : Button = button(t
 /**
 *  Generates an option object, with a simple plain text
 *  object and its value.
+*
+* https://api.slack.com/reference/block-kit/composition-objects#option[option]
 *
 * === Parameters
 *
@@ -1117,6 +1134,8 @@ fun option(message: String, value: String) = option(text(message), value)
 /**
 *  Generates an option object, with a text object and its value.
 *
+* https://api.slack.com/reference/block-kit/composition-objects#option[option]
+*
 * === Parameters
 *
 * [%header, cols="1,3"]
@@ -1162,6 +1181,8 @@ fun option(text: Text, val: String) : Option = {
 
 /**
 *  Generates an option group object, with a simple plain text object and its options.
+*
+* https://api.slack.com/reference/block-kit/composition-objects#option_group[option group]
 *
 * === Parameters
 *
@@ -1223,6 +1244,8 @@ fun optionGroup(message: String, options: Array<Option>) : OptionGroup = optionG
 
 /**
 *  Generates an option group object, with a plain text object and its options.
+*
+* https://api.slack.com/reference/block-kit/composition-objects#option_group[option group]
 *
 * === Parameters
 *
@@ -1286,6 +1309,8 @@ fun optionGroup(text : PlainText, options: Array<Option>) : OptionGroup = {
 
 /**
 *  Generates a static select element, with a simple plain text object as placeholder, its ID and options.
+*
+* https://api.slack.com/reference/block-kit/block-elements#static_select[static select]
 *
 * === Parameters
 *
@@ -1358,6 +1383,8 @@ fun staticSelect(placeholder: String, id: String, options: Array<Option>) : Stat
 
 /**
 *  Generates a static select element, with a simple plain text object as placeholder, its ID and option groups.
+*
+* https://api.slack.com/reference/block-kit/block-elements#static_select[static select]
 *
 * === Parameters
 *
@@ -1442,6 +1469,8 @@ fun staticSelectByGroups(placeholder: String, id: String, optionGroups: Array<Op
 /**
 *  Generates an static select element, with a simple plain text object as placeholder, its ID and options.
 *
+* https://api.slack.com/reference/block-kit/block-elements#static_select[static select]
+*
 * === Parameters
 *
 * [%header, cols="1,3"]
@@ -1518,6 +1547,8 @@ fun staticSelect(placeholder: PlainText, id: String, options: Array<Option>) : S
 
 /**
 *  Generates an static select element, with a plain text object as placeholder, its ID and option groups.
+*
+* https://api.slack.com/reference/block-kit/block-elements#static_select[static select]
 *
 * === Parameters
 *
@@ -1606,6 +1637,8 @@ fun staticSelectByGroups(placeholder: PlainText, id: String, optionGroups: Array
 /**
 * Generates an external select element, with a simple plain text object as placeholder and its ID.
 *
+* https://api.slack.com/reference/block-kit/block-elements#external_select[external select]
+*
 * === Parameters
 *
 * [%header, cols="1,3"]
@@ -1648,6 +1681,8 @@ fun externalSelect(placeholder: String, id: String) : ExternalSelect = externalS
 
 /**
 * Generates an external select element, with a text object as placeholder and its ID.
+*
+* https://api.slack.com/reference/block-kit/block-elements#external_select[external select]
 *
 * === Parameters
 *
@@ -1696,6 +1731,8 @@ fun externalSelect(placeholder: PlainText, id : String) : ExternalSelect = {
 /**
 * Generates an image element, with its URL and alternative text.
 *
+* https://api.slack.com/reference/block-kit/block-elements#image[image]
+*
 * === Parameters
 *
 * [%header, cols="1,3"]
@@ -1738,6 +1775,8 @@ fun image(url : String, text: String) : Image = {
 
 /**
 * Generates an image block with a simple text title.
+*
+* https://api.slack.com/reference/block-kit/blocks#image[image block]
 *
 * === Parameters
 *
@@ -1784,6 +1823,8 @@ fun image(url : String, altText: String, title: String) : ImageBlock = image(url
 /**
 * Generates an image block with a text title.
 *
+* https://api.slack.com/reference/block-kit/blocks#image[image block]
+*
 * === Parameters
 *
 * [%header, cols="1,3"]
@@ -1829,6 +1870,8 @@ fun image(url : String, altText: String, title: PlainText) : ImageBlock = image(
 /**
 * Generates a context block with a single plain text element item.
 *
+* https://api.slack.com/reference/block-kit/blocks#context[context]
+*
 * === Parameters
 *
 * [%header, cols="1,3"]
@@ -1871,6 +1914,8 @@ fun context(message: String) : Context = context([text(message)])
 
 /**
 * Generates a context block with the desired elements.
+*
+* https://api.slack.com/reference/block-kit/blocks#context[context]
 *
 * === Parameters
 *
@@ -1916,6 +1961,8 @@ fun context(elements: Array<Image|Text>) : Context = {
 
 /**
 * Generates an input block with a simple text label.
+*
+* https://api.slack.com/reference/block-kit/blocks#input[input block]
 *
 * === Parameters
 *
@@ -1963,6 +2010,8 @@ fun inputBlock(label: String, element: Element) : Input = inputBlock(text(label)
 
 /**
 * Generates an input block.
+*
+* https://api.slack.com/reference/block-kit/blocks#input[input block]
 *
 * === Parameters
 *
@@ -2015,6 +2064,8 @@ fun inputBlock(label: PlainText, element: Element) : Input = {
 /**
 * Generates an input object.
 *
+* https://api.slack.com/reference/block-kit/block-elements#input[input text]
+*
 * === Parameters
 *
 * [%header, cols="1,3"]
@@ -2057,6 +2108,8 @@ fun inputText(id: String, multiline: Boolean = false) : PlainTextInput = {
 
 /**
 * Generates a radio buttons group, given its ID and options.
+*
+* https://api.slack.com/reference/block-kit/block-elements#radio[radio button group]
 *
 * === Parameters
 *
@@ -2125,6 +2178,8 @@ fun radioButtons(id: String, options: Array<Option>) : RadioButtonGroup = {
 
 /**
 * Generates a multi static select element, with a simple text placeholder, ID and options.
+*
+* https://api.slack.com/reference/block-kit/block-elements#multi_select[multi select]
 *
 * === Parameters
 *
@@ -2196,6 +2251,8 @@ fun multiStaticSelect(placeholder: String, id: String, options: Array<Option>) :
 
 /**
 * Generates a multi static select element, with its placeholder, ID and options.
+*
+* https://api.slack.com/reference/block-kit/block-elements#multi_select[multi select]
 *
 * === Parameters
 *
