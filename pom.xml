@@ -63,12 +63,13 @@
 				<version>0.0.8-SNAPSHOT</version>
 				<extensions>true</extensions>
 				<configuration>
-					<coverage>
-						<enabled>true</enabled>
-						<format>sonar</format>
-					</coverage>
-
-					<moduleDocsPath>${project.basedir}/pages/exchangeHome.md</moduleDocsPath>
+					<tests>
+						<coverageEnabled>true</coverageEnabled>
+						<coverageFormat>sonar</coverageFormat>
+					</tests>
+					<docs>
+						<homePage>${project.basedir}/pages/exchangeHome.md</homePage>
+					</docs>
 				</configuration>
 
 			</plugin>
