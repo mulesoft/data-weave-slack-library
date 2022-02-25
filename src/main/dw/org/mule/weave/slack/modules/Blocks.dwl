@@ -1,6 +1,6 @@
 /**
 *
-* Representation of all Slack https://api.slack.com/reference/block-kit/blocks[blocks]:
+* Types that represent all Slack https://api.slack.com/reference/block-kit/blocks[blocks].
 */
 
 %dw 2.0
@@ -8,14 +8,14 @@ import * from org::mule::weave::slack::modules::Elements
 import * from org::mule::weave::slack::modules::Objects
 
 /**
-* Generic representation of a block.
+* Generic representation of a Slack block.
 */
 type Block = OptionalId & {
     'type': String
 }
 
 /**
-* Represents an action block.
+* Representation of a Slack action block.
 *
 * https://api.slack.com/reference/block-kit/blocks#actions[actions]
 */
@@ -25,7 +25,7 @@ type Actions = OptionalId & {
 }
 
 /**
-* Represents a context block.
+* Representation of a Slack context block.
 *
 * https://api.slack.com/reference/block-kit/blocks#context[context]
 */
@@ -35,7 +35,7 @@ type Context = OptionalId & {
 }
 
 /**
-* Represents a divider block.
+* Representation of a Slack divider block.
 *
 * https://api.slack.com/reference/block-kit/blocks#divider[divider]
 */
@@ -44,7 +44,7 @@ type Divider = OptionalId & {
 }
 
 /**
-* Represents a file block.
+* Representation of a Slack file block.
 *
 * https://api.slack.com/reference/block-kit/blocks#file[file]
 */
@@ -55,7 +55,7 @@ type File = OptionalId & {
 }
 
 /**
-* Represents a header block.
+* Representation of a Slack header block.
 *
 * https://api.slack.com/reference/block-kit/blocks#header[header]
 */
@@ -65,7 +65,7 @@ type Header = OptionalId & {
 }
 
 /**
-* Represents an image block.
+* Representation of a Slack image block.
 *
 * https://api.slack.com/reference/block-kit/blocks#image[image]
 */
@@ -74,7 +74,7 @@ type ImageBlock = OptionalId & Image & {
 }
 
 /**
-* Represents an input block.
+* Representation of a Slack input block.
 *
 * https://api.slack.com/reference/block-kit/blocks#input[input]
 */
@@ -88,7 +88,7 @@ type Input = OptionalId & {
 }
 
 /**
-* Represents a section block.
+* Representation of a Slack section block.
 *
 * https://api.slack.com/reference/block-kit/blocks#section[section]
 */
@@ -98,7 +98,7 @@ type Section = (OptionalId & WithText | OptionalId & WithFields) & {
 }
 
 /**
-* Helper type to reuse text
+* Helper type to reuse text. 
 */
 type WithText = {
     text: Text
@@ -112,7 +112,7 @@ type WithFields = {
 }
 
 /**
-* Helper type to reuse block with optional IDs
+* Helper type to reuse a block with optional IDs.
 */
 type OptionalId = {
     block_id?: String
