@@ -1,6 +1,8 @@
 /**
 *
-* Representation of all Slack https://api.slack.com/reference/block-kit/composition-objects[objects]:
+* Representation of all Slack Objects.
+* 
+* https://api.slack.com/reference/block-kit/composition-objects[objects]
 */
 
 %dw 2.0

@@ -1,5 +1,7 @@
 /**
-* Representation of all Slack https://api.slack.com/reference/block-kit/block-elements[elements]:
+* Representation of all Slack Elements. 
+* 
+* https://api.slack.com/reference/block-kit/block-elements[elements]
 */
 %dw 2.0
 import * from org::mule::weave::slack::modules::Objects

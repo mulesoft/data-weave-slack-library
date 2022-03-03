@@ -1,6 +1,8 @@
 /**
 *
-* Representation of all Slack https://api.slack.com/reference/block-kit/blocks[blocks]:
+* Representation of all Slack Blocks. 
+* 
+* https://api.slack.com/reference/block-kit/blocks[blocks]
 */
 
 %dw 2.0

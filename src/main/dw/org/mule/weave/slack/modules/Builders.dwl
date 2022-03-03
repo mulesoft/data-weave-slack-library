@@ -17,10 +17,10 @@ import mergeWith from dw::core::Objects
 *
 * === Parameters
 *
-* [%header, cols="1,3"]
+* [%header, cols="1,1,3"]
 * |===
-* | Name   | Description | Type
-* | blocks | The array of blocks to render | Array<Block>
+* | Name | Type | Description
+* | blocks | Array<Block&#62; | The array of blocks to render
 * |===
 *
 * === Example
@@ -67,10 +67,10 @@ fun blocks(blocks: Array<Block>) = {
 *
 * === Parameters
 *
-* [%header, cols="1,3"]
+* [%header, cols="1,1,3"]
 * |===
-* | Name   | Description | Type
-* | actions | The array of interactive elements to render | Array<Element>
+* | Name | Type | Description 
+* | actions | Array<Element&#62; | The array of interactive elements to render
 * |===
 *
 * === Example
@@ -85,7 +85,7 @@ fun blocks(blocks: Array<Block>) = {
 * output application/json
 * import * from org::mule::weave::slack::Builders
 * ---
-*  actions([button("Click me!", "bait")])
+* actions([button("Click me!", "bait")])
 * ----
 *
 * ==== Output
@@ -153,10 +153,10 @@ fun divider() : Divider = {
 *
 * === Parameters
 *
-* [%header, cols="1,3"]
+* [%header, cols="1,1,3"]
 * |===
-* | Name   | Description | Type
-* | message | The text to use | String
+* | Name | Type | Description
+* | message | String | The text to use
 * |===
 *
 * === Example
@@ -198,10 +198,10 @@ fun text(message : String) : PlainText = {
 *
 * === Parameters
 *
-* [%header, cols="1,3"]
+* [%header, cols="1,1,3"]
 * |===
-* | Name   | Description | Type
-* | message | The mrkdwn to use | String
+* | Name | Type | Description
+* | message | String | The mrkdwn to use
 * |===
 *
 * === Example
@@ -241,10 +241,10 @@ fun mrkdwn(message: String) : Mrkdwn = {
 *
 * === Parameters
 *
-* [%header, cols="1,3"]
+* [%header, cols="1,1,3"]
 * |===
-* | Name   | Description | Type
-* | message | The value to use in the desired mrkdwn text | String
+* | Name | Type | Description
+* | message | String | The value to use in the desired mrkdwn text 
 * |===
 *
 * === Example
@@ -284,10 +284,10 @@ fun section(message: String) : Section = section(mrkdwn(message))
 *
 * === Parameters
 *
-* [%header, cols="1,3"]
+* [%header, cols="1,1,3"]
 * |===
-* | Name   | Description | Type
-* | text | The text object to use | Text
+* | Name | Type | Description
+* | text | Text | The text object to use
 * |===
 *
 * === Example
@@ -330,11 +330,11 @@ fun section(text : Text) : Section = {
 *
 * === Parameters
 *
-* [%header, cols="1,3"]
+* [%header, cols="1,1,3"]
 * |===
-* | Name   | Description | Type
-* | message | The value to use in the desired mrkdwn text | String
-* | accessory | The element to use | Element
+* | Name | Type | Description
+* | message | String | The value to use in the desired mrkdwn text
+* | accessory | Element | The element to use
 * |===
 *
 * === Example
@@ -383,11 +383,11 @@ fun section(message: String, accessory: Element) : Section = section(mrkdwn(mess
 *
 * === Parameters
 *
-* [%header, cols="1,3"]
+* [%header, cols="1,1,3"]
 * |===
-* | Name   | Description | Type
-* | text | The text object to use | Text
-* | accessory | The element to use | Element
+* | Name | Type | Description
+* | text | Text | The text object to use
+* | accessory | Element | The element to use
 * |===
 *
 * === Example
@@ -440,10 +440,10 @@ fun section(text: Text, accessory : Element) : Section = {
 *
 * === Parameters
 *
-* [%header, cols="1,3"]
+* [%header, cols="1,1,3"]
 * |===
-* | Name   | Description | Type
-* | fields | An array of text objects to use | Array<Text>
+* | Name | Type | Description 
+* | fields | Array<Text&#62; | An array of text objects to use
 * |===
 *
 * === Example
@@ -493,11 +493,11 @@ fun section(fields: Array<Text>) : Section = {
 *
 * === Parameters
 *
-* [%header, cols="1,3"]
+* [%header, cols="1,1,3"]
 * |===
-* | Name   | Description | Type
-* | fields | An array of text objects to use | Array<Text>
-* | accessory | The element to use | Element
+* | Name | Type | Description
+* | fields | Array<Text&#62; | An array of text objects to use
+* | accessory | Element | The element to use
 * |===
 *
 * === Example
@@ -557,10 +557,10 @@ fun section(fields: Array<Text>, accessory : Element) : Section = {
 *
 * === Parameters
 *
-* [%header, cols="1,3"]
+* [%header, cols="1,1,3"]
 * |===
-* | Name   | Description | Type
-* | message | The value to use in the desired text | String
+* | Name | Type | Description
+* | message | String | The value to use in the desired text
 * |===
 *
 * === Example
@@ -601,10 +601,10 @@ fun header(message: String) : Header = header(text(message))
 *
 * === Parameters
 *
-* [%header, cols="1,3"]
+* [%header, cols="1,1,3"]
 * |===
-* | Name   | Description | Type
-* | text | The plain text object to use | PlainText
+* | Name | Type | Description
+* | text | PlainText | The plain text object to use
 * |===
 *
 * === Example
@@ -653,11 +653,11 @@ fun header(text: PlainText) : Header = {
 *
 * === Parameters
 *
-* [%header, cols="1,3"]
+* [%header, cols="1,1,3"]
 * |===
-* | Name   | Description | Type
-* | message | The value to use in the desired text | String
-* | id | The value to use in `action_id` field | String
+* | Name | Type | Description
+* | message | String | The value to use in the desired text
+* | id | String | The value to use in `action_id` field
 * |===
 *
 * === Example
@@ -699,11 +699,11 @@ fun button(message: String, id: String) : Button = button(text(message), id)
 *
 * === Parameters
 *
-* [%header, cols="1,3"]
+* [%header, cols="1,1,3"]
 * |===
-* | Name   | Description | Type
-* | text | The plain text object to use | PlainText
-* | id | The value to use in `action_id` field | String
+* | Name | Type | Description
+* | text | PlainText | The plain text object to use
+* | id | String | The value to use in `action_id` field
 * |===
 *
 * === Example
@@ -746,11 +746,11 @@ fun button(text: PlainText, id: String) : Button = {
 *
 * === Parameters
 *
-* [%header, cols="1,3"]
+* [%header, cols="1,1,3"]
 * |===
-* | Name   | Description | Type
-* | button | The button to add a value to | Button
-* | value | The value to add | String
+* | Name | Type | Description
+* | button | Button | The button to add a value to
+* | value | String | The value to add
 * |===
 *
 * === Example
@@ -791,11 +791,11 @@ fun withValue(button: Button, value: String) : Button = button mergeWith {value:
 *
 * === Parameters
 *
-* [%header, cols="1,3"]
+* [%header, cols="1,1,3"]
 * |===
-* | Name   | Description | Type
-* | button | The button to add a value to | Button
-* | url | The url to add | String
+* | Name | Type | Description
+* | button | Button | The button to add a value to
+* | url | String | The url to add
 * |===
 *
 * === Example
@@ -836,11 +836,11 @@ fun withUrl(button: Button, url: String) : Button = button mergeWith {url: url}
 *
 * === Parameters
 *
-* [%header, cols="1,3"]
+* [%header, cols="1,1,3"]
 * |===
-* | Name   | Description | Type
-* | button | The button to add a value to | Button
-* | style | The style to add | Style
+* | Name | Type | Description
+* | button | Button | The button to add a value to
+* | style | Style | The style to add 
 * |===
 *
 * === Example
@@ -883,12 +883,12 @@ fun withStyle(button: Button, style: Style) : Button = button mergeWith {style: 
 *
 * === Parameters
 *
-* [%header, cols="1,3"]
+* [%header, cols="1,1,3"]
 * |===
-* | Name   | Description | Type
-* | message | The value to use in the desired text | String
-* | id | The value to use in `action_id` field | String
-* | value | The value to use | String
+* | Name | Type | Description 
+* | message | String | The value to use in the desired text 
+* | id | String | The value to use in `action_id` field 
+* | value | String | The value to use 
 * |===
 *
 * === Example
@@ -931,12 +931,12 @@ fun buttonWithValue(message: String, id: String, value: String) : Button = butto
 *
 * === Parameters
 *
-* [%header, cols="1,3"]
+* [%header, cols="1,1,3"]
 * |===
-* | Name   | Description | Type
-* | message | The value to use in the desired text | String
-* | id | The value to use in `action_id` field | String
-* | value | The value to use | String
+* | Name | Type | Description
+* | message | String | The value to use in the desired text
+* | id | String | The value to use in `action_id` field
+* | value | String | The value to use 
 * |===
 *
 * === Example
@@ -978,12 +978,12 @@ fun buttonWithValue(text: PlainText, id: String, value: String) : Button = butto
 *
 * === Parameters
 *
-* [%header, cols="1,3"]
+* [%header, cols="1,1,3"]
 * |===
-* | Name   | Description | Type
-* | message | The value to use in the desired text | String
-* | id | The value to use in `action_id` field | String
-* | url | The URL to use | String
+* | Name | Type | Description
+* | message | String | The value to use in the desired text
+* | id | String | The value to use in `action_id` field
+* | url | String | The URL to use
 * |===
 *
 * === Example
@@ -1026,12 +1026,12 @@ fun buttonWithUrl(message: String, id: String, url: String) : Button = buttonWit
 *
 * === Parameters
 *
-* [%header, cols="1,3"]
+* [%header, cols="1,1,3"]
 * |===
-* | Name   | Description | Type
-* | text | The plain text object to use | PlainText
-* | id | The value to use in `action_id` field | String
-* | url | The URL to use | String
+* | Name | Type | Description 
+* | text | PlainText | The plain text object to use
+* | id | String | The value to use in `action_id` field
+* | url | String | The URL to use
 * |===
 *
 * === Example
@@ -1074,11 +1074,11 @@ fun buttonWithUrl(text: PlainText, id : String, url: String) : Button = button(t
 *
 * === Parameters
 *
-* [%header, cols="1,3"]
+* [%header, cols="1,1,3"]
 * |===
-* | Name   | Description | Type
-* | message | The value to use in the desired text | String
-* | value | The value to use in the option | String
+* | Name | Type | Description
+* | message | String | The value to use in the desired text
+* | value | String | The value to use in the option 
 * |===
 *
 * === Example
@@ -1138,11 +1138,11 @@ fun option(message: String, value: String) = option(text(message), value)
 *
 * === Parameters
 *
-* [%header, cols="1,3"]
+* [%header, cols="1,1,3"]
 * |===
-* | Name   | Description | Type
-* | text | The text to use | Text
-* | value | The value to use in the option | String
+* | Name | Type | Description 
+* | text | Text | The text to use
+* | value | String | The value to use in the option
 * |===
 *
 * === Example
@@ -1186,11 +1186,11 @@ fun option(text: Text, val: String) : Option = {
 *
 * === Parameters
 *
-* [%header, cols="1,3"]
+* [%header, cols="1,1,3"]
 * |===
-* | Name   | Description | Type
-* | message | The value to use in the desired text | String
-* | options | The options to group | Array<Option>
+* | Name | Type | Description
+* | message | String | The value to use in the desired text
+* | options | Array<Option&#62; | The options to group
 * |===
 *
 * === Example
@@ -1249,11 +1249,11 @@ fun optionGroup(message: String, options: Array<Option>) : OptionGroup = optionG
 *
 * === Parameters
 *
-* [%header, cols="1,3"]
+* [%header, cols="1,1,3"]
 * |===
-* | Name   | Description | Type
-* | text | The plain text to use | PlainText
-* | options | The options to group | Array<Option>
+* | Name | Type | Description
+* | text | PlainText | The plain text to use
+* | options | Array<Option&#62; | The options to group
 * |===
 *
 * === Example
@@ -1314,12 +1314,12 @@ fun optionGroup(text : PlainText, options: Array<Option>) : OptionGroup = {
 *
 * === Parameters
 *
-* [%header, cols="1,3"]
+* [%header, cols="1,1,3"]
 * |===
-* | Name   | Description | Type
-* | message | The value to use in the desired placeholder | String
-* | id | The value to use in `action_id` field | String
-* | options | The array of options to offer | Array<Option>
+* | Name | Type | Description
+* | message | String | The value to use in the desired placeholder
+* | id | String | The value to use in `action_id` field
+* | options | Array<Option&#62; | The array of options to offer
 * |===
 *
 * === Example
@@ -1388,12 +1388,12 @@ fun staticSelect(placeholder: String, id: String, options: Array<Option>) : Stat
 *
 * === Parameters
 *
-* [%header, cols="1,3"]
+* [%header, cols="1,1,3"]
 * |===
-* | Name   | Description | Type
-* | message | The value to use in the desired placeholder | String
-* | id | The value to use in `action_id` field | String
-* | optionGroups | The array of options groups to offer | Array<OptionGroup>
+* | Name | Type | Description 
+* | message | String | The value to use in the desired placeholder
+* | id | String | The value to use in `action_id` field
+* | optionGroups | Array<OptionGroup&#62; | The array of options groups to offer
 * |===
 *
 * === Example
@@ -1473,12 +1473,12 @@ fun staticSelectByGroups(placeholder: String, id: String, optionGroups: Array<Op
 *
 * === Parameters
 *
-* [%header, cols="1,3"]
+* [%header, cols="1,1,3"]
 * |===
-* | Name   | Description | Type
-* | message | The value to use in the desired placeholder | String
-* | id | The value to use in `action_id` field | String
-* | options | The array of options to offer | Array<Option>
+* | Name | Type  | Description
+* | message | String | The value to use in the desired placeholder
+* | id | String | The value to use in `action_id` field
+* | options | Array<Option&#62; | The array of options to offer
 * |===
 *
 * === Example
@@ -1552,12 +1552,12 @@ fun staticSelect(placeholder: PlainText, id: String, options: Array<Option>) : S
 *
 * === Parameters
 *
-* [%header, cols="1,3"]
+* [%header, cols="1,1,3"]
 * |===
-* | Name   | Description | Type
-* | text | The text to use as placeholder | PlainText
-* | id | The value to use in `action_id` field | String
-* | optionGroups | The array of options groups to offer | Array<OptionGroup>
+* | Name | Type | Description 
+* | text | PlainText | The text to use as placeholder 
+* | id | String | The value to use in `action_id` field 
+* | optionGroups | Array<OptionGroup&#62; | The array of options groups to offer 
 * |===
 *
 * === Example
@@ -1641,11 +1641,11 @@ fun staticSelectByGroups(placeholder: PlainText, id: String, optionGroups: Array
 *
 * === Parameters
 *
-* [%header, cols="1,3"]
+* [%header, cols="1,1,3"]
 * |===
-* | Name   | Description | Type
-* | placeholder | The value to use in the desired placeholder | String
-* | id | The value to use in `action_id` field | String
+* | Name | Type | Description 
+* | placeholder | String | The value to use in the desired placeholder
+* | id | String | The value to use in `action_id` field 
 * |===
 *
 * === Example
@@ -1686,11 +1686,11 @@ fun externalSelect(placeholder: String, id: String) : ExternalSelect = externalS
 *
 * === Parameters
 *
-* [%header, cols="1,3"]
+* [%header, cols="1,1,3"]
 * |===
-* | Name   | Description | Type
-* | placeholder | The text to use in the desired placeholder | PlainText
-* | id | The value to use in `action_id` field | String
+* | Name | Type | Description 
+* | placeholder | PlainText | The text to use in the desired placeholder
+* | id | String | The value to use in `action_id` field
 * |===
 *
 * === Example
@@ -1735,11 +1735,11 @@ fun externalSelect(placeholder: PlainText, id : String) : ExternalSelect = {
 *
 * === Parameters
 *
-* [%header, cols="1,3"]
+* [%header, cols="1,1,3"]
 * |===
-* | Name   | Description | Type
-* | url | The URL to the image | String
-* | text | The text to use if the image cannot be rendered | String
+* | Name | Type | Description 
+* | url | String | The URL to the image 
+* | text | String | The text to use if the image cannot be rendered
 * |===
 *
 * === Example
@@ -1780,12 +1780,12 @@ fun image(url : String, text: String) : Image = {
 *
 * === Parameters
 *
-* [%header, cols="1,3"]
+* [%header, cols="1,1,3"]
 * |===
-* | Name   | Description | Type
-* | url | The url for the image | String
-* | altText | The alternative text for the image | String
-* | title | The value to use for the text title | String
+* | Name | Type | Description 
+* | url | String | The url for the image
+* | altText | String | The alternative text for the image
+* | title | String | The value to use for the text title
 * |===
 *
 * === Example
@@ -1827,12 +1827,12 @@ fun image(url : String, altText: String, title: String) : ImageBlock = image(url
 *
 * === Parameters
 *
-* [%header, cols="1,3"]
+* [%header, cols="1,1,3"]
 * |===
-* | Name   | Description | Type
-* | url | The url for the image | String
-* | altText | The alternative text for the image | String
-* | title | The text value to use as title | PlainText
+* | Name | Type | Description
+* | url | String | The url for the image
+* | altText | String | The alternative text for the image
+* | title | PlainText | The text value to use as title
 * |===
 *
 * === Example
@@ -1874,10 +1874,10 @@ fun image(url : String, altText: String, title: PlainText) : ImageBlock = image(
 *
 * === Parameters
 *
-* [%header, cols="1,3"]
+* [%header, cols="1,1,3"]
 * |===
-* | Name   | Description | Type
-* | message | The value to use as text | String
+* | Name | Type | Description 
+* | message | String | The value to use as text
 * |===
 *
 * === Example
@@ -1919,10 +1919,10 @@ fun context(message: String) : Context = context([text(message)])
 *
 * === Parameters
 *
-* [%header, cols="1,3"]
+* [%header, cols="1,1,3"]
 * |===
-* | Name   | Description | Type
-* | elements | The image or text elements | Array<Image|Text>
+* | Name  | Type | Description
+* | elements | Array<Image&#124;Text&#62; | The image or text elements
 * |===
 *
 * === Example
@@ -1966,11 +1966,11 @@ fun context(elements: Array<Image|Text>) : Context = {
 *
 * === Parameters
 *
-* [%header, cols="1,3"]
+* [%header, cols="1,1,3"]
 * |===
-* | Name   | Description | Type
-* | label | The label for the input | String
-* | element | The element to use in the input | Element
+* | Name | Type | Description 
+* | label | String | The label for the input
+* | element | Element | The element to use in the input
 * |===
 *
 * === Example
@@ -2015,11 +2015,11 @@ fun inputBlock(label: String, element: Element) : Input = inputBlock(text(label)
 *
 * === Parameters
 *
-* [%header, cols="1,3"]
+* [%header, cols="1,1,3"]
 * |===
-* | Name   | Description | Type
-* | label | The label for the input | PlainText
-* | element | The element to use in the input | Element
+* | Name | Type  | Description
+* | label | PlainText | The label for the input
+* | element | Element | The element to use in the input
 * |===
 *
 * === Example
@@ -2068,11 +2068,11 @@ fun inputBlock(label: PlainText, element: Element) : Input = {
 *
 * === Parameters
 *
-* [%header, cols="1,3"]
+* [%header, cols="1,1,3"]
 * |===
-* | Name   | Description | Type
-* | id | The value to use in the `action_id` field | String
-* | multiline | Whether the input should be multiline. Defaults to false. | Boolean
+* | Name | Type | Description 
+* | id | String | The value to use in the `action_id` field
+* | multiline | Boolean | Whether the input should be multiline. Defaults to false.
 * |===
 *
 * === Example
@@ -2113,11 +2113,11 @@ fun inputText(id: String, multiline: Boolean = false) : PlainTextInput = {
 *
 * === Parameters
 *
-* [%header, cols="1,3"]
+* [%header, cols="1,1,3"]
 * |===
-* | Name   | Description | Type
-* | id | The value to use in the `action_id` field | String
-* | options | The options to group | Array<Option>
+* | Name | Type | Description
+* | id | String | The value to use in the `action_id` field
+* | options | Array<Option&#62; | The options to group
 * |===
 *
 * === Example
@@ -2183,12 +2183,12 @@ fun radioButtons(id: String, options: Array<Option>) : RadioButtonGroup = {
 *
 * === Parameters
 *
-* [%header, cols="1,3"]
+* [%header, cols="1,1,3"]
 * |===
-* | Name   | Description | Type
-* | placeholder | The value to use in the desired placeholder | String
-* | id | The value to use in the `action_id` field | String
-* | options | The options to select | Array<Option>
+* | Name | Type | Description
+* | placeholder | String | The value to use in the desired placeholder
+* | id | String | The value to use in the `action_id` field
+* | options | Array<Option&#62; | The options to select
 * |===
 *
 * === Example
@@ -2256,12 +2256,12 @@ fun multiStaticSelect(placeholder: String, id: String, options: Array<Option>) :
 *
 * === Parameters
 *
-* [%header, cols="1,3"]
+* [%header, cols="1,1,3"]
 * |===
-* | Name   | Description | Type
-* | placeholder | The text to use as placeholder | PlainText
-* | id | The value to use in the `action_id` field | String
-* | options | The options to select | Array<Option>
+* | Name | Type | Description 
+* | placeholder | PlainText | The text to use as placeholder
+* | id | String | The value to use in the `action_id` field
+* | options | Array<Option&#62; | The options to select
 * |===
 *
 * === Example
