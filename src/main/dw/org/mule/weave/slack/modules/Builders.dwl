@@ -436,7 +436,7 @@ fun section(text: Text, accessory : Element) : Section = {
 /**
 *  Generates a section block with an array of text objects or fields.
 *
-* https://api.slack.com/reference/block-kit/blocks#section[Section Block]
+* See https://api.slack.com/reference/block-kit/blocks#section[Section Block].
 *
 * === Parameters
 *
