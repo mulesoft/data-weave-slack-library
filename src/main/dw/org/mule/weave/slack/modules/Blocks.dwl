@@ -1,6 +1,8 @@
 /**
 *
-* Types that represent all Slack https://api.slack.com/reference/block-kit/blocks[blocks].
+* Types that represent all Slack Blocks. 
+*
+* https://api.slack.com/reference/block-kit/blocks[blocks]
 */
 
 %dw 2.0

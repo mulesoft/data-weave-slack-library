@@ -4,13 +4,18 @@
 		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>1e0dbdda-5cda-4968-a636-0980a2c42cb1</groupId>
-	<artifactId>data-weave-slack-module</artifactId>
+	<artifactId>data-weave-slack-library</artifactId>
 	<version>0.3.0</version>
+	<description>DataWeave Slack Library</description>
+
 	<packaging>dw-library</packaging>
-	<name>DataWeave Slack Module</name>
+
+	<name>DataWeave Slack Library</name>
+
 	<properties>
-		<weave.version>2.4.0-20220124</weave.version>
-		<wtf.version>1.0.7-SNAPSHOT</wtf.version>
+		<data.weave.version>2.4.0-20220124</data.weave.version>
+		<data.weave.testing.framework.version>1.0.7-SNAPSHOT</data.weave.testing.framework.version>
+		<data.weave.maven.plugin.version>0.0.8-SNAPSHOT</data.weave.maven.plugin.version>
 		<exchange.orgId>1e0dbdda-5cda-4968-a636-0980a2c42cb1</exchange.orgId>
 
 		<sonar.sourceEncoding>UTF-8</sonar.sourceEncoding>
@@ -24,25 +29,25 @@
 		<dependency>
 			<groupId>org.mule.weave</groupId>
 			<artifactId>runtime</artifactId>
-			<version>${weave.version}</version>
+			<version>${data.weave.version}</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.mule.weave</groupId>
 			<artifactId>core-modules</artifactId>
-			<version>${weave.version}</version>
+			<version>${data.weave.version}</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.mule.weave</groupId>
 			<artifactId>java-module</artifactId>
-			<version>${weave.version}</version>
+			<version>${data.weave.version}</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.mule.weave</groupId>
-			<artifactId>wtf</artifactId>
-			<version>${wtf.version}</version>
+			<artifactId>data-weave-testing-framework</artifactId>
+			<version>${data.weave.testing.framework.version}</version>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
@@ -67,7 +72,7 @@
 			<plugin>
 				<groupId>org.mule.weave</groupId>
 				<artifactId>data-weave-maven-plugin</artifactId>
-				<version>0.0.8-SNAPSHOT</version>
+				<version>${data.weave.maven.plugin.version}</version>
 				<extensions>true</extensions>
 				<configuration>
 					<tests>
@@ -78,7 +83,6 @@
 						<homePage>${project.basedir}/pages/exchangeHome.md</homePage>
 					</docs>
 				</configuration>
-
 			</plugin>
 		</plugins>
 	</build>
