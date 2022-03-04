@@ -75,7 +75,7 @@ fun blocks(blocks: Array<Block>) = {
 *
 * === Example
 *
-* This examples generates an actions block that has a simple button.
+* This examples generates an actions block with a simple button.
 *
 * ==== Source
 *
