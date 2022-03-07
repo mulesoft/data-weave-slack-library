@@ -1,7 +1,7 @@
 /**
-* Representation of all Slack Elements. 
+* Representation of all Slack elements. 
 * 
-* https://api.slack.com/reference/block-kit/block-elements[elements]
+* See https://api.slack.com/reference/block-kit/block-elements[Block elements].
 */
 %dw 2.0
 import * from org::mule::weave::slack::modules::Objects
@@ -14,7 +14,7 @@ type Element = Button | Checkbox | DatePicker | Image | MultiSelectMenu | Overfl
 /**
 * Represents a button element.
 *
-* https://api.slack.com/reference/block-kit/block-elements#button[button]
+* See https://api.slack.com/reference/block-kit/block-elements#button[Button element].
 */
 type Button = WithOptionalConfirm & {
     'type': "button",
@@ -29,7 +29,7 @@ type Button = WithOptionalConfirm & {
 /**
 * Represents a checkbox group element.
 *
-* https://api.slack.com/reference/block-kit/block-elements#checkboxes[checkbox group]
+* See https://api.slack.com/reference/block-kit/block-elements#checkboxes[Checkbox groups].
 */
 type Checkbox = WithOptionalConfirm & WithOptionalFocus & {
     'type': "checkboxes",
@@ -41,7 +41,7 @@ type Checkbox = WithOptionalConfirm & WithOptionalFocus & {
 /**
 * Represents a datepicker element.
 *
-* https://api.slack.com/reference/block-kit/block-elements#datepicker[datepicker]
+* See https://api.slack.com/reference/block-kit/block-elements#datepicker[Date picker element].
 */
 type DatePicker = WithOptionalConfirm & WithOptionalFocus & {
     'type': "datepicker",
@@ -53,7 +53,7 @@ type DatePicker = WithOptionalConfirm & WithOptionalFocus & {
 /**
 * Represents an image element.
 *
-* https://api.slack.com/reference/block-kit/block-elements#image[image]
+* See https://api.slack.com/reference/block-kit/block-elements#image[Image element].
 */
 type Image = {
     'type': "image",
@@ -62,16 +62,16 @@ type Image = {
 }
 
 /**
-* Represents all multi select menus.
+* Represents all multi-select menus.
 *
-* https://api.slack.com/reference/block-kit/block-elements#multi_select[multi select]
+* See https://api.slack.com/reference/block-kit/block-elements#multi_select[Multi-select menu element].
 */
 type MultiSelectMenu = MultiStaticSelect | MultiExternalSelect | MultiUserList | MultiConversationList | MultiPublicChannelsList
 
 /**
-* Represents a static multi select menu.
+* Represents a static multi-select menu.
 *
-* https://api.slack.com/reference/block-kit/block-elements#static_multi_select[static multi select]
+* https://api.slack.com/reference/block-kit/block-elements#static_multi_select[Static options].
 */
 type MultiStaticSelect = (MultiSelect & WithOptions | MultiSelect & WithOptionGroup) & {
    'type': "multi_static_select",
@@ -79,9 +79,9 @@ type MultiStaticSelect = (MultiSelect & WithOptions | MultiSelect & WithOptionGr
 }
 
 /**
-* Represents an external multi select menu.
+* Represents an external multi-select menu.
 *
-* https://api.slack.com/reference/block-kit/block-elements#external_multi_select[external multi select]
+* See https://api.slack.com/reference/block-kit/block-elements#external_multi_select[External data source].
 */
 type MultiExternalSelect = MultiSelect & {
     'type': "multi_external_select",
@@ -90,9 +90,9 @@ type MultiExternalSelect = MultiSelect & {
 }
 
 /**
-* Represents a multi user list.
+* Represents a multi-user list.
 *
-* https://api.slack.com/reference/block-kit/block-elements#users_multi_select[multi user list]
+* See https://api.slack.com/reference/block-kit/block-elements#users_multi_select[User list].
 */
 type MultiUserList = MultiSelect & {
     'type': "multi_users_select",
@@ -100,9 +100,9 @@ type MultiUserList = MultiSelect & {
 }
 
 /**
-* Represents a multi conversation list.
+* Represents a multi-conversation list.
 *
-* https://api.slack.com/reference/block-kit/block-elements#conversation_multi_select[multi conversation list]
+* See https://api.slack.com/reference/block-kit/block-elements#conversation_multi_select[Conversations list].
 */
 type MultiConversationList = MultiSelect & {
     'type': "multi_conversations_select",
@@ -114,7 +114,7 @@ type MultiConversationList = MultiSelect & {
 /**
 * Represents a channel list.
 *
-* https://api.slack.com/reference/block-kit/block-elements#channel_multi_select[multi channel list]
+* See https://api.slack.com/reference/block-kit/block-elements#channel_multi_select[Public channels list].
 */
 type MultiPublicChannelsList = MultiSelect & {
     'type': "multi_channels_select",
@@ -124,7 +124,7 @@ type MultiPublicChannelsList = MultiSelect & {
 /**
 * Represents an overflow menu.
 *
-* https://api.slack.com/reference/block-kit/block-elements#overflow[overflow]
+* See https://api.slack.com/reference/block-kit/block-elements#overflow[Overflow menu element].
 */
 type OverflowMenu = WithOptions & WithOptionalConfirm & {
     'type': "overflow",
@@ -134,7 +134,7 @@ type OverflowMenu = WithOptions & WithOptionalConfirm & {
 /**
 * Represents a plain text input.
 *
-* https://api.slack.com/reference/block-kit/block-elements#input[input]
+* See https://api.slack.com/reference/block-kit/block-elements#input[Plain-text input element].
 */
 type PlainTextInput = WithOptionalFocus & {
     'type': "plain_text_input",
@@ -150,7 +150,7 @@ type PlainTextInput = WithOptionalFocus & {
 /**
 * Represents a radio button group.
 *
-* https://api.slack.com/reference/block-kit/block-elements#radio[radio button group]
+* See https://api.slack.com/reference/block-kit/block-elements#radio[Radio button group element].
 */
 type RadioButtonGroup = WithOptionalConfirm & WithOptionalFocus & WithOptions & {
     'type': "radio_buttons",
@@ -161,14 +161,14 @@ type RadioButtonGroup = WithOptionalConfirm & WithOptionalFocus & WithOptions & 
 /**
 * Represents all select menus.
 *
-* https://api.slack.com/reference/block-kit/block-elements#select[select]
+* See https://api.slack.com/reference/block-kit/block-elements#select[Select menu element].
 */
 type SelectMenu = StaticSelect | ExternalSelect | UserList | ConversationsList | PublicChannelsList
 
 /**
 * Represents a static select menu.
 *
-* https://api.slack.com/reference/block-kit/block-elements#static_select[static select]
+* https://api.slack.com/reference/block-kit/block-elements#static_select[Static options].
 */
 type StaticSelect = (Select & WithOptions | Select & WithOptionGroup) & {
     'type': "static_select",
@@ -178,7 +178,7 @@ type StaticSelect = (Select & WithOptions | Select & WithOptionGroup) & {
 /**
 * Represents an external select menu.
 *
-* https://api.slack.com/reference/block-kit/block-elements#external_select[external select]
+* See https://api.slack.com/reference/block-kit/block-elements#external_select[External data source].
 */
 type ExternalSelect = Select & {
     'type': "external_select",
@@ -189,7 +189,7 @@ type ExternalSelect = Select & {
 /**
 * Represents a user list.
 *
-* https://api.slack.com/reference/block-kit/block-elements#users_select[user list]
+* See https://api.slack.com/reference/block-kit/block-elements#users_select[User list].
 */
 type UserList = Select & {
     'type': "users_select",
@@ -199,7 +199,7 @@ type UserList = Select & {
 /**
 * Represents a conversation list.
 *
-* https://api.slack.com/reference/block-kit/block-elements#conversation_select[conversation list]
+* See https://api.slack.com/reference/block-kit/block-elements#conversation_select[Conversations list].
 */
 type ConversationsList = Select & {
     'type': "conversations_select",
@@ -212,7 +212,7 @@ type ConversationsList = Select & {
 /**
 * Represents a channel list.
 *
-* https://api.slack.com/reference/block-kit/block-elements#channel_select[channel list]
+* See https://api.slack.com/reference/block-kit/block-elements#channel_select[Public channels list].
 */
 type PublicChannelsList = Select & {
     'type': "channels_select",
@@ -223,7 +223,7 @@ type PublicChannelsList = Select & {
 /**
 * Represents a timepicker element.
 *
-* https://api.slack.com/reference/block-kit/block-elements#timepicker[timepicker]
+* See https://api.slack.com/reference/block-kit/block-elements#timepicker[Time picker element].
 */
 type TimePicker = WithOptionalConfirm & WithOptionalFocus & {
     'type': "timepicker",
@@ -233,14 +233,14 @@ type TimePicker = WithOptionalConfirm & WithOptionalFocus & {
 }
 
 /**
-* Helper type to reuse multi selection
+* Helper type to reuse for multi-selection.
 */
 type MultiSelect = Select & {
     max_selected_items?: Number
 }
 
 /**
-* Helper type to reuse selection
+* Helper type to reuse a selection.
 */
 type Select = WithOptionalConfirm & WithOptionalFocus & {
     placeholder: PlainText,
@@ -248,14 +248,14 @@ type Select = WithOptionalConfirm & WithOptionalFocus & {
 }
 
 /**
-* Helper type to reuse confirm option
+* Helper type to reuse a confirm option.
 */
 type WithOptionalConfirm = {
     confirm?: Confirmation
 }
 
 /**
-* Helper type to reuse focus on load option
+* Helper type to reuse focus on a load option.
 */
 type WithOptionalFocus = {
     focus_on_load?: Boolean
