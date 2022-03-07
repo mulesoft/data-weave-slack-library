@@ -1,8 +1,8 @@
 /**
 *
-* Representation of all Slack Objects.
+* Representation of all Slack objects.
 * 
-* https://api.slack.com/reference/block-kit/composition-objects[objects]
+* See https://api.slack.com/reference/block-kit/composition-objects[Composition objects].
 */
 
 %dw 2.0
@@ -10,7 +10,7 @@
 /**
 * Represents a text object.
 *
-* https://api.slack.com/reference/block-kit/composition-objects#text[text]
+* See https://api.slack.com/reference/block-kit/composition-objects#text[Text object].
 */
 type Text = PlainText | Mrkdwn
 
@@ -24,23 +24,23 @@ type SimpleText = {
 }
 
 /**
-* Represents an exclusively plain object.
+* Type that represents an exclusively plain object.
 */
 type PlainText = SimpleText & {
     "type": "plain_text"
 }
 
 /**
-* Represents an exclusively mrkdwn object.
+* Type that represents an exclusively mrkdwn object.
 */
 type Mrkdwn = SimpleText & {
     "type": "mrkdwn"
 }
 
 /**
-* Represents a confirm dialog object.
+* Type that represents a confirmation dialog object.
 *
-* https://api.slack.com/reference/block-kit/composition-objects#confirm[confirm dialog]
+* See https://api.slack.com/reference/block-kit/composition-objects#confirm[Confirmation dialog object].
 */
 type Confirmation = {
     title: PlainText,
@@ -51,14 +51,14 @@ type Confirmation = {
 }
 
 /**
-* Represent the possible style options
+* Type that represents possible style options.
 */
 type Style = "primary" | "danger"
 
 /**
-* Represents an option object.
+* Type that represents an option object.
 *
-* https://api.slack.com/reference/block-kit/composition-objects#option[option]
+* See https://api.slack.com/reference/block-kit/composition-objects#option[Option object].
 */
 type Option = {
     text: Text,
@@ -68,32 +68,32 @@ type Option = {
 }
 
 /**
-* Represents an option group object.
+* Type that represents an option group object.
 *
-* https://api.slack.com/reference/block-kit/composition-objects#option_group[option group]
+* See https://api.slack.com/reference/block-kit/composition-objects#option_group[Option group object].
 */
 type OptionGroup = WithOptions & {
     label: PlainText
 }
 
 /**
-* Represents a dispatch action object.
+* Type that represents a dispatch action object.
 *
-* https://api.slack.com/reference/block-kit/composition-objects#dispatch_action_config[dispatch action]
+* See https://api.slack.com/reference/block-kit/composition-objects#dispatch_action_config[Dispatch action configuration].
 */
 type Dispatch = {
     trigger_actions_on?: Array<DispatchOptions>
 }
 
 /**
-* Represents the possible options of a dispatch action object.
+* Type that represents the possible options of a dispatch action object.
 */
 type DispatchOptions = "on_enter_pressed" | "on_character_entered"
 
 /**
-* Represents a filter conversation object.
+* Type that represents a filter conversation object.
 *
-* https://api.slack.com/reference/block-kit/composition-objects#filter_conversations[filter conversation]
+* See https://api.slack.com/reference/block-kit/composition-objects#filter_conversations[Filter object for conversation lists].
 */
 type Filter = {
     include?: Array<FilterOptions>,
@@ -102,19 +102,19 @@ type Filter = {
 }
 
 /**
-* Represents the possible options of a filter conversation object.
+* Type that represents the possible options of a filter conversation object.
 */
 type FilterOptions = "im" | "mpim" | "private" | "public"
 
 /**
-* Helper type to compose options
+* Helper type for composing options.
 */
 type WithOptions = {
     options: Array<Option>
 }
 
 /**
-* Helper type to compose option groups
+* Helper type for composing option groups.
 */
 type WithOptionGroup = {
     option_groups: Array<OptionGroup>
