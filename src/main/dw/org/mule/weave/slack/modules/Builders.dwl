@@ -1,5 +1,5 @@
 /**
-* Provides functions to simplify the creation and composition of:
+* Provides functions to simplify the creation and composition of these Slack API features:
 *
 * - https://api.slack.com/block-kit[blocks]
 * - https://api.slack.com/reference/block-kit/block-elements[elements]
@@ -13,19 +13,19 @@ import * from org::mule::weave::slack::modules::Objects
 import mergeWith from dw::core::Objects
 
 /**
-* Generates the standard block kit syntax to define a group of blocks.
+* Generates the standard Block Kit syntax to define a group of blocks.
 *
 * === Parameters
 *
 * [%header, cols="1,1,3"]
 * |===
 * | Name | Type | Description
-* | blocks | Array<Block&#62; | The array of blocks to render
+* | `blocks` | `Array<Block&#62;` | The array of blocks to render.
 * |===
 *
 * === Example
 *
-* In this example, a simple section is generated and used as a block.
+* This example generates and uses a simple section as a block.
 *
 * ==== Source
 *
@@ -63,19 +63,19 @@ fun blocks(blocks: Array<Block>) = {
 /**
 *  Generates an actions block.
 *
-* https://api.slack.com/reference/block-kit/blocks#actions[actions]
+* See https://api.slack.com/reference/block-kit/blocks#actions[Actions Block].
 *
 * === Parameters
 *
 * [%header, cols="1,1,3"]
 * |===
 * | Name | Type | Description 
-* | actions | Array<Element&#62; | The array of interactive elements to render
+* | `actions` | `Array<Element&#62;` | The array of interactive elements to render.
 * |===
 *
 * === Example
 *
-* In this example, an actions block featuring a simple button is generated.
+* This examples generates an actions block with a simple button.
 *
 * ==== Source
 *
@@ -116,11 +116,11 @@ fun actions(actions: Array<Element>) : Actions = {
 /**
 *  Generates a divider block.
 *
-* https://api.slack.com/reference/block-kit/blocks#divider[divider]
+* See https://api.slack.com/reference/block-kit/blocks#divider[Divider Block].
 *
 * === Example
 *
-* In this example, a divider block is generated.
+* This example generates a divider block.
 *
 * ==== Source
 *
@@ -147,21 +147,21 @@ fun divider() : Divider = {
 }
 
 /**
-*  Generates a plain text object, with emojis enabled.
+*  Generates a plain text object with emojis enabled.
 *
-* https://api.slack.com/reference/block-kit/composition-objects#text[text]
+* See https://api.slack.com/reference/block-kit/composition-objects#text[Text object].
 *
 * === Parameters
 *
 * [%header, cols="1,1,3"]
 * |===
 * | Name | Type | Description
-* | message | String | The text to use
+* | `message` | `String` | The text to use.
 * |===
 *
 * === Example
 *
-* In this example, a text object featuring a wave emoji is generated.
+* This example generates a text object that has a wave emoji.
 *
 * ==== Source
 *
@@ -194,19 +194,19 @@ fun text(message : String) : PlainText = {
 /**
 *  Generates a mrkdwn text object.
 *
-* https://api.slack.com/reference/block-kit/composition-objects#text[text]
+* See https://api.slack.com/reference/block-kit/composition-objects#text[text].
 *
 * === Parameters
 *
 * [%header, cols="1,1,3"]
 * |===
 * | Name | Type | Description
-* | message | String | The mrkdwn to use
+* | `message` | `String` | The mrkdwn to use.
 * |===
 *
 * === Example
 *
-* In this example, a mrkdwn text object featuring bold text is generated.
+* This example generates a mrkdwn text object that has bold text.
 *
 * ==== Source
 *
@@ -235,21 +235,21 @@ fun mrkdwn(message: String) : Mrkdwn = {
 }
 
 /**
-*  Generates a simple section block, with a mrkdwn object.
+*  Generates a simple section block with a mrkdwn object.
 *
-* https://api.slack.com/reference/block-kit/blocks#section[section]
+* See https://api.slack.com/reference/block-kit/blocks#section[Section Block].
 *
 * === Parameters
 *
 * [%header, cols="1,1,3"]
 * |===
 * | Name | Type | Description
-* | message | String | The value to use in the desired mrkdwn text 
+* | `message` | `String` | The value to use in the desired mrkdwn text.
 * |===
 *
 * === Example
 *
-* In this example, a section with a mrkdwn text is generated.
+* This example generates a section with mrkdwn text.
 *
 * ==== Source
 *
@@ -278,21 +278,21 @@ fun mrkdwn(message: String) : Mrkdwn = {
 fun section(message: String) : Section = section(mrkdwn(message))
 
 /**
-*  Generates a section block, with a text object.
+*  Generates a section block with a text object.
 *
-* https://api.slack.com/reference/block-kit/blocks#section[section]
+* See https://api.slack.com/reference/block-kit/blocks#section[Section Block].
 *
 * === Parameters
 *
 * [%header, cols="1,1,3"]
 * |===
 * | Name | Type | Description
-* | text | Text | The text object to use
+* | `text` | `Text` | The text object to use.
 * |===
 *
 * === Example
 *
-* In this example, a section with mrkdwn text is generated.
+* This example generates a section with mrkdwn text.
 *
 * ==== Source
 *
@@ -324,22 +324,22 @@ fun section(text : Text) : Section = {
 }
 
 /**
-* Generates a section block, with a mrkdwn text object and an accessory element.
+* Generates a section block with a mrkdwn text object and an accessory element.
 *
-* https://api.slack.com/reference/block-kit/blocks#section[section]
+* See https://api.slack.com/reference/block-kit/blocks#section[Section Block]
 *
 * === Parameters
 *
 * [%header, cols="1,1,3"]
 * |===
 * | Name | Type | Description
-* | message | String | The value to use in the desired mrkdwn text
-* | accessory | Element | The element to use
+* | `message` | `String` | The value to use in the desired mrkdwn text.
+* | `accessory` | `Element` | The element to use.
 * |===
 *
 * === Example
 *
-* In this example, a section with simple text and a simple button is generated.
+* This example generates a section with simple text and a simple button.
 *
 * ==== Source
 *
@@ -377,22 +377,22 @@ fun section(text : Text) : Section = {
 fun section(message: String, accessory: Element) : Section = section(mrkdwn(message), accessory)
 
 /**
-*  Generates a section block, with a text object and an accessory element.
+*  Generates a section block with a text object and an accessory element.
 *
-* https://api.slack.com/reference/block-kit/blocks#section[section]
+* See https://api.slack.com/reference/block-kit/blocks#section[Section Block].
 *
 * === Parameters
 *
 * [%header, cols="1,1,3"]
 * |===
 * | Name | Type | Description
-* | text | Text | The text object to use
-* | accessory | Element | The element to use
+* | `text` | `Text` | The text object to use.
+* | `accessory` | `Element` | The element to use.
 * |===
 *
 * === Example
 *
-* In this example, a section with mrkdwn text and a simple button is generated.
+* This example generates a section with mrkdwn text and a simple button.
 *
 * ==== Source
 *
@@ -434,21 +434,21 @@ fun section(text: Text, accessory : Element) : Section = {
 }
 
 /**
-*  Generates a section block, with an array of text objects or fields.
+*  Generates a section block with an array of text objects or fields.
 *
-* https://api.slack.com/reference/block-kit/blocks#section[section]
+* See https://api.slack.com/reference/block-kit/blocks#section[Section Block].
 *
 * === Parameters
 *
 * [%header, cols="1,1,3"]
 * |===
 * | Name | Type | Description 
-* | fields | Array<Text&#62; | An array of text objects to use
+* | `fields` | `Array<Text&#62;` | An array of text objects to use.
 * |===
 *
 * === Example
 *
-* In this example, a section with a mrkdwn text and a plain text is generated.
+* This example generates a section with mrkdwn text and plain text.
 *
 * ==== Source
 *
@@ -487,22 +487,22 @@ fun section(fields: Array<Text>) : Section = {
 }
 
 /**
-*  Generates a section block, with an array of text objects, or fields, and an accessory element.
+*  Generates a section block with an array of text objects or fields, and an accessory element.
 *
-* https://api.slack.com/reference/block-kit/blocks#section[section]
+* See https://api.slack.com/reference/block-kit/blocks#section[Section Block].
 *
 * === Parameters
 *
 * [%header, cols="1,1,3"]
 * |===
 * | Name | Type | Description
-* | fields | Array<Text&#62; | An array of text objects to use
-* | accessory | Element | The element to use
+* | `fields` | `Array<Text&#62;` | An array of text objects to use.
+* | `accessory` | `Element` | The element to use.
 * |===
 *
 * === Example
 *
-* In this example, a section with mrkdwn text, plain text and a simple button is generated.
+* This example generates a section with mrkdwn text, plain text, and a simple button.
 *
 * ==== Source
 *
@@ -551,21 +551,21 @@ fun section(fields: Array<Text>, accessory : Element) : Section = {
 }
 
 /**
-*  Generates a header block, with a simple plain text object.
+*  Generates a header block with a simple plain text object.
 *
-* https://api.slack.com/reference/block-kit/blocks#header[header]
+* See https://api.slack.com/reference/block-kit/blocks#header[Header Block].
 *
 * === Parameters
 *
 * [%header, cols="1,1,3"]
 * |===
 * | Name | Type | Description
-* | message | String | The value to use in the desired text
+* | `message` | `String` | The value to use in the desired text.
 * |===
 *
 * === Example
 *
-* In this example, a header with a simple text is generated.
+* This example generates a header with a simple text.
 *
 * ==== Source
 *
@@ -595,21 +595,22 @@ fun section(fields: Array<Text>, accessory : Element) : Section = {
 fun header(message: String) : Header = header(text(message))
 
 /**
-*  Generates a header block, with a plain text object.
+*  Generates a header block with a plain text object.
 *
-* https://api.slack.com/reference/block-kit/blocks#header[header]
+* See https://api.slack.com/reference/block-kit/blocks#header[Header Block].
 *
 * === Parameters
 *
 * [%header, cols="1,1,3"]
 * |===
 * | Name | Type | Description
-* | text | PlainText | The plain text object to use
+* | `text` | `PlainText` | The plain text object to use.
 * |===
 *
 * === Example
 *
-* In this example, a header with a plain text object with no support for emojis is generated.
+* //TODO
+* This example generates a header with a plain text object with no support for emojis is generated.
 *
 * ==== Source
 *
@@ -646,23 +647,23 @@ fun header(text: PlainText) : Header = {
 }
 
 /**
-*  Generates a button element, with a simple plain text
+*  Generates a button element with a simple plain text
 *  object and ID.
 *
-* https://api.slack.com/reference/block-kit/block-elements#button[button]
+* See https://api.slack.com/reference/block-kit/block-elements#button[Button element].
 *
 * === Parameters
 *
 * [%header, cols="1,1,3"]
 * |===
 * | Name | Type | Description
-* | message | String | The value to use in the desired text
-* | id | String | The value to use in `action_id` field
+* | `message` | `String` | The value to use in the desired text.
+* | `id` | `String` | The value to use in an `action_id` field.
 * |===
 *
 * === Example
 *
-* In this example, a button with a simple text is generated, using an ID called "bait".
+* This example generates a button with simple text and an ID called "bait".
 *
 * ==== Source
 *
@@ -693,22 +694,23 @@ fun header(text: PlainText) : Header = {
 fun button(message: String, id: String) : Button = button(text(message), id)
 
 /**
-*  Generates a button element, with a plain text object and ID.
+*  Generates a button element with a plain text object and ID.
 *
-* https://api.slack.com/reference/block-kit/block-elements#button[button]
+* See https://api.slack.com/reference/block-kit/block-elements#button[Button element].
 *
 * === Parameters
 *
 * [%header, cols="1,1,3"]
 * |===
 * | Name | Type | Description
-* | text | PlainText | The plain text object to use
-* | id | String | The value to use in `action_id` field
+* | `text` | `PlainText` | The plain text object to use.
+* | `id` | `String` | The value to use in an `action_id` field.
 * |===
 *
 * === Example
 *
-* In this example, a button with a text with no emoji support is generated, using an ID called "bait".
+* //TODO
+* This example generates a button with a text with no emoji support and an ID called "bait".
 *
 * ==== Source
 *
@@ -749,13 +751,13 @@ fun button(text: PlainText, id: String) : Button = {
 * [%header, cols="1,1,3"]
 * |===
 * | Name | Type | Description
-* | button | Button | The button to add a value to
-* | value | String | The value to add
+* | `button` | `Button` | The button to add a value to.
+* | `value` | `String` | The value to add.
 * |===
 *
 * === Example
 *
-* This example shows how `withValue` is used.
+* This example shows how to use `withValue`.
 *
 * ==== Source
 *
@@ -787,20 +789,20 @@ fun button(text: PlainText, id: String) : Button = {
 fun withValue(button: Button, value: String) : Button = button mergeWith {value: value}
 
 /**
-* Adds a url field to a button.
+* Adds a URL field to a button.
 *
 * === Parameters
 *
 * [%header, cols="1,1,3"]
 * |===
 * | Name | Type | Description
-* | button | Button | The button to add a value to
-* | url | String | The url to add
+* | `button` | `Button` | The button to add a value to.
+* | `url` | `String` | The URL to add.
 * |===
 *
 * === Example
 *
-* This example shows how `withUrl` is used.
+* This example shows how to use `withUrl`.
 *
 * ==== Source
 *
@@ -839,13 +841,13 @@ fun withUrl(button: Button, url: String) : Button = button mergeWith {url: url}
 * [%header, cols="1,1,3"]
 * |===
 * | Name | Type | Description
-* | button | Button | The button to add a value to
-* | style | Style | The style to add 
+* | `button` | `Button` | The button to add a value to.
+* | `style` | `Style` | The style to add.
 * |===
 *
 * === Example
 *
-* This example shows how `withStyle` is used.
+* This example shows how to use `withStyle`.
 *
 * ==== Source
 *
@@ -877,23 +879,23 @@ fun withUrl(button: Button, url: String) : Button = button mergeWith {url: url}
 fun withStyle(button: Button, style: Style) : Button = button mergeWith {style: style}
 
 /**
-*  Generates a button element, with a simple plain text object, an ID and a value.
+*  Generates a button element with a simple plain text object, an ID, and a value.
 *
-* https://api.slack.com/reference/block-kit/block-elements#button[button]
+* See https://api.slack.com/reference/block-kit/block-elements#button[Button element].
 *
 * === Parameters
 *
 * [%header, cols="1,1,3"]
 * |===
 * | Name | Type | Description 
-* | message | String | The value to use in the desired text 
-* | id | String | The value to use in `action_id` field 
-* | value | String | The value to use 
+* | `message` | `String` | The value to use in the desired text.
+* | `id` | `String` | The value to use in an `action_id` field.
+* | `value` | `String` | The value to use.
 * |===
 *
 * === Example
 *
-* In this example, a button with a simple text is generated, using an ID called "bait" and a value.
+* This example generates a button with a simple text, an ID called "bait", and a value.
 *
 * ==== Source
 *
@@ -925,23 +927,24 @@ fun withStyle(button: Button, style: Style) : Button = button mergeWith {style: 
 fun buttonWithValue(message: String, id: String, value: String) : Button = buttonWithValue(text(message), id, value)
 
 /**
-*  Generates a button element, with a plain text object, an ID and a value.
+*  Generates a button element with a plain text object, an ID, and a value.
 *
-* https://api.slack.com/reference/block-kit/block-elements#button[button]
+* See https://api.slack.com/reference/block-kit/block-elements#button[Button element].
 *
 * === Parameters
 *
 * [%header, cols="1,1,3"]
 * |===
 * | Name | Type | Description
-* | message | String | The value to use in the desired text
-* | id | String | The value to use in `action_id` field
-* | value | String | The value to use 
+* | `message` | `String` | The value to use in the desired text.
+* | `id` | `String` | The value to use in an `action_id` field.
+* | `value` | `String` | The value to use. 
 * |===
 *
 * === Example
 *
-* In this example, a button with a text not supporting emojis is generated, using an ID called "bait" and a value.
+* //TODO 
+* This example generates a button with text not supporting emojis, an ID called "emoji", and a value.
 *
 * ==== Source
 *
@@ -972,23 +975,23 @@ fun buttonWithValue(message: String, id: String, value: String) : Button = butto
 fun buttonWithValue(text: PlainText, id: String, value: String) : Button = button(text, id) withValue value
 
 /**
-*  Generates a button element, with a simple plain text object, an ID and an URL.
+*  Generates a button element with a simple plain text object, an ID, and an URL.
 *
-* https://api.slack.com/reference/block-kit/block-elements#button[button]
+* See https://api.slack.com/reference/block-kit/block-elements#button[Button element].
 *
 * === Parameters
 *
 * [%header, cols="1,1,3"]
 * |===
 * | Name | Type | Description
-* | message | String | The value to use in the desired text
-* | id | String | The value to use in `action_id` field
-* | url | String | The URL to use
+* | `message` | `String` | The value to use in the desired text.
+* | `id` | `String` | The value to use in an `action_id` field.
+* | `url` | `String` | The URL to use.
 * |===
 *
 * === Example
 *
-* In this example, a button with a simple text is generated, using an ID called "bait" and a URL leading to the Slack site.
+* This example generates a button with simple text, an ID called "bait", and a URL to the Slack site.
 *
 * ==== Source
 *
@@ -1020,23 +1023,24 @@ fun buttonWithValue(text: PlainText, id: String, value: String) : Button = butto
 fun buttonWithUrl(message: String, id: String, url: String) : Button = buttonWithUrl(text(message), id, url)
 
 /**
-*  Generates a button element, with a plain text object, an ID and an URL.
+*  Generates a button element with a plain text object, an ID, and a URL.
 *
-* https://api.slack.com/reference/block-kit/block-elements#button[button]
+* See https://api.slack.com/reference/block-kit/block-elements#button[Button element].
 *
 * === Parameters
 *
 * [%header, cols="1,1,3"]
 * |===
 * | Name | Type | Description 
-* | text | PlainText | The plain text object to use
-* | id | String | The value to use in `action_id` field
-* | url | String | The URL to use
+* | `text` | `PlainText` | The plain text object to use.
+* | `id` | `String` | The value to use in an `action_id` field.
+* | `url` | `String` | The URL to use.
 * |===
 *
 * === Example
 *
-* In this example, a button with a no emoji supporting text is generated, using an ID called "bait" and a URL leading to the Slack site.
+* //TODO 
+* This example generates a button with an emoji and text, an ID called "emoji", and a URL to the Slack site.
 *
 * ==== Source
 *
@@ -1067,23 +1071,23 @@ fun buttonWithUrl(message: String, id: String, url: String) : Button = buttonWit
 fun buttonWithUrl(text: PlainText, id : String, url: String) : Button = button(text, id) withUrl url
 
 /**
-*  Generates an option object, with a simple plain text
+*  Generates an option object with a simple plain text
 *  object and its value.
 *
-* https://api.slack.com/reference/block-kit/composition-objects#option[option]
+* See https://api.slack.com/reference/block-kit/composition-objects#option[Option object].
 *
 * === Parameters
 *
 * [%header, cols="1,1,3"]
 * |===
 * | Name | Type | Description
-* | message | String | The value to use in the desired text
-* | value | String | The value to use in the option 
+* | `message` | `String` | The value to use in the desired text.
+* | `value` | `String` | The value to use in the option.
 * |===
 *
 * === Example
 *
-* In this example, multiple options are generated from a list of Strings, using the same text and value.
+* This example generates multiple options from a list of strings, using the same text and value.
 *
 * ==== Source
 *
@@ -1132,22 +1136,22 @@ fun buttonWithUrl(text: PlainText, id : String, url: String) : Button = button(t
 fun option(message: String, value: String) = option(text(message), value)
 
 /**
-*  Generates an option object, with a text object and its value.
+*  Generates an option object with a text object and its value.
 *
-* https://api.slack.com/reference/block-kit/composition-objects#option[option]
+* See https://api.slack.com/reference/block-kit/composition-objects#option[Option object].
 *
 * === Parameters
 *
 * [%header, cols="1,1,3"]
 * |===
 * | Name | Type | Description 
-* | text | Text | The text to use
-* | value | String | The value to use in the option
+* | `text` | `Text` | The text to use.
+* | `value` | `String` | The value to use in the option.
 * |===
 *
 * === Example
 *
-* In this example, an option is generated with mrkdwn text to select the color red while its value references the hex
+* This example generates an option with mrkdwn text to select the color red. Its value references the hex
 * color representation for red.
 *
 * ==== Source
@@ -1180,22 +1184,22 @@ fun option(text: Text, val: String) : Option = {
 }
 
 /**
-*  Generates an option group object, with a simple plain text object and its options.
+*  Generates an option group object with a simple plain text object and its options.
 *
-* https://api.slack.com/reference/block-kit/composition-objects#option_group[option group]
+* See https://api.slack.com/reference/block-kit/composition-objects#option_group[Option group object].
 *
 * === Parameters
 *
 * [%header, cols="1,1,3"]
 * |===
 * | Name | Type | Description
-* | message | String | The value to use in the desired text
-* | options | Array<Option&#62; | The options to group
+* | `message` | `String` | The value to use in the desired text.
+* | `options` | `Array<Option&#62;` | The options to group.
 * |===
 *
 * === Example
 *
-* In this example, an option group is generated with a simple value for some options.
+* This example generates an option group with a simple value for some options.
 *
 * ==== Source
 *
@@ -1243,22 +1247,22 @@ fun option(text: Text, val: String) : Option = {
 fun optionGroup(message: String, options: Array<Option>) : OptionGroup = optionGroup(text(message), options)
 
 /**
-*  Generates an option group object, with a plain text object and its options.
+*  Generates an option group object with a plain text object and its options.
 *
-* https://api.slack.com/reference/block-kit/composition-objects#option_group[option group]
+* See https://api.slack.com/reference/block-kit/composition-objects#option_group[Option group object].
 *
 * === Parameters
 *
 * [%header, cols="1,1,3"]
 * |===
 * | Name | Type | Description
-* | text | PlainText | The plain text to use
-* | options | Array<Option&#62; | The options to group
+* | `text` | `PlainText` | The plain text to use.
+* | `options` | `Array<Option&#62;` | The options to group.
 * |===
 *
 * === Example
 *
-* In this example, an option group is generated with a text for some options.
+* This example generates an option group with text for some options.
 *
 * ==== Source
 *
@@ -1308,23 +1312,23 @@ fun optionGroup(text : PlainText, options: Array<Option>) : OptionGroup = {
 }
 
 /**
-*  Generates a static select element, with a simple plain text object as placeholder, its ID and options.
+*  Generates a static select element with a simple plain text object as placeholder, its ID, and options.
 *
-* https://api.slack.com/reference/block-kit/block-elements#static_select[static select]
+* See https://api.slack.com/reference/block-kit/block-elements#static_select[Static options].
 *
 * === Parameters
 *
 * [%header, cols="1,1,3"]
 * |===
 * | Name | Type | Description
-* | message | String | The value to use in the desired placeholder
-* | id | String | The value to use in `action_id` field
-* | options | Array<Option&#62; | The array of options to offer
+* | `message` | `String` | The value to use in the desired placeholder.
+* | `id` | `String` | The value to use in an `action_id` field.
+* | `options` | `Array<Option&#62;` | The array of options to offer.
 * |===
 *
 * === Example
 *
-* In this example, a static group of options are offered with a simple text placeholder.
+* This example creates a static group of options with a simple text placeholder.
 *
 * ==== Source
 *
@@ -1382,23 +1386,23 @@ fun optionGroup(text : PlainText, options: Array<Option>) : OptionGroup = {
 fun staticSelect(placeholder: String, id: String, options: Array<Option>) : StaticSelect = staticSelect(text(placeholder), id, options)
 
 /**
-*  Generates a static select element, with a simple plain text object as placeholder, its ID and option groups.
+*  Generates a static select element with a simple plain text object as placeholder, its ID, and option groups.
 *
-* https://api.slack.com/reference/block-kit/block-elements#static_select[static select]
+* See https://api.slack.com/reference/block-kit/block-elements#static_select[Static options].
 *
 * === Parameters
 *
 * [%header, cols="1,1,3"]
 * |===
 * | Name | Type | Description 
-* | message | String | The value to use in the desired placeholder
-* | id | String | The value to use in `action_id` field
-* | optionGroups | Array<OptionGroup&#62; | The array of options groups to offer
+* | `message` | `String` | The value to use in the desired placeholder.
+* | `id` | `String` | The value to use in an `action_id` field.
+* | `optionGroups` | `Array<OptionGroup&#62;` | The array of options groups to offer.
 * |===
 *
 * === Example
 *
-* In this example, a static group of option groups are offered with a simple text placeholder.
+* This example creates a static group of option groups with a simple text placeholder.
 *
 * ==== Source
 *
@@ -1467,23 +1471,23 @@ fun staticSelect(placeholder: String, id: String, options: Array<Option>) : Stat
 fun staticSelectByGroups(placeholder: String, id: String, optionGroups: Array<OptionGroup>) : StaticSelect = staticSelectByGroups(text(placeholder), id, optionGroups)
 
 /**
-*  Generates an static select element, with a simple plain text object as placeholder, its ID and options.
+*  Generates an static select element with a simple plain text object as placeholder, its ID, and options.
 *
-* https://api.slack.com/reference/block-kit/block-elements#static_select[static select]
+* See https://api.slack.com/reference/block-kit/block-elements#static_select[Static options].
 *
 * === Parameters
 *
 * [%header, cols="1,1,3"]
 * |===
 * | Name | Type  | Description
-* | message | String | The value to use in the desired placeholder
-* | id | String | The value to use in `action_id` field
-* | options | Array<Option&#62; | The array of options to offer
+* | `message` | String | The value to use in the desired placeholder.
+* | `id` | `String` | The value to use in an `action_id` field.
+* | `options` | `Array<Option&#62;` | The array of options to offer.
 * |===
 *
 * === Example
 *
-* In this example, a static group of options are offered with a simple text placeholder.
+* This example creates a static group of options with a simple text placeholder.
 *
 * ==== Source
 *
@@ -1546,23 +1550,23 @@ fun staticSelect(placeholder: PlainText, id: String, options: Array<Option>) : S
 }
 
 /**
-*  Generates an static select element, with a plain text object as placeholder, its ID and option groups.
+*  Generates an static select element with a plain text object as placeholder, its ID, and option groups.
 *
-* https://api.slack.com/reference/block-kit/block-elements#static_select[static select]
+* See https://api.slack.com/reference/block-kit/block-elements#static_select[Static options].
 *
 * === Parameters
 *
 * [%header, cols="1,1,3"]
 * |===
 * | Name | Type | Description 
-* | text | PlainText | The text to use as placeholder 
-* | id | String | The value to use in `action_id` field 
-* | optionGroups | Array<OptionGroup&#62; | The array of options groups to offer 
+* | `text` | `PlainText` | The text to use as a placeholder.
+* | `id` | `String` | The value to use in an `action_id` field.
+* | `optionGroups` | `Array<OptionGroup&#62;` | The array of options groups to offer.
 * |===
 *
 * === Example
 *
-* In this example, a static group of option groups are offered with a text placeholder.
+* This example creates a static group of option groups with a text placeholder.
 *
 * ==== Source
 *
@@ -1635,17 +1639,17 @@ fun staticSelectByGroups(placeholder: PlainText, id: String, optionGroups: Array
 }
 
 /**
-* Generates an external select element, with a simple plain text object as placeholder and its ID.
+* Generates an external select element with a simple plain text object as placeholder and its ID.
 *
-* https://api.slack.com/reference/block-kit/block-elements#external_select[external select]
+* See https://api.slack.com/reference/block-kit/block-elements#external_select[External data source].
 *
 * === Parameters
 *
 * [%header, cols="1,1,3"]
 * |===
 * | Name | Type | Description 
-* | placeholder | String | The value to use in the desired placeholder
-* | id | String | The value to use in `action_id` field 
+* | `placeholder` | `String` | The value to use in the desired placeholder
+* | `id` | `String` | The value to use in an `action_id` field.
 * |===
 *
 * === Example
@@ -1680,17 +1684,17 @@ fun staticSelectByGroups(placeholder: PlainText, id: String, optionGroups: Array
 fun externalSelect(placeholder: String, id: String) : ExternalSelect = externalSelect(text(placeholder), id)
 
 /**
-* Generates an external select element, with a text object as placeholder and its ID.
+* Generates an external select element with a text object as placeholder and its ID.
 *
-* https://api.slack.com/reference/block-kit/block-elements#external_select[external select]
+* See https://api.slack.com/reference/block-kit/block-elements#external_select[External data source].
 *
 * === Parameters
 *
 * [%header, cols="1,1,3"]
 * |===
 * | Name | Type | Description 
-* | placeholder | PlainText | The text to use in the desired placeholder
-* | id | String | The value to use in `action_id` field
+* | `placeholder` | `PlainText` | The text to use in the desired placeholder
+* | `id` | `String` | The value to use in an `action_id` field.
 * |===
 *
 * === Example
@@ -1729,22 +1733,22 @@ fun externalSelect(placeholder: PlainText, id : String) : ExternalSelect = {
 }
 
 /**
-* Generates an image element, with its URL and alternative text.
+* Generates an image element with its URL and alternative text.
 *
-* https://api.slack.com/reference/block-kit/block-elements#image[image]
+* See https://api.slack.com/reference/block-kit/block-elements#image[Image element].
 *
 * === Parameters
 *
 * [%header, cols="1,1,3"]
 * |===
 * | Name | Type | Description 
-* | url | String | The URL to the image 
-* | text | String | The text to use if the image cannot be rendered
+* | `url` | `String` | The URL to the image.
+* | `text` | `String` | The text to use if the image cannot be rendered.
 * |===
 *
 * === Example
 *
-* This example shows how `image` behaves..
+* This example shows how `image` behaves.
 *
 * ==== Source
 *
@@ -1776,16 +1780,16 @@ fun image(url : String, text: String) : Image = {
 /**
 * Generates an image block with a simple text title.
 *
-* https://api.slack.com/reference/block-kit/blocks#image[image block]
+* See https://api.slack.com/reference/block-kit/blocks#image[Image Block].
 *
 * === Parameters
 *
 * [%header, cols="1,1,3"]
 * |===
 * | Name | Type | Description 
-* | url | String | The url for the image
-* | altText | String | The alternative text for the image
-* | title | String | The value to use for the text title
+* | `url` | `String` | The URL for the image.
+* | `altText` | `String` | The alternative text for the image.
+* | `title` | `String` | The value to use for the text title.
 * |===
 *
 * === Example
@@ -1823,16 +1827,16 @@ fun image(url : String, altText: String, title: String) : ImageBlock = image(url
 /**
 * Generates an image block with a text title.
 *
-* https://api.slack.com/reference/block-kit/blocks#image[image block]
+* See https://api.slack.com/reference/block-kit/blocks#image[Image Block].
 *
 * === Parameters
 *
 * [%header, cols="1,1,3"]
 * |===
 * | Name | Type | Description
-* | url | String | The url for the image
-* | altText | String | The alternative text for the image
-* | title | PlainText | The text value to use as title
+* | `url` | `String` | The URL for the image.
+* | `altText` | `String` | The alternative text for the image.
+* | `title` | `PlainText` | The text value to use as the title.
 * |===
 *
 * === Example
@@ -1870,14 +1874,14 @@ fun image(url : String, altText: String, title: PlainText) : ImageBlock = image(
 /**
 * Generates a context block with a single plain text element item.
 *
-* https://api.slack.com/reference/block-kit/blocks#context[context]
+* See https://api.slack.com/reference/block-kit/blocks#context[Context Block].
 *
 * === Parameters
 *
 * [%header, cols="1,1,3"]
 * |===
 * | Name | Type | Description 
-* | message | String | The value to use as text
+* | `message` | `String` | The value to use as text.
 * |===
 *
 * === Example
@@ -1915,14 +1919,14 @@ fun context(message: String) : Context = context([text(message)])
 /**
 * Generates a context block with the desired elements.
 *
-* https://api.slack.com/reference/block-kit/blocks#context[context]
+* See https://api.slack.com/reference/block-kit/blocks#context[Context Block].
 *
 * === Parameters
 *
 * [%header, cols="1,1,3"]
 * |===
 * | Name  | Type | Description
-* | elements | Array<Image&#124;Text&#62; | The image or text elements
+* | `elements` | `Array<Image&#124;Text&#62;` | The image or text elements.
 * |===
 *
 * === Example
@@ -1962,15 +1966,15 @@ fun context(elements: Array<Image|Text>) : Context = {
 /**
 * Generates an input block with a simple text label.
 *
-* https://api.slack.com/reference/block-kit/blocks#input[input block]
+* See https://api.slack.com/reference/block-kit/blocks#input[Input block].
 *
 * === Parameters
 *
 * [%header, cols="1,1,3"]
 * |===
 * | Name | Type | Description 
-* | label | String | The label for the input
-* | element | Element | The element to use in the input
+* | `label` | `String` | The label for the input.
+* | `element` | `Element` | The element to use in the input.
 * |===
 *
 * === Example
@@ -2011,15 +2015,15 @@ fun inputBlock(label: String, element: Element) : Input = inputBlock(text(label)
 /**
 * Generates an input block.
 *
-* https://api.slack.com/reference/block-kit/blocks#input[input block]
+* See https://api.slack.com/reference/block-kit/blocks#input[Input block].
 *
 * === Parameters
 *
 * [%header, cols="1,1,3"]
 * |===
 * | Name | Type  | Description
-* | label | PlainText | The label for the input
-* | element | Element | The element to use in the input
+* | `label` | `PlainText` | The label for the input.
+* | `element` | `Element` | The element to use in the input.
 * |===
 *
 * === Example
@@ -2064,15 +2068,15 @@ fun inputBlock(label: PlainText, element: Element) : Input = {
 /**
 * Generates an input object.
 *
-* https://api.slack.com/reference/block-kit/block-elements#input[input text]
+* See https://api.slack.com/reference/block-kit/block-elements#input[Plain-text input element].
 *
 * === Parameters
 *
 * [%header, cols="1,1,3"]
 * |===
 * | Name | Type | Description 
-* | id | String | The value to use in the `action_id` field
-* | multiline | Boolean | Whether the input should be multiline. Defaults to false.
+* | `id` | `String` | The value to use in the `action_id` field.
+* | `multiline` | `Boolean` | Whether the input should be multiline. Defaults to `false`.
 * |===
 *
 * === Example
@@ -2109,15 +2113,15 @@ fun inputText(id: String, multiline: Boolean = false) : PlainTextInput = {
 /**
 * Generates a radio buttons group, given its ID and options.
 *
-* https://api.slack.com/reference/block-kit/block-elements#radio[radio button group]
+* See https://api.slack.com/reference/block-kit/block-elements#radio[Radio button group element].
 *
 * === Parameters
 *
 * [%header, cols="1,1,3"]
 * |===
 * | Name | Type | Description
-* | id | String | The value to use in the `action_id` field
-* | options | Array<Option&#62; | The options to group
+* | `id` | `String` | The value to use in the `action_id` field.
+* | `options` | `Array<Option&#62;` | The options to group.
 * |===
 *
 * === Example
@@ -2177,18 +2181,18 @@ fun radioButtons(id: String, options: Array<Option>) : RadioButtonGroup = {
 }
 
 /**
-* Generates a multi static select element, with a simple text placeholder, ID and options.
+* Generates a multi-static select element with a simple text placeholder, ID, and options.
 *
-* https://api.slack.com/reference/block-kit/block-elements#multi_select[multi select]
+* See https://api.slack.com/reference/block-kit/block-elements#multi_select[Multi-select menu element].
 *
 * === Parameters
 *
 * [%header, cols="1,1,3"]
 * |===
 * | Name | Type | Description
-* | placeholder | String | The value to use in the desired placeholder
-* | id | String | The value to use in the `action_id` field
-* | options | Array<Option&#62; | The options to select
+* | `placeholder` | `String` | The value to use in the desired placeholder.
+* | `id` | `String` | The value to use in the `action_id` field.
+* | `options` | `Array<Option&#62;` | The options to select.
 * |===
 *
 * === Example
@@ -2250,18 +2254,18 @@ fun radioButtons(id: String, options: Array<Option>) : RadioButtonGroup = {
 fun multiStaticSelect(placeholder: String, id: String, options: Array<Option>) : MultiStaticSelect = multiStaticSelect(text(placeholder), id, options)
 
 /**
-* Generates a multi static select element, with its placeholder, ID and options.
+* Generates a multi-static select element with its placeholder, ID, and options.
 *
-* https://api.slack.com/reference/block-kit/block-elements#multi_select[multi select]
+* See https://api.slack.com/reference/block-kit/block-elements#multi_select[Multi-select menu element].
 *
 * === Parameters
 *
 * [%header, cols="1,1,3"]
 * |===
 * | Name | Type | Description 
-* | placeholder | PlainText | The text to use as placeholder
-* | id | String | The value to use in the `action_id` field
-* | options | Array<Option&#62; | The options to select
+* | `placeholder` | `PlainText` | The text to use as a placeholder.
+* | `id` | `String` | The value to use in the `action_id` field.
+* | `options` | `Array<Option&#62;` | The options to select.
 * |===
 *
 * === Example
