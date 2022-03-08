@@ -609,8 +609,7 @@ fun header(message: String) : Header = header(text(message))
 *
 * === Example
 *
-* //TODO
-* This example generates a header with a plain text object with no support for emojis is generated.
+* This example generates a header with a plain text object with no support for emojis.
 *
 * ==== Source
 *
@@ -709,8 +708,7 @@ fun button(message: String, id: String) : Button = button(text(message), id)
 *
 * === Example
 *
-* //TODO
-* This example generates a button with a text with no emoji support and an ID called "bait".
+* This example generates a button with text with no emoji support and an ID called "emoji".
 *
 * ==== Source
 *
@@ -943,8 +941,7 @@ fun buttonWithValue(message: String, id: String, value: String) : Button = butto
 *
 * === Example
 *
-* //TODO 
-* This example generates a button with text not supporting emojis, an ID called "emoji", and a value.
+* This example generates a button with text with an emoji, an ID called "emoji", and a value.
 *
 * ==== Source
 *
@@ -1039,7 +1036,6 @@ fun buttonWithUrl(message: String, id: String, url: String) : Button = buttonWit
 *
 * === Example
 *
-* //TODO 
 * This example generates a button with an emoji and text, an ID called "emoji", and a URL to the Slack site.
 *
 * ==== Source
