@@ -56,3 +56,13 @@ ________________________________
 Representation of all Slack [objects](https://api.slack.com/reference/block-kit/composition-objects):
 
 ________________________________
+
+## Contributions Welcome
+
+Before creating a pull request review the following:
+
+* [LICENSE](LICENSE.txt)
+* [SECURITY](SECURITY.md)
+* [CODE_OF_CONDUCT](CODE_OF_CONDUCT.md)
+
+When you submit your pull request, you are asked to sign a contributor license agreement (CLA) if we don't have one on file for you.
