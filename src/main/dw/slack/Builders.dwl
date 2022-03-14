@@ -7,9 +7,9 @@
 */
 
 %dw 2.0
-import * from org::mule::weave::slack::modules::Blocks
-import * from org::mule::weave::slack::modules::Elements
-import * from org::mule::weave::slack::modules::Objects
+import * from slack::Blocks
+import * from slack::Elements
+import * from slack::Objects
 import mergeWith from dw::core::Objects
 
 /**
@@ -33,7 +33,7 @@ import mergeWith from dw::core::Objects
 * ----
 * %dw 2.0
 * output application/json
-* import * from org::mule::weave::slack::Builders
+* import * from slack::Builders
 * ---
 *  blocks([section("Hello there!")])
 * ----
@@ -83,7 +83,7 @@ fun blocks(blocks: Array<Block>) = {
 * ----
 * %dw 2.0
 * output application/json
-* import * from org::mule::weave::slack::Builders
+* import * from slack::Builders
 * ---
 * actions([button("Click me!", "bait")])
 * ----
@@ -128,7 +128,7 @@ fun actions(actions: Array<Element>) : Actions = {
 * ----
 * %dw 2.0
 * output application/json
-* import * from org::mule::weave::slack::Builders
+* import * from slack::Builders
 * ---
 *  divider()
 * ----
@@ -169,7 +169,7 @@ fun divider() : Divider = {
 * ----
 * %dw 2.0
 * output application/json
-* import * from org::mule::weave::slack::Builders
+* import * from slack::Builders
 * ---
 *  text("Hello! :wave:")
 * ----
@@ -214,7 +214,7 @@ fun text(message : String) : PlainText = {
 * ----
 * %dw 2.0
 * output application/json
-* import * from org::mule::weave::slack::Builders
+* import * from slack::Builders
 * ---
 *  mrkdwn("*Hello*")
 * ----
@@ -257,7 +257,7 @@ fun mrkdwn(message: String) : Mrkdwn = {
 * ----
 * %dw 2.0
 * output application/json
-* import * from org::mule::weave::slack::Builders
+* import * from slack::Builders
 * ---
 *  section("Hello!")
 * ----
@@ -300,7 +300,7 @@ fun section(message: String) : Section = section(mrkdwn(message))
 * ----
 * %dw 2.0
 * output application/json
-* import * from org::mule::weave::slack::Builders
+* import * from slack::Builders
 * ---
 *  section(mrkdwn("*Hello*"))
 * ----
@@ -400,7 +400,7 @@ fun section(message: String, accessory: Element) : Section = section(mrkdwn(mess
 * ----
 * %dw 2.0
 * output application/json
-* import * from org::mule::weave::slack::Builders
+* import * from slack::Builders
 * ---
 *  section(mrkdwn("*Hello*"), button("Click me!", "bait"))
 * ----
@@ -456,7 +456,7 @@ fun section(text: Text, accessory : Element) : Section = {
 * ----
 * %dw 2.0
 * output application/json
-* import * from org::mule::weave::slack::Builders
+* import * from slack::Builders
 * ---
 *  section([mrkdwn("*Hello*"), text("Bye!")])
 * ----
@@ -510,7 +510,7 @@ fun section(fields: Array<Text>) : Section = {
 * ----
 * %dw 2.0
 * output application/json
-* import * from org::mule::weave::slack::Builders
+* import * from slack::Builders
 * ---
 *  section([mrkdwn("*Hello*"), text("Bye!")], button("Click me!", "bait"))
 * ----
@@ -573,7 +573,7 @@ fun section(fields: Array<Text>, accessory : Element) : Section = {
 * ----
 * %dw 2.0
 * output application/json
-* import * from org::mule::weave::slack::Builders
+* import * from slack::Builders
 * ---
 *  header("Hello!")
 * ----
@@ -617,7 +617,7 @@ fun header(message: String) : Header = header(text(message))
 * ----
 * %dw 2.0
 * output application/json
-* import * from org::mule::weave::slack::Builders
+* import * from slack::Builders
 * ---
 * header({
 *     'type': "plain_text",
@@ -670,7 +670,7 @@ fun header(text: PlainText) : Header = {
 * ----
 * %dw 2.0
 * output application/json
-* import * from org::mule::weave::slack::Builders
+* import * from slack::Builders
 * ---
 *  button("Click me!", "bait")
 * ----
@@ -716,7 +716,7 @@ fun button(message: String, id: String) : Button = button(text(message), id)
 * ----
 * %dw 2.0
 * output application/json
-* import * from org::mule::weave::slack::Builders
+* import * from slack::Builders
 * ---
 *  button({'type': "plain_text", text: "Create your own :emoji:"}, "emoji")
 * ----
@@ -901,7 +901,7 @@ fun withStyle(button: Button, style: Style) : Button = button mergeWith {style: 
 * ----
 * %dw 2.0
 * output application/json
-* import * from org::mule::weave::slack::Builders
+* import * from slack::Builders
 * ---
 *  buttonWithValue("Click me!", "bait", "something to share")
 * ----
@@ -949,7 +949,7 @@ fun buttonWithValue(message: String, id: String, value: String) : Button = butto
 * ----
 * %dw 2.0
 * output application/json
-* import * from org::mule::weave::slack::Builders
+* import * from slack::Builders
 * ---
 *  buttonWithValue({'type': "plain_text", text: "Create your own :emoji:"}, "emoji", "origin")
 * ----
@@ -996,7 +996,7 @@ fun buttonWithValue(text: PlainText, id: String, value: String) : Button = butto
 * ----
 * %dw 2.0
 * output application/json
-* import * from org::mule::weave::slack::Builders
+* import * from slack::Builders
 * ---
 *  buttonWithUrl("Click me!", "bait", "https://slack.com")
 * ----
@@ -1044,7 +1044,7 @@ fun buttonWithUrl(message: String, id: String, url: String) : Button = buttonWit
 * ----
 * %dw 2.0
 * output application/json
-* import * from org::mule::weave::slack::Builders
+* import * from slack::Builders
 * ---
 *  buttonWithUrl({'type': "plain_text", text: "Create your own :emoji:"}, "emoji", "https://slack.com")
 * ----
@@ -1091,7 +1091,7 @@ fun buttonWithUrl(text: PlainText, id : String, url: String) : Button = button(t
 * ----
 * %dw 2.0
 * output application/json
-* import * from org::mule::weave::slack::Builders
+* import * from slack::Builders
 * var versions = ["4.3.0", "4.2.2", "4.1.6"]
 * ---
 *  versions map ((item) -> option(item, item))
@@ -1156,7 +1156,7 @@ fun option(message: String, value: String) = option(text(message), value)
 * ----
 * %dw 2.0
 * output application/json
-* import * from org::mule::weave::slack::Builders
+* import * from slack::Builders
 * ---
 *  option(mrkdwn("*Red*"), "FF0000")
 * ----
@@ -1203,7 +1203,7 @@ fun option(text: Text, val: String) : Option = {
 * ----
 * %dw 2.0
 * output application/json
-* import * from org::mule::weave::slack::Builders
+* import * from slack::Builders
 * var options = ["4.3.0", "4.2.2"] map ((item) -> option(item, item))
 * ---
 *  optionGroup("Recommended", options)
@@ -1266,7 +1266,7 @@ fun optionGroup(message: String, options: Array<Option>) : OptionGroup = optionG
 * ----
 * %dw 2.0
 * output application/json
-* import * from org::mule::weave::slack::Builders
+* import * from slack::Builders
 * var options = ["4.2.0", "4.2.1"] map ((item) -> option(item, item))
 * ---
 *  optionGroup({'type': "plain_text", text: "Others"}, options)
@@ -1332,7 +1332,7 @@ fun optionGroup(text : PlainText, options: Array<Option>) : OptionGroup = {
 * ----
 * %dw 2.0
 * output application/json
-* import * from org::mule::weave::slack::Builders
+* import * from slack::Builders
 * var options = ["4.3.0", "4.2.2", "4.1.6"] map ((item) -> option(item, item))
 * ---
 *  staticSelect("Choose a version...", "version_menu", options)
@@ -1406,7 +1406,7 @@ fun staticSelect(placeholder: String, id: String, options: Array<Option>) : Stat
 * ----
 * %dw 2.0
 * output application/json
-* import * from org::mule::weave::slack::Builders
+* import * from slack::Builders
 * var recommendedGroup = optionGroup("Recommended", [option("4.3.0", "latest")])
 * var otherGroup = optionGroup("Other", [option("4.1.1", "original")])
 * ---
@@ -1491,7 +1491,7 @@ fun staticSelectByGroups(placeholder: String, id: String, optionGroups: Array<Op
 * ----
 * %dw 2.0
 * output application/json
-* import * from org::mule::weave::slack::Builders
+* import * from slack::Builders
 * var options = ["4.3.0", "4.2.2", "4.1.6"] map ((item) -> option(item, item))
 * ---
 *  staticSelect("Choose a version...", "version_menu", options)
@@ -1570,7 +1570,7 @@ fun staticSelect(placeholder: PlainText, id: String, options: Array<Option>) : S
 * ----
 * %dw 2.0
 * output application/json
-* import * from org::mule::weave::slack::Builders
+* import * from slack::Builders
 * var recommendedGroup = optionGroup("Recommended", [option("4.3.0", "latest")])
 * var otherGroup = optionGroup("Other", [option("4.1.1", "original")])
 * ---
