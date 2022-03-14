@@ -1,5 +1,5 @@
 %dw 2.0
-import * from org::mule::weave::slack::modules::Builders
+import * from slack::Builders
 output application/json
 var recommendedGroup = optionGroup("Recommended", ["4.3.0", "4.2.2"] map option($, $))
 var otherGroup = optionGroup("Others", ["4.2.1", "4.2.0"] map option($, $))

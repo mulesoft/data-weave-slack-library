@@ -1,5 +1,5 @@
 %dw 2.0
-import * from org::mule::weave::slack::modules::Builders
+import * from slack::Builders
 output application/json
 var selectedVersion = "4.3.0"
 var latestVersion = "2.3.0-20210119"

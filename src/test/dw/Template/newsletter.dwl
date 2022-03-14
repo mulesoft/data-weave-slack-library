@@ -1,5 +1,5 @@
 %dw 2.0
-import * from org::mule::weave::slack::modules::Builders
+import * from slack::Builders
 import mergeWith from dw::core::Objects
 output application/json
 var details = "*<fakeLink.toUserProfiles.com|Iris / Zelda 1-1>*\nTuesday, January 21 4:00-4:30pm\nBuilding 2 - Havarti Cheese (3)\n2 guests"

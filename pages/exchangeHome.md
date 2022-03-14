@@ -10,7 +10,7 @@ With the DataWeave Slack module you can generate it with this simple script that
 
 ```dataweave
 %dw 2.0
-import * from org::mule::weave::slack::modules::Builders
+import * from slack::Builders
 output application/json
 var calendar = image("https://api.slack.com/img/blocks/bkb_template_images/notifications.png", "calendar")
 ---

@@ -13,7 +13,7 @@ With the DataWeave Slack module, you can generate blocks with this simple script
 
 ```dataweave
 %dw 2.0
-import * from org::mule::weave::slack::modules::Builders
+import * from slack::Builders
 output application/json
 var calendar = image("https://api.slack.com/img/blocks/bkb_template_images/notifications.png", "calendar")
 ---
@@ -30,28 +30,28 @@ blocks([
 ])
 ```
 
-## [org::mule::weave::slack::modules::Blocks](/src/main/dw/org/mule/weave/slack/modules/Blocks.dwl )
+## [slack::Blocks](/src/main/dw/org/mule/weave/slack/modules/Blocks.dwl )
 
 Representation of all Slack [blocks](https://api.slack.com/reference/block-kit/blocks):
 
 ________________________________
 
 
-## [org::mule::weave::slack::modules::Builders](/src/main/dw/org/mule/weave/slack/modules/Builders.dwl )
+## [slack::Builders](/src/main/dw/org/mule/weave/slack/modules/Builders.dwl )
 
 Provides functions to simplify the creation and composition of [blocks](https://api.slack.com/block-kit), [elements](https://api.slack.com/reference/block-kit/block-elements) and [objects](https://api.slack.com/reference/block-kit/composition-objects):
 
 ________________________________
 
 
-## [org::mule::weave::slack::modules::Elements](/src/main/dw/org/mule/weave/slack/modules/Elements.dwl )
+## [slack::Elements](/src/main/dw/org/mule/weave/slack/modules/Elements.dwl )
 
 Representation of all Slack [elements](https://api.slack.com/reference/block-kit/block-elements):
 
 ________________________________
 
 
-## [org::mule::weave::slack::modules::Objects](/src/main/dw/org/mule/weave/slack/modules/Objects.dwl )
+## [slack::Objects](/src/main/dw/org/mule/weave/slack/modules/Objects.dwl )
 
 Representation of all Slack [objects](https://api.slack.com/reference/block-kit/composition-objects):
 

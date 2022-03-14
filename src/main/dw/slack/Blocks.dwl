@@ -6,8 +6,8 @@
 */
 
 %dw 2.0
-import * from org::mule::weave::slack::modules::Elements
-import * from org::mule::weave::slack::modules::Objects
+import * from slack::Elements
+import * from slack::Objects
 
 /**
 * Generic representation of a Slack block.
