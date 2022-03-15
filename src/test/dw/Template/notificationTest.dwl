@@ -4,7 +4,7 @@ import * from dw::test::Asserts
 ---
 "Test Template::notification" describedBy [
     "Assert TestScenario" in do {
-        runMapping("Template/notification.dwl", inputsOf("Template/notification/TestScenario"),"application/json") must
-                  equalTo(outputOf("Template/notification/TestScenario"))
+        evalPath("Template/notification.dwl", inputsFrom("Template/notification/TestScenario"),"application/json") must
+                  equalTo(outputFrom("Template/notification/TestScenario"))
     }
 ]

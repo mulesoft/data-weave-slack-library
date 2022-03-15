@@ -4,7 +4,7 @@ import * from dw::test::Asserts
 ---
 "Test Builders::radioButtons" describedBy [
     "Assert TestScenario" in do {
-        runMapping("Builders/radioButtons.dwl", inputsOf("Builders/radioButtons/TestScenario"),"application/json") must
-                  equalTo(outputOf("Builders/radioButtons/TestScenario"))
+        evalPath("Builders/radioButtons.dwl", inputsFrom("Builders/radioButtons/TestScenario"),"application/json") must
+                  equalTo(outputFrom("Builders/radioButtons/TestScenario"))
     }
 ]

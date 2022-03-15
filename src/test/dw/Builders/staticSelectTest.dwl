@@ -4,7 +4,7 @@ import * from dw::test::Asserts
 ---
 "Test Builders::staticSelect" describedBy [
     "Assert TestScenario" in do {
-        runMapping("Builders/staticSelect.dwl", inputsOf("Builders/staticSelect/TestScenario"),"application/json") must
-                  equalTo(outputOf("Builders/staticSelect/TestScenario"))
+        evalPath("Builders/staticSelect.dwl", inputsFrom("Builders/staticSelect/TestScenario"),"application/json") must
+                  equalTo(outputFrom("Builders/staticSelect/TestScenario"))
     }
 ]

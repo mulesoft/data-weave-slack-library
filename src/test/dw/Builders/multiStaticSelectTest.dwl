@@ -4,7 +4,7 @@ import * from dw::test::Asserts
 ---
 "Test Builders::multiStaticSelect" describedBy [
     "Assert TestScenario" in do {
-        runMapping("Builders/multiStaticSelect.dwl", inputsOf("Builders/multiStaticSelect/TestScenario"),"application/json") must
-                  equalTo(outputOf("Builders/multiStaticSelect/TestScenario"))
+        evalPath("Builders/multiStaticSelect.dwl", inputsFrom("Builders/multiStaticSelect/TestScenario"),"application/json") must
+                  equalTo(outputFrom("Builders/multiStaticSelect/TestScenario"))
     }
 ]
