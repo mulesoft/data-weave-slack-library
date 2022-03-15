@@ -4,7 +4,7 @@ import * from dw::test::Asserts
 ---
 "Test Template::poll" describedBy [
     "Assert TestScenario" in do {
-        runMapping("Template/poll.dwl", inputsOf("Template/poll/TestScenario"),"application/json") must
-                  equalTo(outputOf("Template/poll/TestScenario"))
+        evalPath("Template/poll.dwl", inputsFrom("Template/poll/TestScenario"),"application/json") must
+                  equalTo(outputFrom("Template/poll/TestScenario"))
     }
 ]

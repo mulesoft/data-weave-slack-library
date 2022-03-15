@@ -4,7 +4,7 @@ import * from dw::test::Asserts
 ---
 "Test Builders::divider" describedBy [
     "Assert TestScenario" in do {
-        runMapping("Builders/divider.dwl", inputsOf("Builders/divider/TestScenario"),"application/json") must
-                  equalTo(outputOf("Builders/divider/TestScenario"))
+        evalPath("Builders/divider.dwl", inputsFrom("Builders/divider/TestScenario"),"application/json") must
+                  equalTo(outputFrom("Builders/divider/TestScenario"))
     }
 ]

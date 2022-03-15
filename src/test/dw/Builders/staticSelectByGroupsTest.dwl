@@ -4,7 +4,7 @@ import * from dw::test::Asserts
 ---
 "Test Builders::staticSelectByGroups" describedBy [
     "Assert TestScenario" in do {
-        runMapping("Builders/staticSelectByGroups.dwl", inputsOf("Builders/staticSelectByGroups/TestScenario"),"application/json") must
-                  equalTo(outputOf("Builders/staticSelectByGroups/TestScenario"))
+        evalPath("Builders/staticSelectByGroups.dwl", inputsFrom("Builders/staticSelectByGroups/TestScenario"),"application/json") must
+                  equalTo(outputFrom("Builders/staticSelectByGroups/TestScenario"))
     }
 ]

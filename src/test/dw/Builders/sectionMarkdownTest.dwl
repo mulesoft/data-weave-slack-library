@@ -4,7 +4,7 @@ import * from dw::test::Asserts
 ---
 "Test Builders::sectionMarkdown" describedBy [
     "Assert TestScenario" in do {
-        runMapping("Builders/sectionMarkdown.dwl", inputsOf("Builders/sectionMarkdown/TestScenario"),"application/json") must
-                  equalTo(outputOf("Builders/sectionMarkdown/TestScenario"))
+        evalPath("Builders/sectionMarkdown.dwl", inputsFrom("Builders/sectionMarkdown/TestScenario"),"application/json") must
+                  equalTo(outputFrom("Builders/sectionMarkdown/TestScenario"))
     }
 ]

@@ -4,7 +4,7 @@ import * from dw::test::Asserts
 ---
 "Test Builders::context" describedBy [
     "Assert TestScenario" in do {
-        runMapping("Builders/context.dwl", inputsOf("Builders/context/TestScenario"),"application/json") must
-                  equalTo(outputOf("Builders/context/TestScenario"))
+        evalPath("Builders/context.dwl", inputsFrom("Builders/context/TestScenario"),"application/json") must
+                  equalTo(outputFrom("Builders/context/TestScenario"))
     }
 ]
