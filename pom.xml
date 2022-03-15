@@ -2,10 +2,11 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
     <modelVersion>4.0.0</modelVersion>
-    <groupId>1e0dbdda-5cda-4968-a636-0980a2c42cb1</groupId>
+    <groupId>${exchange.orgId}</groupId>
     <artifactId>data-weave-slack-library</artifactId>
-    <version>0.3.0</version>
+    <version>${revision}</version>
     <description>DataWeave Slack Library</description>
 
     <packaging>dw-library</packaging>
@@ -13,10 +14,11 @@
     <name>DataWeave Slack Library</name>
 
     <properties>
+        <revision>0.3.0-SNAPSHOT</revision>
         <data.weave.version>2.4.0-20220221</data.weave.version>
         <data.weave.testing.framework.version>1.1.0</data.weave.testing.framework.version>
         <data.weave.maven.plugin.version>0.1.0</data.weave.maven.plugin.version>
-        <exchange.orgId>1e0dbdda-5cda-4968-a636-0980a2c42cb1</exchange.orgId>
+        <exchange.orgId>dummy-org-id</exchange.orgId>
 
         <sonar.sourceEncoding>UTF-8</sonar.sourceEncoding>
         <sonar.sources>src/main/dw,./pom.xml</sonar.sources>
@@ -59,13 +61,10 @@
         </resources>
         <testResources>
             <testResource>
-                <directory>src/test/dwit</directory>
+                <directory>src/test/dw</directory>
             </testResource>
             <testResource>
-                <directory>src/test/dwmit</directory>
-            </testResource>
-            <testResource>
-                <directory>src/test/dwtest</directory>
+                <directory>src/test/resources</directory>
             </testResource>
         </testResources>
         <plugins>
@@ -86,13 +85,7 @@
             </plugin>
         </plugins>
     </build>
-    <distributionManagement>
-        <repository>
-            <id>exchange</id>
-            <name>Exchange</name>
-            <url>https://maven.devx.anypoint.mulesoft.com/api/v3/organizations/1e0dbdda-5cda-4968-a636-0980a2c42cb1/maven</url>
-        </repository>
-    </distributionManagement>
+
     <repositories>
         <repository>
             <id>mule-releases</id>
@@ -102,13 +95,46 @@
             <id>mule-snapshots</id>
             <url>https://repository-master.mulesoft.org/nexus/content/repositories/snapshots</url>
         </repository>
-        <repository>
-            <id>exchange</id>
-            <name>Corporate Repository</name>
-            <url>https://maven.devx.anypoint.mulesoft.com/api/v3/maven</url>
-            <layout>default</layout>
-        </repository>
     </repositories>
+    <profiles>
+        <profile>
+        <id>qax</id>
+        <activation>
+            <activeByDefault>true</activeByDefault>
+        </activation>
+        <repositories>
+            <repository>
+                <id>exchange-qax</id>
+                <name>QAX Exchange</name>
+                <url>https://maven.qax.anypoint.mulesoft.com/api/v3/maven</url>
+            </repository>
+        </repositories>
+        <distributionManagement>
+            <repository>
+                <id>exchange-qax</id>
+                <name>QAX Exchange</name>
+                <url>https://maven.qax.anypoint.mulesoft.com/api/v3/organizations/${exchange.orgId}/maven</url>
+            </repository>
+        </distributionManagement>
+        </profile>
+        <profile>
+        <id>prod-us</id>
+        <repositories>
+            <repository>
+                <id>exchange-prod-coco</id>
+                <name>PROD Exchange</name>
+                <url>https://maven.anypoint.mulesoft.com/api/v3/maven</url>
+            </repository>
+        </repositories>
+        <distributionManagement>
+            <repository>
+                <id>exchange-prod-coco</id>
+                <name>PROD Exchange</name>
+                <url>https://maven.anypoint.mulesoft.com/api/v3/organizations/${exchange.orgId}/maven</url>
+            </repository>
+        </distributionManagement>
+        </profile>
+    </profiles>
     <pluginRepositories>
         <pluginRepository>
             <id>mule-releases</id>
