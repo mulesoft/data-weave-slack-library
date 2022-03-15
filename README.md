@@ -30,28 +30,28 @@ blocks([
 ])
 ```
 
-## [slack::Blocks](/src/main/dw/org/mule/weave/slack/modules/Blocks.dwl )
+## [slack::Blocks](/src/main/dw/slack/Blocks.dwl )
 
 Representation of all Slack [blocks](https://api.slack.com/reference/block-kit/blocks):
 
 ________________________________
 
 
-## [slack::Builders](/src/main/dw/org/mule/weave/slack/modules/Builders.dwl )
+## [slack::Builders](/src/main/dw/slack/Builders.dwl )
 
 Provides functions to simplify the creation and composition of [blocks](https://api.slack.com/block-kit), [elements](https://api.slack.com/reference/block-kit/block-elements) and [objects](https://api.slack.com/reference/block-kit/composition-objects):
 
 ________________________________
 
 
-## [slack::Elements](/src/main/dw/org/mule/weave/slack/modules/Elements.dwl )
+## [slack::Elements](/src/main/dw/slack/Elements.dwl )
 
 Representation of all Slack [elements](https://api.slack.com/reference/block-kit/block-elements):
 
 ________________________________
 
 
-## [slack::Objects](/src/main/dw/org/mule/weave/slack/modules/Objects.dwl )
+## [slack::Objects](/src/main/dw/slack/Objects.dwl )
 
 Representation of all Slack [objects](https://api.slack.com/reference/block-kit/composition-objects):
 
