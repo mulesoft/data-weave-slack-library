@@ -7,11 +7,11 @@
     <groupId>${exchange.orgId}</groupId>
     <artifactId>data-weave-slack-library</artifactId>
     <version>${revision}</version>
-    <description>DataWeave Slack Library</description>
 
     <packaging>dw-library</packaging>
 
     <name>DataWeave Slack Library</name>
+    <description>Slack Block Kit for DataWeave</description>
 
     <properties>
         <revision>0.3.0-SNAPSHOT</revision>
@@ -79,7 +79,8 @@
                         <coverageFormat>sonar</coverageFormat>
                     </tests>
                     <docs>
-                        <homePage>${project.basedir}/pages/exchangeHome.md</homePage>
+                        <homePage>${project.basedir}/README.md</homePage>
+                        <favicon>${project.basedir}/src/main/resources/favicon/slack.png</favicon>
                     </docs>
                 </configuration>
             </plugin>
