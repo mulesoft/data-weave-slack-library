@@ -2,7 +2,7 @@
 *
 * Representation of all Slack objects.
 * 
-* See https://api.slack.com/reference/block-kit/composition-objects[Composition objects].
+* https://api.slack.com/reference/block-kit/composition-objects[Composition Objects Reference]
 */
 
 %dw 2.0
@@ -10,7 +10,7 @@
 /**
 * Represents a text object.
 *
-* See https://api.slack.com/reference/block-kit/composition-objects#text[Text object].
+* https://api.slack.com/reference/block-kit/composition-objects#text[Text Object Reference]
 */
 type Text = PlainText | Mrkdwn
 
@@ -40,7 +40,7 @@ type Mrkdwn = SimpleText & {
 /**
 * Type that represents a confirmation dialog object.
 *
-* See https://api.slack.com/reference/block-kit/composition-objects#confirm[Confirmation dialog object].
+* https://api.slack.com/reference/block-kit/composition-objects#confirm[Confirmation Dialog Object Reference]
 */
 type Confirmation = {
     title: PlainText,
@@ -58,7 +58,7 @@ type Style = "primary" | "danger"
 /**
 * Type that represents an option object.
 *
-* See https://api.slack.com/reference/block-kit/composition-objects#option[Option object].
+* https://api.slack.com/reference/block-kit/composition-objects#option[Option Object Reference]
 */
 type Option = {
     text: Text,
@@ -70,7 +70,7 @@ type Option = {
 /**
 * Type that represents an option group object.
 *
-* See https://api.slack.com/reference/block-kit/composition-objects#option_group[Option group object].
+* https://api.slack.com/reference/block-kit/composition-objects#option_group[Option Group Object Reference]
 */
 type OptionGroup = WithOptions & {
     label: PlainText
@@ -79,7 +79,7 @@ type OptionGroup = WithOptions & {
 /**
 * Type that represents a dispatch action object.
 *
-* See https://api.slack.com/reference/block-kit/composition-objects#dispatch_action_config[Dispatch action configuration].
+* https://api.slack.com/reference/block-kit/composition-objects#dispatch_action_config[Dispatch Action Configuration Reference]
 */
 type Dispatch = {
     trigger_actions_on?: Array<DispatchOptions>
@@ -93,7 +93,7 @@ type DispatchOptions = "on_enter_pressed" | "on_character_entered"
 /**
 * Type that represents a filter conversation object.
 *
-* See https://api.slack.com/reference/block-kit/composition-objects#filter_conversations[Filter object for conversation lists].
+* https://api.slack.com/reference/block-kit/composition-objects#filter_conversations[Filter Object for Conversation Lists Reference]
 */
 type Filter = {
     include?: Array<FilterOptions>,

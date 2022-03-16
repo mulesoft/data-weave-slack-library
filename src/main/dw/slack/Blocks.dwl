@@ -2,7 +2,7 @@
 *
 * Types that represent all Slack Blocks. 
 *
-* https://api.slack.com/reference/block-kit/blocks[blocks]
+* https://api.slack.com/reference/block-kit/blocks[Slack Blocks Reference]
 */
 
 %dw 2.0
@@ -19,7 +19,7 @@ type Block = OptionalId & {
 /**
 * Representation of a Slack action block.
 *
-* https://api.slack.com/reference/block-kit/blocks#actions[actions]
+* https://api.slack.com/reference/block-kit/blocks#actions[Actions Reference]
 */
 type Actions = OptionalId & {
     'type': "actions",
@@ -29,7 +29,7 @@ type Actions = OptionalId & {
 /**
 * Representation of a Slack context block.
 *
-* https://api.slack.com/reference/block-kit/blocks#context[context]
+* https://api.slack.com/reference/block-kit/blocks#context[Context Reference]
 */
 type Context = OptionalId & {
     'type': "context",
@@ -39,7 +39,7 @@ type Context = OptionalId & {
 /**
 * Representation of a Slack divider block.
 *
-* https://api.slack.com/reference/block-kit/blocks#divider[divider]
+* https://api.slack.com/reference/block-kit/blocks#divider[Divider Reference]
 */
 type Divider = OptionalId & {
     'type': "divider"
@@ -48,7 +48,7 @@ type Divider = OptionalId & {
 /**
 * Representation of a Slack file block.
 *
-* https://api.slack.com/reference/block-kit/blocks#file[file]
+* https://api.slack.com/reference/block-kit/blocks#file[File Reference]
 */
 type File = OptionalId & {
     'type': "file",
@@ -59,7 +59,7 @@ type File = OptionalId & {
 /**
 * Representation of a Slack header block.
 *
-* https://api.slack.com/reference/block-kit/blocks#header[header]
+* https://api.slack.com/reference/block-kit/blocks#header[Header Reference]
 */
 type Header = OptionalId & {
     'type': "header",
@@ -69,7 +69,7 @@ type Header = OptionalId & {
 /**
 * Representation of a Slack image block.
 *
-* https://api.slack.com/reference/block-kit/blocks#image[image]
+* https://api.slack.com/reference/block-kit/blocks#image[Image Reference]
 */
 type ImageBlock = OptionalId & Image & {
     title?: PlainText
@@ -78,7 +78,7 @@ type ImageBlock = OptionalId & Image & {
 /**
 * Representation of a Slack input block.
 *
-* https://api.slack.com/reference/block-kit/blocks#input[input]
+* https://api.slack.com/reference/block-kit/blocks#input[Input Reference]
 */
 type Input = OptionalId & {
     'type': "input",
@@ -92,7 +92,7 @@ type Input = OptionalId & {
 /**
 * Representation of a Slack section block.
 *
-* https://api.slack.com/reference/block-kit/blocks#section[section]
+* https://api.slack.com/reference/block-kit/blocks#section[Section Reference]
 */
 type Section = (OptionalId & WithText | OptionalId & WithFields) & {
     'type': "section",
