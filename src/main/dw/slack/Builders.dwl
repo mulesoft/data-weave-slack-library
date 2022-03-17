@@ -1921,7 +1921,7 @@ fun context(message: String) : Context = context([text(message)])
 * [%header, cols="1,1,3"]
 * |===
 * | Name  | Type | Description
-* | `elements` | `Array<Image|Text>` | The image or text elements.
+* | `elements` | `Array<Image&#124;Text>` | The image or text elements.
 * |===
 *
 * === Example
