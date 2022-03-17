@@ -20,7 +20,7 @@ import mergeWith from dw::core::Objects
 * [%header, cols="1,1,3"]
 * |===
 * | Name | Type | Description
-* | `blocks` | `Array<Block&#62;` | The array of blocks to render.
+* | `blocks` | `Array<Block>` | The array of blocks to render.
 * |===
 *
 * === Example
@@ -70,7 +70,7 @@ fun blocks(blocks: Array<Block>) = {
 * [%header, cols="1,1,3"]
 * |===
 * | Name | Type | Description 
-* | `actions` | `Array<Element&#62;` | The array of interactive elements to render.
+* | `actions` | `Array<Element>` | The array of interactive elements to render.
 * |===
 *
 * === Example
@@ -443,7 +443,7 @@ fun section(text: Text, accessory : Element) : Section = {
 * [%header, cols="1,1,3"]
 * |===
 * | Name | Type | Description 
-* | `fields` | `Array<Text&#62;` | An array of text objects to use.
+* | `fields` | `Array<Text>` | An array of text objects to use.
 * |===
 *
 * === Example
@@ -496,7 +496,7 @@ fun section(fields: Array<Text>) : Section = {
 * [%header, cols="1,1,3"]
 * |===
 * | Name | Type | Description
-* | `fields` | `Array<Text&#62;` | An array of text objects to use.
+* | `fields` | `Array<Text>` | An array of text objects to use.
 * | `accessory` | `Element` | The element to use.
 * |===
 *
@@ -1189,7 +1189,7 @@ fun option(text: Text, val: String) : Option = {
 * |===
 * | Name | Type | Description
 * | `message` | `String` | The value to use in the desired text.
-* | `options` | `Array<Option&#62;` | The options to group.
+* | `options` | `Array<Option>` | The options to group.
 * |===
 *
 * === Example
@@ -1252,7 +1252,7 @@ fun optionGroup(message: String, options: Array<Option>) : OptionGroup = optionG
 * |===
 * | Name | Type | Description
 * | `text` | `PlainText` | The plain text to use.
-* | `options` | `Array<Option&#62;` | The options to group.
+* | `options` | `Array<Option>` | The options to group.
 * |===
 *
 * === Example
@@ -1318,7 +1318,7 @@ fun optionGroup(text : PlainText, options: Array<Option>) : OptionGroup = {
 * | Name | Type | Description
 * | `message` | `String` | The value to use in the desired placeholder.
 * | `id` | `String` | The value to use in an `action_id` field.
-* | `options` | `Array<Option&#62;` | The array of options to offer.
+* | `options` | `Array<Option>` | The array of options to offer.
 * |===
 *
 * === Example
@@ -1392,7 +1392,7 @@ fun staticSelect(placeholder: String, id: String, options: Array<Option>) : Stat
 * | Name | Type | Description 
 * | `message` | `String` | The value to use in the desired placeholder.
 * | `id` | `String` | The value to use in an `action_id` field.
-* | `optionGroups` | `Array<OptionGroup&#62;` | The array of options groups to offer.
+* | `optionGroups` | `Array<OptionGroup>` | The array of options groups to offer.
 * |===
 *
 * === Example
@@ -1477,7 +1477,7 @@ fun staticSelectByGroups(placeholder: String, id: String, optionGroups: Array<Op
 * | Name | Type  | Description
 * | `message` | `String` | The value to use in the desired placeholder.
 * | `id` | `String` | The value to use in an `action_id` field.
-* | `options` | `Array<Option&#62;` | The array of options to offer.
+* | `options` | `Array<Option>` | The array of options to offer.
 * |===
 *
 * === Example
@@ -1556,7 +1556,7 @@ fun staticSelect(placeholder: PlainText, id: String, options: Array<Option>) : S
 * | Name | Type | Description 
 * | `text` | `PlainText` | The text to use as a placeholder.
 * | `id` | `String` | The value to use in an `action_id` field.
-* | `optionGroups` | `Array<OptionGroup&#62;` | The array of options groups to offer.
+* | `optionGroups` | `Array<OptionGroup>` | The array of options groups to offer.
 * |===
 *
 * === Example
@@ -1921,7 +1921,7 @@ fun context(message: String) : Context = context([text(message)])
 * [%header, cols="1,1,3"]
 * |===
 * | Name  | Type | Description
-* | `elements` | `Array<Image&#124;Text&#62;` | The image or text elements.
+* | `elements` | `Array<Image|Text>` | The image or text elements.
 * |===
 *
 * === Example
@@ -2116,7 +2116,7 @@ fun inputText(id: String, multiline: Boolean = false) : PlainTextInput = {
 * |===
 * | Name | Type | Description
 * | `id` | `String` | The value to use in the `action_id` field.
-* | `options` | `Array<Option&#62;` | The options to group.
+* | `options` | `Array<Option>` | The options to group.
 * |===
 *
 * === Example
@@ -2187,7 +2187,7 @@ fun radioButtons(id: String, options: Array<Option>) : RadioButtonGroup = {
 * | Name | Type | Description
 * | `placeholder` | `String` | The value to use in the desired placeholder.
 * | `id` | `String` | The value to use in the `action_id` field.
-* | `options` | `Array<Option&#62;` | The options to select.
+* | `options` | `Array<Option>` | The options to select.
 * |===
 *
 * === Example
@@ -2260,7 +2260,7 @@ fun multiStaticSelect(placeholder: String, id: String, options: Array<Option>) :
 * | Name | Type | Description 
 * | `placeholder` | `PlainText` | The text to use as a placeholder.
 * | `id` | `String` | The value to use in the `action_id` field.
-* | `options` | `Array<Option&#62;` | The options to select.
+* | `options` | `Array<Option>` | The options to select.
 * |===
 *
 * === Example
