@@ -1,5 +1,7 @@
 # DataWeave Slack Library
 
+[![Status](https://github.com/mulesoft/data-weave-slack-library/actions/workflows/master_workflow.yml/badge.svg)](https://github.com/mulesoft/data-weave-slack-library/actions/workflows/master_workflow.yml)
+
 This library provides constructs to simplify working with Slack blocks. Types can provide guidance and validation
 when you write complex block structures. Builder functions help keep code lean by eliminating all boilerplate code.
 
