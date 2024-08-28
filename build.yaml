@@ -11,5 +11,5 @@ jdkTool: OPEN-JDK17
 additionalTestConfigs:
   jdk21:
     jdkTool: TEMURIN-JDK21
-  arm:
+  arm-jdk17:
     agentLabel: ubuntu-22.04-arm
