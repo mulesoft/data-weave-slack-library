@@ -10,6 +10,6 @@ junitTestResults: "**/target/data-weave-test-reports/TEST-*.xml"
 jdkTool: OPEN-JDK17
 additionalTestConfigs:
   jdk21:
-    jdkTool: TEMURIN-JDK21
+    testJdkTool: TEMURIN-JDK21
   arm-jdk17:
     agentLabel: ubuntu-22.04-arm
